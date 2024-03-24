@@ -94,7 +94,6 @@
     "eslint-plugin-react-hooks": "4.0.8",
     "or": "^0.2.0",
     "prettier": "^2.2.1",
-    "react-test-renderer": "^18.2.0",
     "sass": "^1.42.1",
     "svgo": "^3.0.5",
     "webpack": "^5.89.0",
