@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: example-service
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    disk:
+      name: example-service-disk
+      mountPath: /var/www/example
+      sizeGB: 10
+databases:
+  - name: example-database
+    databaseName: myapp
+    user: myappuser
