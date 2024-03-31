@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 // routing
 import Routes from 'routes';
 // defaultTheme
-import themes from 'themes';
+import themes from './themes';
 // third party packages
 import { SnackbarProvider } from 'notistack';
 import './app.css';
