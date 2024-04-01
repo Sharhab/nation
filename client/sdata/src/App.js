@@ -5,10 +5,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/de';
 // project imports
-import NavigationScroll from 'layout/NavigationScroll';
+import NavigationScroll from './layout/NavigationScroll';
 import { useSelector } from 'react-redux';
 // routing
-import Routes from 'routes';
+import Routes from './routes';
 // defaultTheme
 import themes from './themes';
 // third party packages
