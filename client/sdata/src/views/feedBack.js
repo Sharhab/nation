@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { generateMonnifyAccount } from '../store/actions';
+import { generateMonnifyAccount } from '../../store/actions';
 const FeedBack = ({
     title,
     type,
