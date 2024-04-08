@@ -33,36 +33,23 @@ const Header = ({ handleLeftDrawerToggle }) => {
                 }}
             >
                 <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
-                    {/* <LogoSection /> */}
-                    <typography variant='h1' sx={{
-                    ...theme.typography.mediumAvatar,
-                    transition: 'all .2s ease-in-out',
-                    color: theme.palette.primary.dark,
-                    fontsize: theme.palette.fontsize,
-                    '&:hover': {
-                        background: theme.palette.primary.dark,
-                        color: theme.palette.primary.light
-                    }
-                }}
->
-                        SdataPlus
-                    </typography>
+                    <LogoSection />
                 </Box>
 
                 <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
                     <Avatar
                         variant="rounded"
-                sx={{
-                    ...theme.typography.commonAvatar,
-                    ...theme.typography.mediumAvatar,
-                    transition: 'all .2s ease-in-out',
-                    background: theme.palette.primary.light,
-                    color: theme.palette.primary.dark,
-                    '&:hover': {
-                        background: theme.palette.primary.dark,
-                        color: theme.palette.primary.light
-                    }
-                }}
+                        sx={{
+                            ...theme.typography.commonAvatar,
+                            ...theme.typography.mediumAvatar,
+                            transition: 'all .2s ease-in-out',
+                            background: theme.palette.secondary.light,
+                            color: theme.palette.secondary.dark,
+                            '&:hover': {
+                                background: theme.palette.secondary.dark,
+                                color: theme.palette.secondary.light
+                            }
+                        }}
                         onClick={handleLeftDrawerToggle}
                         color="inherit"
                     >
@@ -73,8 +60,10 @@ const Header = ({ handleLeftDrawerToggle }) => {
 
             {/* header search */}
             {/* <SearchSection /> */}
-            <Box sx={{ flexGrow: 1, position: 'absolute', right:'10%'}}>
-            <ProfileSection user={user} />
+            <Box sx={{ flexGrow: 1 }}>
+            
+            <ProfileSection />
+          
             </Box>
            
 

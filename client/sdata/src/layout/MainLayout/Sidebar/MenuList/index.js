@@ -19,12 +19,12 @@ const MenuList = () => {
     const Logout = () => {
         dispatch(LogoutAction());
     };
-    const navItems = menuItem.items.map((item, index) => {
+    const navItems = menuItem.items.map((item) => {
         switch (item.type) {
             case 'group':
                 return (
                     <>
-                    <NavGroup key={index} item={item} />
+                        <NavGroup key={item.id} item={item} />
                     </>
                 );
             default:
