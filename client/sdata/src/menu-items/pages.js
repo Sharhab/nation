@@ -25,6 +25,7 @@ const icons = {
     FaUser,
     FaMoneyBill,
     FaFacebookMessenger,
+
     FaUserSecret
 };
 
@@ -86,16 +87,16 @@ const pages = {
                 },
                 {
                     id: 'mtn2',
-                    title: 'Mtn SME 2 Data ',
+                    title: 'Mtn SME 1 Data ',
                     type: 'item',
-                    url: '/buy-mtn-data-sme-2',
+                    url: '/buy-mtn-data-sme-1',
                     target: false
                 },
                 {
-                    id: 'mtncg',
-                    title: 'Mtn Corporate gifting  ',
+                    id: 'mtn3',
+                    title: 'Mtn SME 2 Data ',
                     type: 'item',
-                    url: '/buy-mtn-corporate-gifting',
+                    url: '/buy-mtn-data-sme-2',
                     target: false
                 },
                 {

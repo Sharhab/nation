@@ -14,7 +14,7 @@ import themes from './themes';
 // third party packages
 import { SnackbarProvider } from 'notistack';
 import './app.css';
-import './assets/fonts/avant.otf';
+//import './assets/fonts/avant.otf';
 
 // ==============================|| APP ||============================== //
 

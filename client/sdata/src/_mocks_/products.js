@@ -9,7 +9,7 @@ import convert from '../assets/images/convert.svg';
 import elect from '../assets/images/electric.svg';
 import transaction from '../assets/images/transaction.svg';
 import wallet from '../assets/images/wallet.svg';
-//import etisalat from '../assets/images/network/9mobile-logo.jpg';
+import etisalat from '../assets/images/network/9mobile-logo.jpg';
 //  <NetworkCheckIcon style={{ color: 'blue', fontSize: '35px' }} />, <NetworkCheckIcon style={{ color: 'blue', fontSize: '35px' }} />,
 export const products = [
     {
@@ -71,11 +71,16 @@ export const dataProducts = [
     },
     {
         id: 2,
+        name: 'MTN SME 1 Data',
+        image: mtnLogo,
+        url: '/buy-mtn-data-sme-1'
+    },
+    {
+        id: 3,
         name: 'MTN SME 2 Data',
         image: mtnLogo,
         url: '/buy-mtn-data-sme-2'
     },
-    
     {
         id: 4,
         name: 'MTN COUPON Data',
@@ -84,36 +89,30 @@ export const dataProducts = [
     },
     {
         id: 5,
-        name: 'MTN CORPORATE GIFTING',
+        name: 'MTN Data (Gifting)',
         image: mtnLogo,
-        url: '/buy-mtn-corporate-gifting'
+        url: '/buy-mtn-gift-data'
     },
-    // {
-    //     id: 6,
-    //     name: 'MTN Data (Gifting)',
-    //     image: mtnLogo,
-    //     url: '/buy-mtn-gift-data'
-    // },
     {
-        id: 7,
+        id: 6,
         name: 'Glo Data',
         image: gloLogo,
         url: '/buy-glo-data'
     },
     {
-        id: 8,
+        id: 7,
         name: 'Glo Corporate Gifting',
         image: gloLogo,
         url: '/buy-glo-cg-data'
     },
     {
-        id: 9,
+        id: 8,
         name: 'Airtel Data',
         image: airtelLogo,
         url: '/buy-airtel-data'
     },
     {
-        id: 10,
+        id: 9,
         name: 'Airtel Corporate Gifting ',
         image: airtelLogo,
         url: '/buy-airtel-cg-data'
