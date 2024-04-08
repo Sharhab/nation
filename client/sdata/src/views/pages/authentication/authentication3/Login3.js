@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthCardWrapper from '../AuthCardWrapper';
 import AuthLogin from '../auth-forms/AuthLogin';
 // project imports
-import logo from '../../../../assets/images/user-round.png';
+import logo from 'assets/images/user-round.png';
 import AuthWrapper1 from '../AuthWrapper1';
 // assets
 
@@ -23,23 +23,23 @@ const Login = () => {
                         <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                                 <div
-                                    // style={{
-                                    //     display: 'flex',
-                                    //     alignItems: 'center',
-                                    //     justifyContent: 'center',
-                                    //     height: '150px',
-                                    //     width: '150px',
-                                    //     borderRadius: '50%',
-                                    //     backgroundColor: '#f1f0f5',
-                                    //     position: 'relative',
-                                    //     top: 100,
-                                    //     // right: 100,
-                                    //     // left: 100,
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        height: '150px',
+                                        width: '150px',
+                                        borderRadius: '50%',
+                                        backgroundColor: '#f1f0f5',
+                                        position: 'relative',
+                                        top: 100,
+                                        // right: 100,
+                                        // left: 100,
 
-                                    //     zIndex: 1000
-                                    // }}
+                                        zIndex: 1000
+                                    }}
                                 >
-                                    {/* <img
+                                    <img
                                         src={logo}
                                         style={{
                                             height: '150px',
@@ -48,13 +48,13 @@ const Login = () => {
                                             borderRadius: '50px'
                                         }}
                                         alt="Sharha"
-                                    />*/}
-                                    </div> 
+                                    />
+                                </div>
                             </div>
 
                             <AuthCardWrapper>
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
-                                    <Grid item sx={{ mb: 3, mt: 7 }}>
+                                    <Grid item sx={{ mb: 3, mt: 10 }}>
                                         <Link
                                             to="#"
                                             style={{
@@ -62,11 +62,11 @@ const Login = () => {
                                             }}
                                         >
                                             <Typography
-                                                variant="h1"
+                                                variant="h2"
                                                 sx={{
                                                     textAlign: 'center',
                                                     textAlignLast: 'center',
-                                                    color: 'green'
+                                                    color: '#83529f'
                                                 }}
                                             >
                                                 S. Data Plus
@@ -120,7 +120,7 @@ const Login = () => {
                                                     textTransform: 'uppercase',
                                                     borderRadius: '30px',
                                                     backgroundColor: {
-                                                        backgroundColor: 'green',
+                                                        backgroundColor: '#83529f',
                                                         ':hover': {
                                                             backgroundColor: '#83529f'
                                                         }

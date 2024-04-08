@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthRegister from '../auth-forms/AuthRegister';
 import AuthCardWrapper from '../AuthCardWrapper';
 import AuthWrapper1 from '../AuthWrapper1';
-//import logo from '../../../../assets/images/user-round.png';
+import logo from 'assets/images/user-round.png';
 
 const Register = () => {
     const theme = useTheme();
@@ -31,20 +31,20 @@ const Register = () => {
                         <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                                 <div
-                                    // style={{
-                                    //     display: 'flex',
-                                    //     alignItems: 'center',
-                                    //     justifyContent: 'center',
-                                    //     height: '150px',
-                                    //     width: '150px',
-                                    //     borderRadius: '50%',
-                                    //     backgroundColor: '#f1f0f5',
-                                    //     position: 'relative',
-                                    //     top: 100,
-                                    //     zIndex: 1000
-                                    // }}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        height: '150px',
+                                        width: '150px',
+                                        borderRadius: '50%',
+                                        backgroundColor: '#f1f0f5',
+                                        position: 'relative',
+                                        top: 100,
+                                        zIndex: 1000
+                                    }}
                                 >
-                                    {/* <img
+                                    <img
                                         src={logo}
                                         style={{
                                             height: '100px',
@@ -52,7 +52,7 @@ const Register = () => {
                                             margin: 'auto'
                                         }}
                                         alt="Sharha"
-                                    /> */}
+                                    />
                                 </div>
                             </div>
                             <AuthCardWrapper>
@@ -65,11 +65,11 @@ const Register = () => {
                                             }}
                                         >
                                             <Typography
-                                                variant="h1"
+                                                variant="h2"
                                                 sx={{
                                                     textAlign: 'center',
                                                     textAlignLast: 'center',
-                                                    color: 'green'
+                                                    color: '#83529f'
                                                 }}
                                             >
                                                  S. DATA PLUS
@@ -117,7 +117,7 @@ const Register = () => {
                                                     textTransform: 'uppercase',
                                                     borderRadius: '30px',
                                                     backgroundColor: {
-                                                        backgroundColor: 'green',
+                                                        backgroundColor: '#83529f',
                                                         ':hover': {
                                                             backgroundColor: '#83529f'
                                                         }
