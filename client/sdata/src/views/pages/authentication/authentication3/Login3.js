@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthCardWrapper from '../AuthCardWrapper';
 import AuthLogin from '../auth-forms/AuthLogin';
 // project imports
-import logo from 'assets/images/user-round.png';
+import logo from '../../../../assets/images/user-round.png';
 import AuthWrapper1 from '../AuthWrapper1';
 // assets
 
