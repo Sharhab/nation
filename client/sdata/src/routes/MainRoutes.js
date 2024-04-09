@@ -1,5 +1,5 @@
 // project imports
-//import MainLayout from '../layout/MainLayout';
+//import MainLayout from '../layout/MainLayout/index';
 import { lazy } from 'react';
 import Loadable from '../ui-component/Loadable';
 import BuyAirtime from '../views/airtime';
