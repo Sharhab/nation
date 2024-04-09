@@ -12,7 +12,7 @@ import { drawerWidth } from '../../store/constant';
 // project imports
 import Breadcrumbs from '../../ui-component/extended/Breadcrumbs';
 import Customization from '../Customization';
-// import Header from './Header';
+import Header from './Header';
  import Sidebar from './Sidebar';
 //  import ProfileSection from './Header/ProfileSection';
 // import LogoSection from './LogoSection';
@@ -20,8 +20,8 @@ import Header from './Header';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
-    theme.typography.mainContent,
-    (!open && {
+    ...theme.typography.mainContent,
+    ...(!open && {
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
         transition: theme.transitions.create('margin', {
@@ -44,7 +44,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
             marginRight: '10px'
         }
     }),
-    (open && {
+    ...(open && {
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen
