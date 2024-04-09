@@ -1,6 +1,6 @@
 // material-ui
 // project imports
-import { Box, CircularProgress } from '@mui/material';
+{/* import { Box, CircularProgress } from '@mui/material';
 import Cookies from 'js-cookie';
 import MUIDataTable from 'mui-datatables';
 import { useSnackbar } from 'notistack';
@@ -163,5 +163,6 @@ const Histories = () => {
         </MainCard>
     );
 };
+*\} 
 
-export default Histories;
+//export default Histories;
