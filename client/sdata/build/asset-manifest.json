@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.553a2e07.css",
+    "main.js": "/static/js/main.7fe8eb4b.js",
+    "static/js/269.b6f5ae48.chunk.js": "/static/js/269.b6f5ae48.chunk.js",
+    "static/js/568.5c154748.chunk.js": "/static/js/568.5c154748.chunk.js",
+    "static/js/985.1de160df.chunk.js": "/static/js/985.1de160df.chunk.js",
+    "static/js/916.ec132a25.chunk.js": "/static/js/916.ec132a25.chunk.js",
+    "static/js/599.df8ff524.chunk.js": "/static/js/599.df8ff524.chunk.js",
+    "static/js/350.d594baa9.chunk.js": "/static/js/350.d594baa9.chunk.js",
+    "static/js/614.38c8b01b.chunk.js": "/static/js/614.38c8b01b.chunk.js",
+    "static/js/899.a84fe77c.chunk.js": "/static/js/899.a84fe77c.chunk.js",
+    "static/media/GBRAIN LOGO NEW.png": "/static/media/GBRAIN LOGO NEW.1a119930ae9e87d5a262.png",
+    "static/media/glo-log.png": "/static/media/glo-log.a8210415219d31cfbbf5.png",
+    "static/media/whatsapp.png": "/static/media/whatsapp.4ba01ee1516f9a3736f4.png",
+    "static/media/airtel-logo.png": "/static/media/airtel-logo.f14d57e0801eea0da5c4.png",
+    "static/media/user-round.png": "/static/media/user-round.3fdebcba666c78171ce6.png",
+    "static/media/wallet.svg": "/static/media/wallet.1017398c8af4c0d785fff98d2d6806cc.svg",
+    "static/media/transaction.svg": "/static/media/transaction.a1212f2e8d3d417f34e8934ee9abcf35.svg",
+    "static/media/airtime.svg": "/static/media/airtime.e8ef483c1c11c83e1b09d33a0b000e14.svg",
+    "static/media/tv.svg": "/static/media/tv.1a12aab747816165a55830e75b6926f9.svg",
+    "static/media/convert.svg": "/static/media/convert.f28242cebd335d3271c624ee602b910d.svg",
+    "static/media/data4.svg": "/static/media/data4.cfa23c1141e596acfc09431f6d584cd8.svg",
+    "static/media/education.svg": "/static/media/education.6750e2ca73c31151e3078bcfae7bcd58.svg",
+    "static/media/earning.svg": "/static/media/earning.b019e86a7ee117bd6bb2e8cab90c0db5.svg",
+    "static/media/electric.svg": "/static/media/electric.752499554fed817678a87db0ed35bb48.svg",
+    "index.html": "/index.html",
+    "main.553a2e07.css.map": "/static/css/main.553a2e07.css.map",
+    "main.7fe8eb4b.js.map": "/static/js/main.7fe8eb4b.js.map",
+    "269.b6f5ae48.chunk.js.map": "/static/js/269.b6f5ae48.chunk.js.map",
+    "568.5c154748.chunk.js.map": "/static/js/568.5c154748.chunk.js.map",
+    "985.1de160df.chunk.js.map": "/static/js/985.1de160df.chunk.js.map",
+    "916.ec132a25.chunk.js.map": "/static/js/916.ec132a25.chunk.js.map",
+    "599.df8ff524.chunk.js.map": "/static/js/599.df8ff524.chunk.js.map",
+    "350.d594baa9.chunk.js.map": "/static/js/350.d594baa9.chunk.js.map",
+    "614.38c8b01b.chunk.js.map": "/static/js/614.38c8b01b.chunk.js.map",
+    "899.a84fe77c.chunk.js.map": "/static/js/899.a84fe77c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.553a2e07.css",
+    "static/js/main.7fe8eb4b.js"
+  ]
+}
