@@ -43,7 +43,7 @@ export const makeNetworkCall = async ({ method, path, requestBody, params, heade
     if (error.response) {
 
 console.log(error.response) 
-     const errorMessage = error.response.data.data.message || 'Bad Request';
+     const errorMessage = error.response.data.message || 'Bad Request';
       throw new Error(errorMessage);
     } else {
       // Handle other types of errors or network issues
