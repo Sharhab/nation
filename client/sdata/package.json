@@ -1,7 +1,7 @@
 {
     "name": "frontend",
     "version": "3.0.1",
-    "homepage": "https://peacepay.onrender.com", 
+    "homepage": "https://peacepay.onrender.com",
     "dependencies": {
         "-": "^0.0.1",
         "@emotion/cache": "^11.4.0",
@@ -34,6 +34,7 @@
         "moment": "^2.29.4",
         "mui-datatables": "^4.2.2",
         "notistack": "^2.0.4",
+        "npm": "^10.5.2",
         "or": "^0.2.0",
         "prop-types": "^15.7.2",
         "query-string": "^7.1.1",
@@ -51,7 +52,6 @@
         "react-scripts": "^5.0.1",
         "redux": "^4.0.5",
         "redux-thunk": "^2.4.1",
-
         "yup": "^0.32.9"
     },
     "scripts": {
