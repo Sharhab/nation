@@ -1,1 +1,2 @@
-from ="/*" to = "/index.html"
+
+[[redirects]] from = “/*” to = “/public/index.html” status = 200
