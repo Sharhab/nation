@@ -50,7 +50,7 @@
         "react-router": "6.0.0-beta.0",
         "react-router-dom": "6.0.0-beta.0",
         "react-scripts": "^5.0.1",
-        "redux": "^5.0.0",
+        "redux": "^4.0.5",
         "redux-thunk": "^2.4.1",
         "yup": "^0.32.9"
     },
@@ -95,7 +95,7 @@
         "eslint-plugin-jsx-a11y": "6.3.1",
         "eslint-plugin-prettier": "^3.4.0",
         "eslint-plugin-react": "^7.26.1",
-        "eslint-plugin-react-hooks": "^5.1.0-canary-36e62c603-",
+        "eslint-plugin-react-hooks": "^4.0.8",
         "prettier": "^2.2.1",
         "sass": "^1.42.1"
     }
