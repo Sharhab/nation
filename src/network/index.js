@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://promisepay.onrender.com/api';
+const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://globstand-backend.onrender.com/api';
 
 export const RequestMethod = {
   POST: 'POST',
