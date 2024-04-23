@@ -13,6 +13,7 @@ import ExamPin from '../views/exam';
 import Histories from '../views/histories/Transaction_History';
 import ForgetPswdWrapper from '../views/pages/authentication/authentication3/ForgetPswd';
 import Login from '../views/pages/authentication/authentication3/Login3';
+import Register from '../views/pages/authentication/authentication3/Register3'
 import ResetPswdWrapper from '../views/pages/authentication/authentication3/ResetPswd';
 import { SuccessPAyment } from '../views/payments/ConfirmPayment';
 import Funding from '../views/payments/Funding';
@@ -65,6 +66,11 @@ const MainRoutes = {
             path: '/pages/login',
             element: <Login />
         },
+               
+        {
+            path: '/pages/register',
+            element: <Register />
+        }, 
         {
             path: '/pages/auth/forget-pswd',
             element: <ForgetPswdWrapper />
