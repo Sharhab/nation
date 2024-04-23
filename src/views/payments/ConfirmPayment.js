@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import FeedBack from '../../views/feedBack';
+import FeedBack from '../views/feedBack';
 
 export const SuccessPAyment = () => {
     const [showAlert, setshowAlert] = useState(false);
