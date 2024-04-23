@@ -889,7 +889,7 @@ export const ResetPasswordAction =
                 type: REGISTER_USER_SUCCESS,
                 payload: data
             });
-      enqueur(data.message, {
+      enqueueSnackbar(data.message, {
                 variant: 'success',
                 autoHideDuration: 2000
             });
