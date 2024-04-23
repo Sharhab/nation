@@ -877,21 +877,31 @@ export const ResetPasswordAction =
           const { data } = await makeNetworkCall({
             method: 'POST',
             requestBody: user,
-            path: '/register'
-          });
-      
-          dispatch({
-            type: REGISTER_USER_SUCCESS,
-            payload: data
-            
-          });
-          data&&
-            enqueueSnackbar(data.message, {
-              variant: 'success',
-              autoHideDuration: 2000
+            path: '/register',
+            headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });  
+              
+         if (data && data.message) {
+            // Dispatch success action and show success snackbar
+            dispatch({
+                type: REGISTER_USER_SUCCESS,
+                payload: data
             });
-      
-          navigate('/pages/login');
+      enqueur(data.message, {
+                variant: 'success',
+                autoHideDuration: 2000
+            });
+
+            // Navigate to the dashboard on successful login
+            navigate('/login');
+        } else {
+          dispatch({
+                type: REGISTER_USER_FAIL,
+                payload: 'Unexpected response structure'
+            });
+        }
         } catch (error) {
           console.log(error.response);
           dispatch({
