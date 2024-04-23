@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fundWalletWithMonnify, userAction } from '../../store/actions';
 import { CustomTextField } from '../../ui-component/basic-inputs';
 import MainCard from '../../ui-component/cards/MainCard';
-import FeedBack from '../views/feedBack';
+import FeedBack from '../feedBack';
 import * as yup from 'yup';
 
 const Funding = () => {
