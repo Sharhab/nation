@@ -13,12 +13,12 @@ const Register = () => {
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
     // State to manage the PIN input
-    const [pin, setPin] = useState('');
+    //const [pin, setPin] = useState('');
 
     // Handler to set the PIN value
-    const handlePinChange = (event) => {
-        setPin(event.target.value);
-    };
+    //const handlePinChange = (event) => {
+     //   setPin(event.target.value);
+   // };
 
     return (
         <AuthWrapper1>
