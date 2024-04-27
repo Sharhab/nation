@@ -3,7 +3,7 @@ import { Button, Typography, TextField } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom'; // Make sure to use 'react-router-dom'
 import { generateMonnifyAccount } from '../store/actions';
 
 const FeedBack = ({
@@ -24,11 +24,18 @@ const FeedBack = ({
     const [bvn, setBvn] = useState('');
     const [showBvnInput, setShowBvnInput] = useState(false);
 
+    const onClickSuccess = (goHome) => {
+        setshowAlert(false);
+        if (goHome) {
+            navigate('/');
+        }
+    };
+
     const onClickGenerate = () => {
         if (from === 'fund') {
-            setShowBvnInput(true);  // Show BVN input only for 'fund' source
+            setShowBvnInput(true); // Show BVN input only for 'fund' source
         } else {
-            onClickSuccess(setshowAlert, goHome);  // Navigate home or perform other action
+            onClickSuccess(goHome); // Navigate home or perform other action
         }
     };
 
@@ -37,19 +44,9 @@ const FeedBack = ({
     };
 
     const onGenerateAccount = async () => {
-        if (from === 'fund') {
-            await dispatch(generateMonnifyAccount({ enqueueSnackbar, navigate, bvn }));
-            setshowAlert(false);
-        } else {
-            // Handle other potential 'from' cases if necessary
-        }
-    };
-
-    const onClickSuccess = (setshowAlert, goHome) => {
-        setshowAlert((prevAlert) => !prevAlert);
-        if (goHome) {
-            navigate('/');
-        }
+        await dispatch(generateMonnifyAccount({ bvn, enqueueSnackbar, navigate }));
+        setShowBvnInput(false); // Hide BVN input after submission
+        setshowAlert(false); // Close the alert dialog
     };
 
     const SuccessFullAlert = () => {
@@ -61,29 +58,32 @@ const FeedBack = ({
                 onCancel={() => setshowAlert(false)}
                 onConfirm={() => {}}
                 customButtons={
-                    showBvnInput ? (
-                        <Button
-                            fullWidth
-                            onClick={onGenerateAccount}
-                            variant="contained"
-                            color="primary"
-                            disabled={loading || bvn.trim() === ''}
-                        >
-                            Submit
-                        </Button>
-                    ) : (
-                        <Button
-                            fullWidth
-                            onClick={onClickGenerate}
-                            variant="contained"
-                            color="primary"
-                            disabled={loading}
-                        >
-                            {from === 'fund' ? 'Generate now' : 'Ok'}
-                        </Button>
-                    )
+                    <>
+                        {showBvnInput ? (
+                            <Button
+                                fullWidth
+                                onClick={onGenerateAccount}
+                                variant="contained"
+                                color="primary"
+                                disabled={loading || bvn.trim() === ''}
+                            >
+                                Submit
+                            </Button>
+                        ) : (
+                            <Button
+                                fullWidth
+                                onClick={onClickGenerate}
+                                variant="contained"
+                                color="primary"
+                                disabled={loading}
+                            >
+                                {from === 'fund' ? 'Generate now' : 'Ok'}
+                            </Button>
+                        )}
+                    </>
                 }
             >
+                <br />
                 {showBvnInput ? (
                     <>
                         <Typography variant="subtitle1">
@@ -102,6 +102,23 @@ const FeedBack = ({
                 ) : (
                     <Typography variant="subtitle1">{message}</Typography>
                 )}
+            </SweetAlert>
+        );
+    };
+
+    const FailureAlert = ({ message }) => {
+        return (
+            <SweetAlert
+                danger
+                show={showErrorAlert}
+                confirmBtnText="Ok"
+                confirmBtnBsStyle="danger"
+                title="Failed"
+                onConfirm={() => setshowErrorAlert(false)}
+                onCancel={() => setshowErrorAlert(false)}
+                focusCancelBtn
+            >
+                {message}
             </SweetAlert>
         );
     };
