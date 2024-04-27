@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Typography, TextField } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Make sure to use 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { generateMonnifyAccount } from '../store/actions';
 
 const FeedBack = ({
@@ -24,6 +24,15 @@ const FeedBack = ({
     const [bvn, setBvn] = useState('');
     const [showBvnInput, setShowBvnInput] = useState(false);
 
+    useEffect(() => {
+        // Only show the BVN input if from is 'fund' and showAlert is true
+        if (from === 'fund' && showAlert) {
+            setShowBvnInput(true);
+        } else {
+            setShowBvnInput(false);
+        }
+    }, [showAlert, from]);
+
     const onClickSuccess = (goHome) => {
         setshowAlert(false);
         if (goHome) {
@@ -32,11 +41,7 @@ const FeedBack = ({
     };
 
     const onClickGenerate = () => {
-        if (from === 'fund') {
-            setShowBvnInput(true); // Show BVN input only for 'fund' source
-        } else {
-            onClickSuccess(goHome); // Navigate home or perform other action
-        }
+        setShowBvnInput(true);
     };
 
     const onChangeBvn = (event) => {
@@ -45,8 +50,8 @@ const FeedBack = ({
 
     const onGenerateAccount = async () => {
         await dispatch(generateMonnifyAccount({ bvn, enqueueSnackbar, navigate }));
-        setShowBvnInput(false); // Hide BVN input after submission
-        setshowAlert(false); // Close the alert dialog
+        setShowBvnInput(false);
+        setshowAlert(false);
     };
 
     const SuccessFullAlert = () => {
@@ -65,7 +70,7 @@ const FeedBack = ({
                                 onClick={onGenerateAccount}
                                 variant="contained"
                                 color="primary"
-                                disabled={loading || bvn.trim() === ''}
+                                disabled={loading || bvn.trim().length < 11}  // Assuming BVN is expected to be 11 digits
                             >
                                 Submit
                             </Button>
@@ -102,23 +107,6 @@ const FeedBack = ({
                 ) : (
                     <Typography variant="subtitle1">{message}</Typography>
                 )}
-            </SweetAlert>
-        );
-    };
-
-    const FailureAlert = ({ message }) => {
-        return (
-            <SweetAlert
-                danger
-                show={showErrorAlert}
-                confirmBtnText="Ok"
-                confirmBtnBsStyle="danger"
-                title="Failed"
-                onConfirm={() => setshowErrorAlert(false)}
-                onCancel={() => setshowErrorAlert(false)}
-                focusCancelBtn
-            >
-                {message}
             </SweetAlert>
         );
     };
