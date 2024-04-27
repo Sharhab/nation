@@ -25,7 +25,11 @@ const FeedBack = ({
     const [showBvnInput, setShowBvnInput] = useState(false);
 
     const onClickGenerate = () => {
-        setShowBvnInput(true);
+        if (from === 'fund') {
+            setShowBvnInput(true);  // Show BVN input only for 'fund' source
+        } else {
+            onClickSuccess(setshowAlert, goHome);  // Navigate home or perform other action
+        }
     };
 
     const onChangeBvn = (event) => {
@@ -33,8 +37,19 @@ const FeedBack = ({
     };
 
     const onGenerateAccount = async () => {
-        await dispatch(generateMonnifyAccount({ enqueueSnackbar, navigate, bvn }));
-        setshowAlert(false);
+        if (from === 'fund') {
+            await dispatch(generateMonnifyAccount({ enqueueSnackbar, navigate, bvn }));
+            setshowAlert(false);
+        } else {
+            // Handle other potential 'from' cases if necessary
+        }
+    };
+
+    const onClickSuccess = (setshowAlert, goHome) => {
+        setshowAlert((prevAlert) => !prevAlert);
+        if (goHome) {
+            navigate('/');
+        }
     };
 
     const SuccessFullAlert = () => {
@@ -64,7 +79,7 @@ const FeedBack = ({
                             color="primary"
                             disabled={loading}
                         >
-                            Generate now
+                            {from === 'fund' ? 'Generate now' : 'Ok'}
                         </Button>
                     )
                 }
