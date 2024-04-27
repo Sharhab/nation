@@ -92,7 +92,7 @@ const FeedBack = ({
                 {showBvnInput ? (
                     <>
                         <Typography variant="subtitle1">
-                            Please enter your BVN to continue the account generation process. This is required by CBN to ensure your identity and secure your account.
+                            Please enter your BVN to continue the account generation process. This is required to ensure your identity and secure your account.
                         </Typography>
                         <TextField
                             fullWidth
@@ -107,6 +107,28 @@ const FeedBack = ({
                 ) : (
                     <Typography variant="subtitle1">{message}</Typography>
                 )}
+            </SweetAlert>
+        );
+    };
+
+    const FailureAlert = ({ message }) => {
+        return (
+            <SweetAlert
+                danger
+                show={showErrorAlert}
+                confirmBtnText="Yes, delete it!"
+                confirmBtnBsStyle="danger"
+                title="Failed"
+                onConfirm={() => setshowErrorAlert(false)}
+                onCancel={() => setshowErrorAlert(false)}
+                focusCancelBtn
+                customButtons={
+                    <Button onClick={() => setshowErrorAlert(false)} sx={{ mr: 2 }} variant="contained" color="primary">
+                        Ok
+                    </Button>
+                }
+            >
+                {message}
             </SweetAlert>
         );
     };
