@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Typography, TextField } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import SweetAlert from 'react-bootstrap-sweetalert';
@@ -22,16 +22,7 @@ const FeedBack = ({
     const { enqueueSnackbar } = useSnackbar();
     const { loading } = useSelector((state) => state.monnifyAccountGeneration);
     const [bvn, setBvn] = useState('');
-    const [showBvnInput, setShowBvnInput] = useState(false);
-
-    useEffect(() => {
-        // Only show the BVN input if from is 'fund' and showAlert is true
-        if (from === 'fund' && showAlert) {
-            setShowBvnInput(true);
-        } else {
-            setShowBvnInput(false);
-        }
-    }, [showAlert, from]);
+    const [bvnInputShown, setBvnInputShown] = useState(false);
 
     const onClickSuccess = (goHome) => {
         setshowAlert(false);
@@ -41,7 +32,7 @@ const FeedBack = ({
     };
 
     const onClickGenerate = () => {
-        setShowBvnInput(true);
+        setBvnInputShown(true);
     };
 
     const onChangeBvn = (event) => {
@@ -50,7 +41,8 @@ const FeedBack = ({
 
     const onGenerateAccount = async () => {
         await dispatch(generateMonnifyAccount({ bvn, enqueueSnackbar, navigate }));
-        setShowBvnInput(false);
+        setBvn('');
+        setBvnInputShown(false);
         setshowAlert(false);
     };
 
@@ -64,13 +56,13 @@ const FeedBack = ({
                 onConfirm={() => {}}
                 customButtons={
                     <>
-                        {showBvnInput ? (
+                        {bvnInputShown ? (
                             <Button
                                 fullWidth
                                 onClick={onGenerateAccount}
                                 variant="contained"
                                 color="primary"
-                                disabled={loading || bvn.trim().length < 11}  // Assuming BVN is expected to be 11 digits
+                                disabled={loading || bvn.trim().length < 11}
                             >
                                 Submit
                             </Button>
@@ -89,7 +81,7 @@ const FeedBack = ({
                 }
             >
                 <br />
-                {showBvnInput ? (
+                {bvnInputShown ? (
                     <>
                         <Typography variant="subtitle1">
                             Please enter your BVN to continue the account generation process. This is required to ensure your identity and secure your account.
@@ -111,7 +103,7 @@ const FeedBack = ({
         );
     };
 
-    const FailureAlert = ({ message }) => {
+    const FailureAlert = () => {
         return (
             <SweetAlert
                 danger
