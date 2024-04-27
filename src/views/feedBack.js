@@ -92,7 +92,7 @@ const FeedBack = ({
                 {showBvnInput ? (
                     <>
                         <Typography variant="subtitle1">
-                            Please enter your BVN to continue the account generation process. This is required to ensure your identity and secure your account.
+                            Please enter your BVN to continue the account generation process. This is required by CBN to ensure your identity and secure your account.
                         </Typography>
                         <TextField
                             fullWidth
