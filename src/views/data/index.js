@@ -289,7 +289,9 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <CustomButton disabled={loading || Cgdataloading || dataGiftloading}>
+                                    <CustomButton disabled={loading || Cgdataloading || dataGiftloading}
+                                   key={`${loading}-${Cgdataloading}-${dataGiftloading}`
+                                     >
                                         Submit
                                     </CustomButton>
                                 </Grid>
