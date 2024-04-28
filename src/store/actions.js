@@ -1093,7 +1093,7 @@ export const fundWalletWithMonnify = ({ amount, enqueueSnackbar }) =>
         }
     };
 
-export const generateMonnifyAccount = ({ enqueueSnackbar, navigate }) =>
+export const generateMonnifyAccount = ({ enqueueSnackbar, navigate,bvn }) =>
     async (dispatch) => {
         const id = Cookies.get('user_id')
         try {
@@ -1103,7 +1103,7 @@ export const generateMonnifyAccount = ({ enqueueSnackbar, navigate }) =>
             const { data } = await makeNetworkCall({
                 method: 'POST',
                 path: `/create-reserved-account/${id}`,
-                requestBody: {},
+                requestBody: bvn,
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
