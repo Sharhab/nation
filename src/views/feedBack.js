@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, Typography, TextField } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import SweetAlert from 'react-bootstrap-sweetalert';
@@ -23,6 +23,7 @@ const FeedBack = ({
     const { loading } = useSelector((state) => state.monnifyAccountGeneration);
     const [bvn, setBvn] = useState('');
     const [bvnInputShown, setBvnInputShown] = useState(false);
+    const bvnInputRef = useRef(null);
 
     const onClickSuccess = (goHome) => {
         setshowAlert(false);
@@ -44,6 +45,10 @@ const FeedBack = ({
         setBvn('');
         setBvnInputShown(false);
         setshowAlert(false);
+    };
+
+    const onClickFailure = () => {
+        setshowErrorAlert(false);
     };
 
     const SuccessFullAlert = () => {
@@ -91,9 +96,12 @@ const FeedBack = ({
                             margin="normal"
                             label="Enter BVN"
                             variant="outlined"
+                            inputMode="numeric"
                             value={bvn}
                             onChange={onChangeBvn}
-                            type="number"
+                            type="tel"
+                            inputRef={bvnInputRef}
+                            autoFocus
                         />
                     </>
                 ) : (
@@ -111,24 +119,28 @@ const FeedBack = ({
                 confirmBtnText="Yes, delete it!"
                 confirmBtnBsStyle="danger"
                 title="Failed"
-                onConfirm={() => setshowErrorAlert(false)}
-                onCancel={() => setshowErrorAlert(false)}
+                onConfirm={onClickFailure}
+                onCancel={onClickFailure}
                 focusCancelBtn
                 customButtons={
-                    <Button onClick={() => setshowErrorAlert(false)} sx={{ mr: 2 }} variant="contained" color="primary">
+                    <Button onClick={onClickFailure} variant="contained" color="primary">
                         Ok
                     </Button>
                 }
             >
-                {message}
+                <Typography variant="subtitle1">{message}</Typography>
             </SweetAlert>
         );
     };
 
     if (showAlert) {
+        // Focus the BVN input field programmatically if it's shown
+        if (bvnInputShown && bvnInputRef.current) {
+            bvnInputRef.current.focus();
+        }
         return <SuccessFullAlert />;
     } else if (showErrorAlert) {
-        return <FailureAlert message={message} />;
+        return <FailureAlert />;
     } else {
         return null;
     }
