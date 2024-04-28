@@ -193,7 +193,7 @@ export const getMtnSmeTwoData = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_MTN_SME_2_DATA_PLAN_FAIL,
-            payload:error?.messag
+            payload:error?.message
         });
     }
 };
@@ -240,7 +240,7 @@ export const getMtnCgData = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_MTN_CG_DATA_PLAN_FAIL,
-            payload: error?.messag
+            payload: error?.message
         });
     }
 };
@@ -264,7 +264,7 @@ export const getMtnSmeCoupData = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_MTN_COUPON_DATA_PLAN_FAIL,
-            payload: error.response?.data?.error?.message || error?.messag
+            payload: error?.message
         });
     }
 };
@@ -288,7 +288,7 @@ export const getMtnData = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_MTN_DATA_PLAN_FAIL,
-            payload: error.response?.data?.error?.message || error?.messag
+            payload: error?.message
         });
     }
 };
@@ -313,7 +313,7 @@ export const getAirtelData = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_AIRTEL_DATA_PLAN_FAIL,
-            payload: error.response?.data?.error?.message || error?.messag
+            payload: error?.message
         });
     }
 };
@@ -338,7 +338,7 @@ export const getGloCgData = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_GLO_CG_DATA_PLAN_FAIL,
-            payload: error.response?.data?.error?.message || error?.messag
+            payload: error?.message
         });
     }
 };
@@ -363,7 +363,7 @@ export const getAirtelCgData = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: GET_AIRTEL_CG_DATA_PLAN_FAIL,
-            payload: error.response?.data?.error?.message || error?.messag
+            payload: error?.message
         });
     }
 };
@@ -449,7 +449,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
                 payload: data
             });
             console.log(data);
-            enqueueSnackbar(data?.data?.message, {
+            enqueueSnackbar(data?.message, {
                 variant: 'success',
                 autoHideDuration: 2000
             });
@@ -467,10 +467,10 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
         } catch (error) {
             dispatch({
                 type: SELL_AIRTIME_FAIL,
-                payload: error.response?.data?.error?.message || error?.message
+                payload: error?.message
             });
             error &&
-                enqueueSnackbar(error.response?.data?.error?.message || error?.message, {
+                enqueueSnackbar(error?.message, {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
@@ -524,7 +524,7 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
             console.log(error)
             dispatch({
                 type: BUY_CG_DATA_FAIL,
-                payload: error.message
+                payload: error?.message
               });
             
                 enqueueSnackbar(error?.message, {
@@ -567,7 +567,7 @@ export const buyCouponData =
                 payload: error.response?.data?.error?.message || error?.messag
             });
             error &&
-                enqueueSnackbar(error.response?.data?.error?.message || error?.message, {
+                enqueueSnackbar(error?.message, {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
@@ -662,10 +662,10 @@ export const giftData =
         } catch (error) {
             dispatch({
                 type: GIFT_DATA_FAIL,
-                payload: error.response?.data?.error?.message || error?.messag
+                payload: error?.message
             });
             error &&
-                enqueueSnackbar(error.response?.data?.error?.message || error?.message, {
+                enqueueSnackbar(error?.message, {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
@@ -691,7 +691,7 @@ export const LogoutAction = () => async (dispatch) => {
             payload: data?.message || 'logout succefully'
         });
 
-    
+    window.location.replace("/pages/login")
     } catch (error) {
         dispatch({
             type: LOGOUT_USER_FAIL,
@@ -895,7 +895,7 @@ export const ResetPasswordAction =
             });
 
             // Navigate to the dashboard on successful login
-            navigate('/login');
+            navigate('/pages/login');
         } else {
           dispatch({
                 type: REGISTER_USER_FAIL,
@@ -906,7 +906,7 @@ export const ResetPasswordAction =
           console.log(error.response);
           dispatch({
             type: REGISTER_USER_FAIL,
-            payload:error.message
+            payload:error?.message
           });
 
           const errorMessage = error?.message  || 'Registration failed';
@@ -1117,7 +1117,7 @@ export const generateMonnifyAccount = ({ enqueueSnackbar, navigate,bvn }) =>
                 variant: 'sucess',
                 autoHideDuration: 2000
             });
-            window.location.reload();
+            
         } catch (error) {
             console.log('ERROR: ', error);
             dispatch({
