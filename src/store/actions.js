@@ -495,7 +495,7 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
            
                 // Remove the if statement checking for status === 200
     dispatch({
-        type: BUY_CG_DATA_SUCCESS,
+        type: BUY_DATA_SUCCESS,
         payload: data.message
       });
       
@@ -508,7 +508,7 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
       
               } else if(data&&data.status===400 && data.error){
                 dispatch({
-                  type: BUY_CG_DATA_FAIL,
+                  type: BUY_DATA_FAIL,
                   payload: 'request faild'
                 });
           
@@ -523,7 +523,7 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
 
             console.log(error)
             dispatch({
-                type: BUY_CG_DATA_FAIL,
+                type: BUY_DATA_FAIL,
                 payload: error?.message
               });
             
