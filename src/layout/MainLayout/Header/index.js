@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 // assets
 import { IconMenu2 } from '@tabler/icons';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+
 // project imports
 import LogoSection from '../LogoSection';
 import ProfileSection from './ProfileSection';
