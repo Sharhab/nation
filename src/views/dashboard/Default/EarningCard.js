@@ -5,18 +5,18 @@ import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 // assets
-import EarningIcon from '../../../assets/images/icons/earning.svg';
+import EarningIcon from 'assets/images/icons/earning.svg';
 import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
-import {  useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // project imports
-import MainCard from '../../../ui-component/cards/MainCard';
-import SkeletonEarningCard from '../../../ui-component/cards/Skeleton/EarningCard';
+import MainCard from 'ui-component/cards/MainCard';
+import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.secondary.dark,
     color: '#fff',
     overflow: 'hidden',
     position: 'relative',
@@ -25,7 +25,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
         position: 'absolute',
         width: 210,
         height: 210,
-        background: theme.palette.primary[800],
+        background: theme.palette.secondary[800],
         borderRadius: '50%',
         top: -85,
         right: -95,
@@ -39,26 +39,25 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
         position: 'absolute',
         width: 210,
         height: 210,
-        background: theme.palette.primary[800],
+        background: theme.palette.secondary[800],
         borderRadius: '50%',
         top: -125,
         right: -15,
         opacity: 0.5,
-         [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('sm')]: {
             top: -155,
             right: -70
         }
     }
 }));
 
-// ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
+// ===========================|| DASHBOARD DEFAULT - EARNING
+// ... (import statements remain the same)
 
-const EarningCard = ({ isLoading}) => {
-    
-    const { loggedInUser} = useSelector((state) => state);
+const EarningCard = ({ isLoading, message }) => {
+    const { loggedInUser } = useSelector((state) => state);
     const { user } = loggedInUser;
-    
-    console.log('User:', user);
+console.log(user)
     const theme = useTheme();
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -72,9 +71,9 @@ const EarningCard = ({ isLoading}) => {
 
     return (
         <>
-            {isLoading ?(
+            {isLoading ? (
                 <SkeletonEarningCard />
-           ) : (
+            ) : (
                 <CardWrapper border={false} content={false}>
                     <Box sx={{ p: 2.25 }}>
                         <Grid container direction="column">
@@ -86,7 +85,7 @@ const EarningCard = ({ isLoading}) => {
                                             sx={{
                                                 ...theme.typography.commonAvatar,
                                                 ...theme.typography.largeAvatar,
-                                                backgroundColor: theme.palette.primary[800],
+                                                backgroundColor: theme.palette.secondary[800],
                                                 mt: 1
                                             }}
                                         >
@@ -99,11 +98,11 @@ const EarningCard = ({ isLoading}) => {
                                             sx={{
                                                 ...theme.typography.commonAvatar,
                                                 ...theme.typography.mediumAvatar,
-                                                backgroundColor: theme.palette.primary.dark,
+                                                backgroundColor: theme.palette.secondary.dark,
                                                 color: theme.palette.secondary[200],
                                                 zIndex: 1
                                             }}
-                                        aria-controls="menu-earning-card"
+                                            aria-controls="menu-earning-card"
                                             aria-haspopup="true"
                                             onClick={handleClick}
                                         >
@@ -135,19 +134,20 @@ const EarningCard = ({ isLoading}) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {Cookies.get('token') && user && (
+                                        {Cookies.get('token') && user?.username && (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {`Welcome Back, ${user?.username}`}
+                                                {`Welcome Back, ${user.username}`}
                                             </Typography>
                                         )}
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                            <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {Cookies.get('token') && user && (
-                                                     {`Wallet Balance:₦${user?.AccountBalance} `)}
-                                            </Typography>
+                                            {Cookies.get('token') && user?.AccountBalance && (
+                                                <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                                    {`Wallet Balance: ${user.AccountBalance}`}
+                                                </Typography>
+                                            )}
                                         </div>
 
-                                        {Cookies.get('token') ? (
+                                        {Cookies.get('user') ? (
                                             <>
                                                 <Link
                                                     to={'/fund-wallet'}
@@ -170,12 +170,9 @@ const EarningCard = ({ isLoading}) => {
                                                                 sx={{
                                                                     mb: 1.75,
                                                                     mt: 1.75,
-                                                                    // position: 'relative',
-                                                                    // top: 6,
-                                                                    // bottom: 0,
                                                                     cursor: 'pointer',
                                                                     ...theme.typography.smallAvatar,
-                                                                    backgroundColor: theme.palette.primary[200],
+                                                                    backgroundColor: theme.palette.secondary[200],
                                                                     color: theme.palette.secondary.dark
                                                                 }}
                                                             >
@@ -187,6 +184,7 @@ const EarningCard = ({ isLoading}) => {
                                                         </Grid>
                                                     </Grid>
                                                 </Link>
+
                                                 {/* <marquee
                                                     style={{
                                                         backgroundColor: 'red',
@@ -207,9 +205,6 @@ const EarningCard = ({ isLoading}) => {
                                             </Link>
                                         )}
                                     </Grid>
-                                    {/* <Grid item>
-                                  
-                                    </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
