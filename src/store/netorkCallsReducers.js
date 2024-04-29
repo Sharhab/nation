@@ -670,7 +670,7 @@ export const dataOrderReducer = (state = initialDataOrderState, action) => {
             return { ...state, loading: true };
 
         case BUY_DATA_SUCCESS:
-            return { ...state, loading: false, data: action.payload };
+            return { ...state, loading: false, data: action.payload, error: null };
         case BUY_DATA_FAIL:
             return { ...state, loading: false, error: action.payload };
 
@@ -685,7 +685,7 @@ export const dataGiftingOrderReducer = (state = initialDataGiftingOrderState, ac
             return { ...state, dataGiftloading: true };
 
         case GIFT_DATA_SUCCESS:
-            return { ...state, dataGiftloading: false, dataGiftData: action.payload };
+            return { ...state, dataGiftloading: false, dataGiftData: action.payload, error: null };
         case GIFT_DATA_FAIL:
             return { ...state, dataGiftloading: false, dataGiftError: action.payload };
 
@@ -700,7 +700,7 @@ export const CgOrderReducer = (state = initialCgOrderState, action) => {
             return { ...state, Cgdataloading: true };
 
         case BUY_CG_DATA_SUCCESS:
-            return { ...state, Cgdataloading: false, CgData: action.payload };
+            return { ...state, Cgdataloading: false, CgData: action.payload, error: null };
         case BUY_CG_DATA_FAIL:
             return { ...state, Cgdataloading: false, CgdataError: action.payload };
 
