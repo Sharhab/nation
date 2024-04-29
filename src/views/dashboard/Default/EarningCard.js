@@ -55,9 +55,9 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const EarningCard = ({ isLoading}) => {
     
-    const { loggedInUser,  cgDataOrder } = useSelector((state) => state);
-    const user = loggedInUser.user;
-    const userBalance = cgDataOrder.userBalance;
+    const { loggedInUser} = useSelector((state) => state);
+    const { user } = loggedInUser;
+    
     console.log('User:', user);
     const theme = useTheme();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -142,9 +142,8 @@ const EarningCard = ({ isLoading}) => {
                                         )}
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
                                             <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {Cookies.get('user') && userBalance
-                                                    ? `Wallet Balance:₦${userBalance} `
-                                                    : `Wallet Balance:₦${user?.AccountBalance} `}
+                                                {Cookies.get('token') && user && (
+                                                     {`Wallet Balance:₦${user?.AccountBalance} `)}
                                             </Typography>
                                         </div>
 
