@@ -58,7 +58,7 @@ const FeedBack = ({
                 title={title || 'Successful!'}
                 show={showAlert}
                 onCancel={() => setshowAlert(false)}
-                onConfirm={() => {}}
+                onConfirm={ onClickSuccess }
                 customButtons={
                     <>
                         {bvnInputShown ? (
