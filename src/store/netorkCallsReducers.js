@@ -3,9 +3,6 @@ import {
     BUY_AIRTIME_FAIL,
     BUY_AIRTIME_REQUEST,
     BUY_AIRTIME_SUCCESS,
-    BUY_CG_DATA_FAIL,
-    BUY_CG_DATA_REQUEST,
-    BUY_CG_DATA_SUCCESS,
     BUY_DATA_FAIL,
     BUY_DATA_REQUEST,
     BUY_DATA_SUCCESS,
@@ -229,11 +226,7 @@ export const initialDataGiftingOrderState = {
     dataGiftloading: false,
     dataGiftError: null
 };
-export const initialCgOrderState = {
-    CgData: {},
-    Cgdataloading: false,
-    CgdataError: null
-};
+
 export const initialFundingState = {
     paymentStatus: {},
     loading: false,
@@ -688,21 +681,6 @@ export const dataGiftingOrderReducer = (state = initialDataGiftingOrderState, ac
             return { ...state, dataGiftloading: false, dataGiftData: action.payload, error: null };
         case GIFT_DATA_FAIL:
             return { ...state, dataGiftloading: false, dataGiftError: action.payload };
-
-        default:
-            return state;
-    }
-};
-
-export const CgOrderReducer = (state = initialCgOrderState, action) => {
-    switch (action.type) {
-        case BUY_CG_DATA_REQUEST:
-            return { ...state, Cgdataloading: true };
-
-        case BUY_CG_DATA_SUCCESS:
-            return { ...state, Cgdataloading: false, CgData: action.payload, error: null };
-        case BUY_CG_DATA_FAIL:
-            return { ...state, Cgdataloading: false, CgdataError: action.payload };
 
         default:
             return state;
