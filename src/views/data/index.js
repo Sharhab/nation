@@ -266,7 +266,7 @@ const handleSubmit = (values, { resetForm }) => {
                 <FeedBack
                     setshowAlert={setshowAlert}
                     showAlert={showAlert}
-                    message={data?.message || dataGiftData?.message || CgData?.message}
+                    message={data?.message || dataGiftData?.message }
                     variant="success"
                 />
             }
@@ -274,7 +274,7 @@ const handleSubmit = (values, { resetForm }) => {
                 <FeedBack
                     setshowErrorAlert={setshowErrorAlert}
                     showErrorAlert={showErrorAlert}
-                    message={error || dataGiftError || CgdataError}
+                    message={error?.message || dataGiftError?.message }
                     variant="error"
                 />
             }
