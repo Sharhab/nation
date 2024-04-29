@@ -40,7 +40,6 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         myAirtelDataPlans,
         dataOrder,
         dataGiftingOrder,
-        cgDataOrder,
         myMtnSmeDataPlans,
         myMtnCgDataPlans,
         myMtnSme2DataPlans,
@@ -59,7 +58,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const { loading, data, error } = dataOrder;
     const { dataGiftloading, dataGiftData, dataGiftError } = dataGiftingOrder;
-    const { Cgdataloading, CgData, CgdataError } = cgDataOrder;
+  
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -114,7 +113,6 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             if (mtn_cg) return mtnCgDataPlans;
             if (coup) return mtnCoupDataPlans;
             return mtnDataPlans;
-      
           case 'Airtel':
             return cg ? airtelCgDataPlans : airtelDataPlans;
       
@@ -122,39 +120,6 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             return [];
         }
       };
-      
-      const sendCgdata = (values) => {
-        console.log(pinRef.current.values);
-        if (!pinRef.current.values) {
-            enqueueSnackbar('provide transaction pin to proceed', {
-                variant: 'error',
-                autoHideDuration: 2000
-            });
-            return;
-        }
-        const body = {
-            beneficiary: values.beneficiaryNum,
-            amount: values.amount,
-            network_id: values.plan.network_id,
-            plan: values.plan.bundle,
-            plan_id: values.plan.plan_id,
-            network: network,
-            request_Id: generateRequestId(),
-            pin: pinRef.current.values.join('')
-        };
-        console.log(body);
-        dispatch(
-            buyCgData({
-                orderDetails: {
-                    data: { ...body }
-                },
-                enqueueSnackbar,
-                setshowAlert,
-                setErrorAlert: setshowErrorAlert
-            })
-        );
-    };
-
       
     const sendGiftData = (values) => {
         console.log(pinRef.current.values);
@@ -286,8 +251,8 @@ const handleSubmit = (values, { resetForm }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <CustomButton disabled={loading || Cgdataloading || dataGiftloading}
-                                   key={`${loading}-${Cgdataloading}-${dataGiftloading}`}
+                                    <CustomButton disabled={loading || dataGiftloading}
+                                   key={`${loading}-${dataGiftloading}`}
                                      >
                                         Submit
                                     </CustomButton>
