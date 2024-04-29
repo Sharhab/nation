@@ -83,13 +83,12 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     }, [dispatch, navigate]);
 
     const INITIAL_FORM_VALUES = {
-        beneficiaryNum: '',
-        amount: '',
-        plan: '', // Initialize as an object with an empty 'plan' property
-        network: '',
-        pin: ''
-      };
-      
+    beneficiaryNum: '',
+    amount: '',
+    plan: '',  // Adjust according to what "empty" means for this field
+    network: '',
+    pin: ''
+};     
       const VALIDATIONS = yup.object().shape({
         beneficiaryNum: yup
             .string()
@@ -191,44 +190,42 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             })
         );
     };
+const handleSubmit = (values, { resetForm }) => {
+    if (!pinRef.current.values) {
+        alert('Provide transaction pin to proceed');
+        return;
+    }
 
-    const handleSubmit = (values, { resetForm }) => {
-        if (!pinRef.current.values) {
-            alert('provide transaction pin to proceed');
-            return;
-        }
-    
-        const body = {
-            beneficiary: values.beneficiaryNum,
-            amount: values.amount,
-            network_id: values.plan.network_id,
-            plan: values.plan.bundle,
-            plan_id: values.plan.plan_id,
-            network: network,
-            request_Id: generateRequestId(),
-            pin: pinRef.current.values.join('')
-        };
-    
-        dispatch(buyData({
-            path: sme ? '/mtn-sme-data-orders' : sme_2 ? '/mtn-sme-2-data-orders' : mtn_cg ? '/mtn-corporate-orders' : coup ? '/mtn-coupon-data-orders' : '/mtn-sme-2-data-orders',
-            orderDetails: {
-                data: { ...body }
-            },
-            enqueueSnackbar,
-            setshowAlert,
-            setErrorAlert: setshowErrorAlert
-        }));
-    
-        resetForm();
-    
-        if (Array.isArray(pinRef.current.values)) {
-            pinRef.current.values = pinRef.current.values.map(() => '');
-        } else {
-            pinRef.current.values = ''; 
-        }
-        
+    const body = {
+        beneficiary: values.beneficiaryNum,
+        amount: values.amount,
+        network_id: values.plan.network_id,
+        plan: values.plan.bundle,
+        plan_id: values.plan.plan_id,
+        network: network,
+        request_Id: generateRequestId(),
+        pin: pinRef.current.values.join('')
     };
-    
+
+    dispatch(buyData({
+        path: sme ? '/mtn-sme-data-orders' : sme_2 ? '/mtn-sme-2-data-orders' : mtn_cg ? '/mtn-corporate-orders' : coup ? '/mtn-coupon-data-orders' : '/mtn-sme-2-data-orders',
+        orderDetails: {
+            data: { ...body }
+        },
+        enqueueSnackbar,
+        setshowAlert,
+        setErrorAlert: setshowErrorAlert
+    }));
+
+    resetForm({ values: { ...INITIAL_FORM_VALUES } });  // Explicitly pass initial values
+
+    // Reset the pin input
+    if (pinRef.current && pinRef.current.clear) {
+        pinRef.current.clear();  // Use .clear() if the method is available
+    } else if (pinRef.current) {
+        pinRef.current.values = '';  // Fallback if .clear() is not a method
+    }
+};  
     return (
         <MainCard title={title}>
             <Formik
