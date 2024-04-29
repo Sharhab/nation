@@ -25,7 +25,7 @@ import SellAirtime from '../views/sell-airtime/sell-airtime';
 import { airtimeProducts, dataProducts } from '../_mocks_/products';
 import SellAirtimeOtp from '../views/sell-airtime/sell-airtime-otp';
 import FinalizeSellAirtime from '../views/sell-airtime/finalize-sell-airtime';
-import ProfileSection from '../layout/MainLayout/Header/ProfileSection/index';
+//import ProfileSection from '../layout/MainLayout/Header/ProfileSection/index';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
