@@ -87,16 +87,16 @@ const pages = {
                 },
                 {
                     id: 'mtn2',
-                    title: 'Mtn SME 1 Data ',
+                    title: 'Mtn SME 2 Data ',
                     type: 'item',
-                    url: '/buy-mtn-data-sme-1',
+                    url: '/buy-mtn-data-sme-2',
                     target: false
                 },
                 {
                     id: 'mtn3',
-                    title: 'Mtn SME 2 Data ',
+                    title: 'Mtn-corporate-gifting ',
                     type: 'item',
-                    url: '/buy-mtn-data-sme-2',
+                    url: '/buy-mtn-corporate-gifting',
                     target: false
                 },
                 {
