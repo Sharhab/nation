@@ -83,7 +83,7 @@ const MainLayout = () => {
     useEffect(() => {
         dispatch({ type: SET_MENU, opened: !matchDownMd });
      
-    }, []);
+    }, [matchDownMd]);
 
     return (
         <Box sx={{ display: 'flex' }}>
