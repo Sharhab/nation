@@ -9,7 +9,7 @@ import convert from '../assets/images/convert.svg';
 import elect from '../assets/images/electric.svg';
 import transaction from '../assets/images/transaction.svg';
 import wallet from '../assets/images/wallet.svg';
-import etisalat from '../assets/images/network/9mobile-logo.jpg';
+//import etisalat from '../assets/images/network/9mobile-logo.jpg';
 //  <NetworkCheckIcon style={{ color: 'blue', fontSize: '35px' }} />, <NetworkCheckIcon style={{ color: 'blue', fontSize: '35px' }} />,
 export const products = [
     {
