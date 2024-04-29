@@ -15,8 +15,7 @@ import ProfileSection from './ProfileSection';
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
 const Header = ({ handleLeftDrawerToggle }) => {
-    const { loggedInUser } = useSelector((state) => state);
-    const { user } = loggedInUser;
+    
     const theme = useTheme();
 
     return (
