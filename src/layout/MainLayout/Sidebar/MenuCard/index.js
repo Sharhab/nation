@@ -5,8 +5,6 @@ import {
     Card,
     CardContent,
     Grid,
-    LinearProgress,
-    linearProgressClasses,
     List,
     ListItem,
     ListItemAvatar,
