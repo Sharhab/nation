@@ -15,7 +15,6 @@ import {
     getMtnData,
     userAction,
     getMtnSmeData,
-    buyCgData,
     getAirtelCgData,
     getGloCgData,
     getMtnSmeTwoData,
@@ -197,7 +196,7 @@ const handleSubmit = (values, { resetForm }) => {
                 initialValues={{ ...INITIAL_FORM_VALUES }}
                 enableReinitialize={true}
                 onSubmit={
-                    sme ? handleSubmit : sme_2 ? handleSubmit : mtn_cg ? handleSubmit : coup ? handleSubmit : cg ? sendCgdata : sendGiftData
+                    sme ? handleSubmit : sme_2 ? handleSubmit : mtn_cg ? handleSubmit : coup ? handleSubmit : cg ? handleSubmit : sendGiftData
                 }
                 validationSchema={VALIDATIONS}
             >
