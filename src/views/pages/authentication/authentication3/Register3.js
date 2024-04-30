@@ -72,7 +72,7 @@ const Register = () => {
                                                     color: '#83529f'
                                                 }}
                                             >
-                                                 S. DATA PLUS
+                                                 SHARHADATA
                                             </Typography>
                                         </Link>
                                     </Grid>
