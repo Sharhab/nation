@@ -69,7 +69,7 @@ const Login = () => {
                                                     color: '#83529f'
                                                 }}
                                             >
-                                                S. Data Plus
+                                                SHARAHADATA
                                             </Typography>
                                         </Link>
                                     </Grid>
