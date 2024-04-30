@@ -30,7 +30,7 @@ const ForgetPswdWrapper = () => {
                                                 textDecoration: 'none'
                                             }}
                                         >
-                                            <Typography variant="h2">S. Data Plus</Typography>
+                                            <Typography variant="h2">SHARHADATA</Typography>
                                             {/* <Logo /> */}
                                         </Link>
                                     </Grid>
