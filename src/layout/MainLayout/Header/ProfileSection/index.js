@@ -2,7 +2,8 @@ import { Avatar, Box, Button, Chip, ClickAwayListener, Divider, Paper, Popper, S
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import User1 from '../../../../assets/images/user-round.png';
-import { useEffect, useRef, useState, useNavigate } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { LogoutAction } from '../../../../store/actions';
