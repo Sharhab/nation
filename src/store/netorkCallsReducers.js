@@ -614,9 +614,9 @@ export const registerUserReducer = (state = initialRegisterState, action) => {
         // const serializedUser = JSON.stringify(userData);
         Cookies.set('user_id', id, { expires: 1 });
         Cookies.set('user', user, { expires: 1 });
-        Cookies.set('token', jwt, { expires: 1 }
         
-            window.location.replace('/login');
+        
+            window.location.replace('/pages/login');
             return { ...state, loading: false, user: action.payload };
         }
       case REGISTER_USER_FAIL:
