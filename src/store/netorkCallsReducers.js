@@ -461,6 +461,12 @@ export const userReducer = (state = initialUserState, { type, payload, error }) 
         return { ...state, loading: true };
   
       case GET_LOGGED_IN_USER_SUCCESS:
+            const { id, jwt,  user} = action.payload;
+        // Stringify the user data and set cookies
+        // const serializedUser = JSON.stringify(userData);
+        Cookies.set('user_id', id, { expires: 1 });
+        Cookies.set('user', user, { expires: 1 });
+        Cookies.set('token', jwt, { expires: 1 }
         return { ...state, loading: false, user: payload};
   
       case GET_LOGGED_IN_USER_FAIL:
@@ -529,6 +535,7 @@ export const logoutReducer = (state = initialLogoutState, action) => {
         case LOGOUT_USER_SUCCESS:
             Cookies.remove('token');
             Cookies.remove('user_id');
+            Cookies.remove('user')
             window.location.replace('/pages/login');
 
             return { ...state, loading: false, user: action.payload };
@@ -548,7 +555,7 @@ export const resetPasswordReducer = (state = initialresetState, action) => {
             return { ...state, loading: true };
 
         case RESET_PASSWORD_SUCCESS: {
-            Cookies.set('user', action?.payload?.jwt, { expires: 1 });
+            Cookies.set('token', action?.payload?.jwt, { expires: 1 });
             Cookies.set('user_id', action?.payload?._id, { expires: 1 });
             window.location.replace('/');
             return { ...state, loading: false };
@@ -601,19 +608,23 @@ export const forgetPasswordReducer = (state = initialLoginState, action) => {
 //   error: null,
 // };
 
+        
 export const registerUserReducer = (state = initialRegisterState, action) => {
     switch (action.type) {
       case REGISTER_USER_REQUEST:
         return { ...state, loading: true, error: null };
   
         case REGISTER_USER_SUCCESS: {
-            Cookies.set('user', action?.payload, { expires: 1 });
-            Cookies.set('user_id', action?.payload?.id, { expires: 1 });
+            const { id, jwt,  user} = action.payload;
+        // Stringify the user data and set cookies
+        // const serializedUser = JSON.stringify(userData);
+        Cookies.set('user_id', id, { expires: 1 });
+        Cookies.set('user', user, { expires: 1 });
+        Cookies.set('token', jwt, { expires: 1 }
         
-            window.location.replace('/pages/login');
+            window.location.replace('/login');
             return { ...state, loading: false, user: action.payload };
         }
-        
       case REGISTER_USER_FAIL:
         return { ...state, loading: false, error: action.payload, user: null };
   
