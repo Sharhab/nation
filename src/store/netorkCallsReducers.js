@@ -461,12 +461,6 @@ export const userReducer = (state = initialUserState, { type, payload, error }) 
         return { ...state, loading: true };
   
       case GET_LOGGED_IN_USER_SUCCESS:
-            const { id, jwt,  user} = action.payload;
-        // Stringify the user data and set cookies
-        // const serializedUser = JSON.stringify(userData);
-        Cookies.set('user_id', id, { expires: 1 });
-        Cookies.set('user', user, { expires: 1 });
-        Cookies.set('token', jwt, { expires: 1 }
         return { ...state, loading: false, user: payload};
   
       case GET_LOGGED_IN_USER_FAIL:
