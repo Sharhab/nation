@@ -96,7 +96,7 @@ const pages = {
                     id: 'mtn3',
                     title: 'Mtn-corporate-gifting ',
                     type: 'item',
-                    url: '/buy-mtn-corporate-gifting',
+                    url: 'buy-mtn-corporate-gifting',
                     target: false
                 },
                 {
