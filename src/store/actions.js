@@ -488,7 +488,7 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
                     Authorization: `Bearer ${token}`
                 }
             });
-            if (data) {
+            if (data&&data.message) {
            
                 // Remove the if statement checking for status === 200
     dispatch({
@@ -502,14 +502,12 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
       });
       
       setshowAlert((prevState) => !prevState);
-      
-              } else if(data&&data.status===400 && data.error){
                 dispatch({
                   type: BUY_DATA_FAIL,
-                  payload: 'request faild'
+                  payload:data.message
                 });
           
-                enqueueSnackbar('low wallet balance', {
+                enqueueSnackbar(data.message, {
                   variant: 'error',
                   autoHideDuration: 2000
                 });
