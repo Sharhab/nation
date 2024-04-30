@@ -21,36 +21,7 @@ const Login = () => {
                 <Grid item xs={12}>
                     <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
                         <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-                         //   <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-                              //  <div
-                                   // style={{
-                                     //   display: 'flex',
-                                  //      alignItems: 'center',
-                                     //   justifyContent: 'center',
-                                   //     height: '150px',
-                                   //     width: '150px',
-                                   //     borderRadius: '50%',
-                                   //     backgroundColor: '#f1f0f5',
-                                  //      position: 'relative',
-                                   //     top: 100,
-                                  //       right: 100,
-                                  //      left: 100,
-
-                                    //    zIndex: 1000
-                                 //   }}
-                               // >
-                                   // <img
-                                      //  src={logo}
-                                     //   style={{
-                                        //    height: '150px',
-                                       //     width: '150px',
-                                      //      margin: 'auto',
-                                      //      borderRadius: '50px'
-                                     //   }}
-                                    //    alt="Sharha"
-                                 //   />
-                              //  </div>
-                           // </div>
+                           
 
                             <AuthCardWrapper>
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
