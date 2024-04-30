@@ -570,7 +570,7 @@ export const giftData =
         }
     };
 
-export const LogoutAction = () => async (dispatch) => {
+export const LogoutAction = ({navigate}) => async (dispatch) => {
     try {
         dispatch({
             type: LOGOUT_USER_REQUEST
@@ -588,7 +588,7 @@ export const LogoutAction = () => async (dispatch) => {
             payload: data?.message || 'logout succefully'
         });
 
-    window.location.replace("/pages/login")
+    navigate("/pages/login")
     } catch (error) {
         dispatch({
             type: LOGOUT_USER_FAIL,
