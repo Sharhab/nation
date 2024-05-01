@@ -13,6 +13,7 @@ import {
     getAirtelData,
     getGloData,
     getMtnData,
+    getMtnCgData,
     userAction,
     getMtnSmeData,
     buyCgData,
