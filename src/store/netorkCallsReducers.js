@@ -226,7 +226,11 @@ export const initialDataGiftingOrderState = {
     dataGiftloading: false,
     dataGiftError: null
 };
-
+export const initialCgOrderState = {
+    CgData: {},
+    Cgdataloading: false,
+    CgdataError: null
+};
 export const initialFundingState = {
     paymentStatus: {},
     loading: false,
@@ -521,15 +525,14 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
 };
 
 //logout user reducers starts her
-export const logoutReducer = (state = initialLogoutState, action) => {
+ export const logoutReducer = (state = initialLogoutState, action) => {
     switch (action.type) {
         case LOGOUT_USER_REQUEST:
             return { ...state, loading: true };
 
         case LOGOUT_USER_SUCCESS:
-            Cookies.remove('token');
+            Cookies.remove('user');
             Cookies.remove('user_id');
-            Cookies.remove('user')
             window.location.replace('/pages/login');
 
             return { ...state, loading: false, user: action.payload };
@@ -541,6 +544,8 @@ export const logoutReducer = (state = initialLogoutState, action) => {
             return state;
     }
 };
+
+
 
 //RESET PASSWORD REDUCER
 export const resetPasswordReducer = (state = initialresetState, action) => {
@@ -692,7 +697,20 @@ export const dataGiftingOrderReducer = (state = initialDataGiftingOrderState, ac
             return state;
     }
 };
+export const CgOrderReducer = (state = initialCgOrderState, action) => {
+    switch (action.type) {
+        case BUY_CG_DATA_REQUEST:
+            return { ...state, Cgdataloading: true };
 
+        case BUY_CG_DATA_SUCCESS:
+            return { ...state, Cgdataloading: false, CgData: action.payload };
+        case BUY_CG_DATA_FAIL:
+            return { ...state, Cgdataloading: false, CgdataError: action.payload };
+
+        default:
+            return state;
+    }
+};
 export const monnifyFundingReducer = (state = initialFundingState, action) => {
     switch (action.type) {
         case FUND_WALLET_BY_MONNIFY_REQUEST:
