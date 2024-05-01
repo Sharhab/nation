@@ -946,7 +946,7 @@ export const UpdateUserAction =
             if (data) {
                 dispatch({
                     type: GET_LOGGED_IN_USER_SUCCESS,
-                    payload: data.user,
+                    payload: data
                 });
             } else {
                 dispatch({
@@ -957,7 +957,7 @@ export const UpdateUserAction =
         } catch (error) {
             const errorMessage =  error?.message;
             console.log(errorMessage)
-            if (error.response?.data?.error?.status === 401) {
+            if (error?.status === 401) {
                 navigate('/pages/login');
             }
     
