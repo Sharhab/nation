@@ -5,6 +5,7 @@ import {
     airtimeOrderReducer,
     dataGiftingOrderReducer,
     dataOrderReducer,
+    CgOrderReducer,
     electricityPurchase,
     examPinPurchase,
     forgetPasswordReducer,
