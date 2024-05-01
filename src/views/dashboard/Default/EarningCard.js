@@ -134,11 +134,13 @@ console.log(user)
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {Cookies.get('token') && user?.username && (
+                                            <div>
+                                        {Cookies.get('user') && user?.username && (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {`Welcome Back, ${user.username}`}
                                             </Typography>
                                         )}
+                                       </div>
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
                                      {Cookies.get('user') && user?.AccountBalance && (
                                                 <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
