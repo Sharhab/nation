@@ -57,6 +57,7 @@ const reducer = combineReducers({
     getgloCgDataPlans: getGloCgDataReducer,
     dataOrder: dataOrderReducer,
     dataGiftingOrder: dataGiftingOrderReducer,
+    cgDataOrder: CgOrderReducer,
     airtimeOrder: airtimeOrderReducer,
     sellAirtimeOrder: sellAirtimeReducer,
     login: loginUserReducer,
