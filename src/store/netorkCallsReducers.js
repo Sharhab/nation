@@ -614,6 +614,7 @@ export const registerUserReducer = (state = initialRegisterState, action) => {
         // const serializedUser = JSON.stringify(userData);
         Cookies.set('user_id', id, { expires: 1 });
         Cookies.set('user', user, { expires: 1 });
+            Cookies.set('token', jwt, {expires: 1})
         
         
             window.location.replace('/pages/login');
