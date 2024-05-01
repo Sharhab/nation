@@ -651,33 +651,23 @@ export const giftData =
             setErrorAlert((prevState) => !prevState);
         }
     };
-
-export const LogoutAction = ({navigate}) => async (dispatch) => {
+export const LogoutAction = () => async (dispatch) => {
     try {
         dispatch({
             type: LOGOUT_USER_REQUEST
         });
-        const { data } = await makeNetworkCall({
-            method: 'POST',
-            path: '/logout',
-            requestBody: {},
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
         dispatch({
             type: LOGOUT_USER_SUCCESS,
-            payload: data?.message || 'logout succefully'
+            payload: 'successfully logged out'
         });
-
-    navigate("/pages/login")
     } catch (error) {
         dispatch({
             type: LOGOUT_USER_FAIL,
-            payload: "failed to logout"
+            payload: error?.message || error?.messag
         });
     }
 };
+
 export const LoginAction = ({ user, navigate, enqueueSnackbar }) => async (dispatch) => {
     try {
         // Dispatch action to indicate the start of the login request
