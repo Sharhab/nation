@@ -57,7 +57,7 @@ const ProfileSection = () => {
     const dispatch = useDispatch();
 
     const Logout = () => {
-        dispatch(LogoutAction(navigate));
+        dispatch(LogoutAction());
     };
 
     return (
