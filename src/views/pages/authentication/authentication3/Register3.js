@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthRegister from '../auth-forms/AuthRegister';
 import AuthCardWrapper from '../AuthCardWrapper';
 import AuthWrapper1 from '../AuthWrapper1';
-import logo from '../../../../assets/images/user-round.png';
+//import logo from '../../../../assets/images/user-round.png';
 
 const Register = () => {
     const theme = useTheme();
