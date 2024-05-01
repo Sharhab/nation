@@ -7,6 +7,14 @@ import { useEffect, useRef, useState } from 'react';
 import PinInput from 'react-pin-input';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Box, Grid, Typography, CardHeader, Card } from '@mui/material';
+import { Form, Formik } from 'formik';
+import Cookies from 'js-cookie';
+import { useSnackbar } from 'notistack';
+import { useEffect, useRef, useState } from 'react';
+import PinInput from 'react-pin-input';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
     buyData,
     giftData,
@@ -15,12 +23,13 @@ import {
     getMtnData,
     userAction,
     getMtnSmeData,
+    buyCgData,
     getAirtelCgData,
     getGloCgData,
     getMtnSmeTwoData,
-    getMtnCgData,
+    getMtnSmeOneData,
     getMtnSmeCoupData
-} from '../../store/actions';
+}  from '../../store/actions';
 import { CustomButton, CustomSelect, CustomTextField } from '../../ui-component/basic-inputs';
 // project imports
 import MainCard from '../../ui-component/cards/MainCard';
@@ -39,6 +48,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         myAirtelDataPlans,
         dataOrder,
         dataGiftingOrder,
+        cgDataOrder,
         myMtnSmeDataPlans,
         myMtnCgDataPlans,
         myMtnSme2DataPlans,
@@ -57,7 +67,8 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const { loading, data, error } = dataOrder;
     const { dataGiftloading, dataGiftData, dataGiftError } = dataGiftingOrder;
-  
+    const { Cgdataloading, CgData, CgdataError } = cgDataOrder;
+
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -119,7 +130,37 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             return [];
         }
       };
-      
+
+    const sendCgdata = (values) => {
+        if (!pinRef.current.values) {
+            enqueueSnackbar('provide transaction pin to proceed', {
+                variant: 'error',
+                autoHideDuration: 2000
+            });
+            return;
+        }
+        const body = {
+            beneficiary: values.beneficiaryNum,
+            amount: values.amount,
+            network_id: values.plan.network_id,
+            plan: values.plan.bundle,
+            plan_id: values.plan.plan_id,
+            network: network,
+            request_Id: generateRequestId(),
+            pin: pinRef.current.values.join('')
+        };
+
+        dispatch(
+            buyCgData({
+                orderDetails: {
+                    data: { ...body }
+                },
+                enqueueSnackbar,
+                setshowAlert,
+                setErrorAlert: setshowErrorAlert
+            })
+        );
+    };
     const sendGiftData = (values) => {
         console.log(pinRef.current.values);
         if (!pinRef.current.values) {
@@ -196,7 +237,13 @@ const handleSubmit = (values, { resetForm }) => {
                 initialValues={{ ...INITIAL_FORM_VALUES }}
                 enableReinitialize={true}
                 onSubmit={
-                    sme ? handleSubmit : sme_2 ? handleSubmit : mtn_cg ? handleSubmit : coup ? handleSubmit : cg ? handleSubmit : sendGiftData
+                    sme ? 
+                    handleSubmit : sme_2 ? 
+                    handleSubmit : mtn_cg ?
+                    handleSubmit : coup ? 
+                    handleSubmit : cg ? 
+                    sendCgdata :
+                    sendGiftData
                 }
                 validationSchema={VALIDATIONS}
             >
@@ -250,11 +297,9 @@ const handleSubmit = (values, { resetForm }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <CustomButton disabled={loading || dataGiftloading}
-                                   key={`${loading}-${dataGiftloading}`}
-                                     >
-                                        Submit
-                                    </CustomButton>
+                                    <CustomButton disabled={loading || Cgdataloading || dataGiftloading ? true : false}>
+                                            Submit
+                                        </CustomButton>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -265,7 +310,7 @@ const handleSubmit = (values, { resetForm }) => {
                 <FeedBack
                     setshowAlert={setshowAlert}
                     showAlert={showAlert}
-                    message={data?.message || dataGiftData?.message }
+                    message={data?.data?.message || dataGiftData?.data?.message || CgData?.data?.message}
                     variant="success"
                 />
             }
@@ -273,7 +318,7 @@ const handleSubmit = (values, { resetForm }) => {
                 <FeedBack
                     setshowErrorAlert={setshowErrorAlert}
                     showErrorAlert={showErrorAlert}
-                    message={error?.message || dataGiftError?.message }
+                    message={error || dataGiftError || CgdataError}
                     variant="error"
                 />
             }
