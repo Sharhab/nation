@@ -4,6 +4,9 @@ import {
     BUY_AIRTIME_FAIL,
     BUY_AIRTIME_REQUEST,
     BUY_AIRTIME_SUCCESS,
+    BUY_CG_DATA_FAIL,
+    BUY_CG_DATA_REQUEST,
+    BUY_CG_DATA_SUCCESS,
     BUY_DATA_FAIL,
     BUY_DATA_REQUEST,
     BUY_DATA_SUCCESS,
@@ -529,7 +532,86 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
             setErrorAlert((prevState) => !prevState);
         }
     };
-    
+    export const buyCouponData =
+    ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert }) =>
+    async (dispatch) => {
+        try {
+            dispatch({
+                type: BUY_DATA_REQUEST
+            });
+            const { data } = await makeNetworkCall({
+                method: 'POST',
+                path: '/mtn-coupon-data-orders',
+                requestBody: orderDetails,
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            dispatch({
+                type: BUY_DATA_SUCCESS,
+                payload: data
+            });
+            data &&
+                enqueueSnackbar(data?.message, {
+                    variant: 'success',
+                    autoHideDuration: 2000
+                });
+            setshowAlert((prevState) => !prevState);
+        } catch (error) {
+            dispatch({
+                type: BUY_DATA_FAIL,
+                payload: error?.message || error?.message
+            });
+            error &&
+                enqueueSnackbar(error?.message || error?.message, {
+                    variant: 'error',
+                    autoHideDuration: 2000
+                });
+            setErrorAlert((prevState) => !prevState);
+        }
+    };
+
+export const buyCgData =
+    ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert }) =>
+    async (dispatch) => {
+        try {
+            dispatch({
+                type: BUY_CG_DATA_REQUEST
+            });
+            const { data } = await makeNetworkCall({
+                method: 'POST',
+                path: '/cg-data-orders',
+                requestBody: orderDetails,
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            dispatch({
+                type: BUY_CG_DATA_SUCCESS,
+                payload: data
+            });
+            data &&
+                enqueueSnackbar(data?.message, {
+                    variant: 'success',
+                    autoHideDuration: 2000
+                });
+            setshowAlert((prevState) => !prevState);
+        } catch (error) {
+            dispatch({
+                type: BUY_CG_DATA_FAIL,
+                payload: error?.message || error?.messag
+            });
+            error &&
+                enqueueSnackbar(error?.message || error?.message, {
+                    variant: 'error',
+                    autoHideDuration: 2000
+                });
+            setErrorAlert((prevState) => !prevState);
+        }
+    };
+
 export const giftData =
     ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert }) =>
     async (dispatch) => {
