@@ -49,7 +49,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const { gloDataPlans } = myGloDataPlans;
     const { mtnDataPlans } = myMtnDataPlans;
-    const { getMtnSme1Data } = myMtnSme1DataPlans;
+    const { mtnSme1Dataplans } = myMtnSme1DataPlans;
     const { mtnCgDataPlans } = myMtnCgDataPlans;
     const { mtnSme2DataPlans } = myMtnSme2DataPlans;
     const { mtnCoupDataPlans } = myMtnCoupDataPlans;
