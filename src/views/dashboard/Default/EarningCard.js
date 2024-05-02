@@ -51,14 +51,14 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
     }
 }));
 
-// ===========================|| DASHBOARD DEFAULT - EARNING
-// ... (import statements remain the same)
+// ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
 const EarningCard = ({ isLoading, message }) => {
     const { loggedInUser } = useSelector((state) => state);
     const { user } = loggedInUser;
-console.log(user)
+
     const theme = useTheme();
+
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -134,17 +134,17 @@ console.log(user)
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {Cookies.get('user') && user?.username && (
+                                        {Cookies.get('user') && (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {`Welcome Back, ${user.username}`}
+                                                {`Welcome Back, ${user?.username}`}
                                             </Typography>
                                         )}
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                            {Cookies.get('user') && user?.AccountBalance && (
-                                                <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                    {`Wallet Balance: ${user.AccountBalance}`}
-                                                </Typography>
-                                            )}
+                                            <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                                {Cookies.get('user')
+                                                    ? `Wallet Balance:₦${user?.AccountBalance} `
+                                                    : 'Welcome To SharhaData'}
+                                            </Typography>
                                         </div>
 
                                         {Cookies.get('user') ? (
@@ -170,6 +170,9 @@ console.log(user)
                                                                 sx={{
                                                                     mb: 1.75,
                                                                     mt: 1.75,
+                                                                    // position: 'relative',
+                                                                    // top: 6,
+                                                                    // bottom: 0,
                                                                     cursor: 'pointer',
                                                                     ...theme.typography.smallAvatar,
                                                                     backgroundColor: theme.palette.secondary[200],
@@ -185,6 +188,17 @@ console.log(user)
                                                     </Grid>
                                                 </Link>
 
+                                                <marquee
+                                                    style={{
+                                                        backgroundColor: 'red',
+                                                        marginTop: 1.7,
+                                                        marginBottom: 0.25,
+                                                        padding: '5px 0',
+                                                        borderRadius: '5px'
+                                                    }}
+                                                >
+                                                    <Typography sx={{ fontSize: '1.0rem' }}>{message ? message : ''}</Typography>
+                                                </marquee>
                                             </>
                                         ) : (
                                             <Link to={'/pages/login'}>
@@ -194,6 +208,9 @@ console.log(user)
                                             </Link>
                                         )}
                                     </Grid>
+                                    {/* <Grid item>
+                                  
+                                    </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -209,4 +226,3 @@ EarningCard.propTypes = {
 };
 
 export default EarningCard;
-
