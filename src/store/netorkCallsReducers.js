@@ -332,7 +332,7 @@ export const getGloCgDataReducer = (state = initialGloCgDataState, action) => {
     }
 };
 
-export const getMtnSme1DataReducer = (state = initialMtnSmeOneDataState, action) => {
+export const getMtnSmeOneDataReducer = (state = initialMtnSmeOneDataState, action) => {
     switch (action.type) {
         case GET_MTN_SME_DATA_PLAN_REQUEST:
             return { ...state, loading: true };
@@ -360,7 +360,7 @@ export const getMtnCgDataReducer = (state = initialMtnCgDataState, action) => {
             return state;
     }
 };
-export const getMtnSme2DataReducer = (state = initialMtnSmeTwoDataState, action) => {
+export const getMtnSmeTowDataReducer = (state = initialMtnSmeTwoDataState, action) => {
     switch (action.type) {
         case GET_MTN_SME_2_DATA_PLAN_REQUEST:
             return { ...state, loading: true };
