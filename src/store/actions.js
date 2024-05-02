@@ -148,14 +148,14 @@ export const getGloData = () => async (dispatch) => {
     }
 };
 
-export const getMtnSmeData = () => async (dispatch) => {
+export const getMtnSmeOneData = () => async (dispatch) => {
     try {
         dispatch({
             type: GET_MTN_SME_DATA_PLAN_REQUEST
         });
         const { data } = await makeNetworkCall({
             method: 'GET',
-            path: '/mtn-sme-plan-models',
+            path: '/mtn-sme-1-data-plans',
             headers: {
                 Authorization: `Bearer ${token}`
             }
