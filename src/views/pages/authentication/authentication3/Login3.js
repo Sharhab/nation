@@ -53,14 +53,7 @@ const Login = () => {
                                         >
                                             <Grid item>
                                                 <Stack alignItems="center" justifyContent="center" spacing={1}>
-                                                    <Typography
-                                                        style={{ textTransform: 'uppercase' }}
-                                                        // color={theme.palette.secondary.main}
-                                                        gutterBottom
-                                                        variant={matchDownSM ? 'h3' : 'h2'}
-                                                    >
-                                                        best data, airtime deals.
-                                                    </Typography>
+                                                    
                                                     <Typography
                                                         style={{
                                                             textTransform: 'uppercase'
