@@ -18,17 +18,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 
 // styles
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-    height: 10,
-    borderRadius: 30,
-    [`&.${linearProgressClasses.colorPrimary}`]: {
-        backgroundColor: '#fff'
-    },
-    [`& .${linearProgressClasses.bar}`]: {
-        borderRadius: 5,
-        backgroundColor: theme.palette.primary.main
-    }
-}));
+
 
 const CardStyle = styled(Card)(({ theme }) => ({
     background: theme.palette.primary.light,
