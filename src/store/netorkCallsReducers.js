@@ -462,22 +462,18 @@ export const loginUserReducer = (state = initialLoginState, action) => {
   };
 
 //get a user details reducers
-export const userReducer = (state = initialUserState, { type, payload, error }) => {
-    switch (type) {
-      case GET_LOGGED_IN_USER_REQUEST:
-        return { ...state, loading: true };
-  
-      case GET_LOGGED_IN_USER_SUCCESS:
-        return { ...state, loading: false, user: payload};
-  
-      case GET_LOGGED_IN_USER_FAIL:
-        return { ...state, loading: false, error: payload };
-  
-      default:
-        return state;
+export const userReducer = (state = initialUserState, action) => {
+    switch (action.type) {
+        case GET_LOGGED_IN_USER_REQUEST:
+            return { ...state, loading: true, error: null };
+        case GET_LOGGED_IN_USER_SUCCESS:
+            return { ...state, loading: false, user: action.payload, error: null };
+        case GET_LOGGED_IN_USER_FAIL:
+            return { ...state, loading: false, error: action.payload };
+        default:
+            return state;
     }
-  };
-    
+};
 export const userStatByDateReducer = (state = initialUserStatState, action) => {
     switch (action.type) {
         case GET_USER_STAT_BY_DATE_REQUEST:
