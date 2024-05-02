@@ -140,7 +140,7 @@ console.log(user)
                                             </Typography>
                                         )}
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                            {Cookies.get('user') && user?. AccountBalance && (
+                                            {Cookies.get('user') && user?.AccountBalance && (
                                                 <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                     {`Wallet Balance: ${user.AccountBalance}`}
                                                 </Typography>
