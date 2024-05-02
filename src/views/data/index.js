@@ -1,5 +1,5 @@
 // material-u
-import { Box, Grid, Typography, CardHeader, Card } from '@mui/material';
+import { Box, Grid, Typography,  } from '@mui/material';
 import { Form, Formik } from 'formik';
 import Cookies from 'js-cookie';
 import { useSnackbar } from 'notistack';
@@ -15,7 +15,6 @@ import {
     getMtnData,
     getMtnCgData,
     userAction,
-    getMtnSmeData,
     buyCgData,
     getAirtelCgData,
     getGloCgData,
@@ -27,7 +26,7 @@ import { CustomButton, CustomSelect, CustomTextField } from '../../ui-component/
 // project imports
 import MainCard from '../../ui-component/cards/MainCard';
 import { generateRequestId } from '../../utils/generateRequestId';
-import FeedBack from '../../views/feedBack';
+import FeedBack from '../views/feedBack';
 import * as yup from 'yup';
 
 // ==============================|| SAMPLE PAGE ||============================== //
@@ -42,7 +41,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         dataOrder,
         dataGiftingOrder,
         cgDataOrder,
-        myMtnSmeDataPlans,
+        myMtnSme1DataPlans,
         myMtnCgDataPlans,
         myMtnSme2DataPlans,
         myMtnCoupDataPlans
@@ -50,7 +49,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const { gloDataPlans } = myGloDataPlans;
     const { mtnDataPlans } = myMtnDataPlans;
-    const { mtnSmeDataPlans } = myMtnSmeDataPlans;
+    const { getMtnSme1Data } = myMtnSme1DataPlans;
     const { mtnCgDataPlans } = myMtnCgDataPlans;
     const { mtnSme2DataPlans } = myMtnSme2DataPlans;
     const { mtnCoupDataPlans } = myMtnCoupDataPlans;
@@ -75,7 +74,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
         dispatch(getMtnData());
-        dispatch(getMtnSmeData());
+        dispatch(getMtnSmeOneData());
         dispatch(getMtnCgData());
         dispatch(getMtnSmeTwoData());
         dispatch(getMtnSmeCoupData());
@@ -111,7 +110,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         return cg ? gloCgDataPlans : gloDataPlans;
       
           case 'Mtn':
-            if (sme) return mtnSmeDataPlans;
+            if (sme) return mtnSme1DataPlans;
             if (sme_2) return mtnSme2DataPlans;
             if (mtn_cg) return mtnCgDataPlans;
             if (coup) return mtnCoupDataPlans;
