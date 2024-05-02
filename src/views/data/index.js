@@ -110,7 +110,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         return cg ? gloCgDataPlans : gloDataPlans;
       
           case 'Mtn':
-            if (sme) return mtnSme1DataPlans;
+            if (sme) return mtnSme1Dataplans;
             if (sme_2) return mtnSme2DataPlans;
             if (mtn_cg) return mtnCgDataPlans;
             if (coup) return mtnCoupDataPlans;
