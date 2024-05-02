@@ -956,10 +956,10 @@ export const userAction = ({ navigate }) => async (dispatch) => {
         console.error(error); // Log error for debugging
         dispatch({
             type: GET_LOGGED_IN_USER_FAIL,
-            payload: error.response?.data?.message || 'An unexpected error occurred'
+            payload:error.message || 'An unexpected error occurred'
         });
         
-        if (error.response && error.response.status === 401) {
+        if (error.status === 401) {
             navigate('/pages/login');
         }
     }
