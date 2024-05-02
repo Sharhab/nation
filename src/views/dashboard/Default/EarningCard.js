@@ -134,7 +134,7 @@ console.log(user)
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {Cookies.get('token') && user?.username && (
+                                        {Cookies.get('user') && user?.username && (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {`Welcome Back, ${user.username}`}
                                             </Typography>
@@ -185,17 +185,6 @@ console.log(user)
                                                     </Grid>
                                                 </Link>
 
-                                                {/* <marquee
-                                                    style={{
-                                                        backgroundColor: 'red',
-                                                        marginTop: 1.7,
-                                                        marginBottom: 0.25,
-                                                        padding: '5px 0',
-                                                        borderRadius: '5px'
-                                                    }}
-                                                >
-                                                    <Typography sx={{ fontSize: '1.0rem' }}>{message ? message : ''}</Typography>
-                                                </marquee> */}
                                             </>
                                         ) : (
                                             <Link to={'/pages/login'}>
