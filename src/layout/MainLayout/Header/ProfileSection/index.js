@@ -3,7 +3,6 @@ import { Avatar, Box, Button, Chip, ClickAwayListener, Divider, Paper, Popper, S
 import { useTheme } from '@mui/material/styles';
 import User1 from '../../../../assets/images/user-round.png';
 import { useEffect, useRef, useState } from 'react';
-import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { LogoutAction } from '../../../../store/actions';
@@ -17,7 +16,7 @@ const ProfileSection = () => {
     const theme = useTheme();
     const { loggedInUser } = useSelector((state) => state);
     const { user } = loggedInUser;
-    const navigate = useNavigate();
+    
 
     const [open, setOpen] = useState(false);
     /**
