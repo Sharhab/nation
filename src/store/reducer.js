@@ -18,7 +18,6 @@ import {
     getGloDataReducer,
     getHistoriesReducer,
     getMtnDataReducer,
-    getMtnSmeDataReducer,
     getSellAirtimeDetailsReducer,
     getVariationsReducer,
     loginUserReducer,
@@ -38,6 +37,7 @@ import {
     userStatByDateReducer,
     getMtnCgDataReducer,
     getMtnSmeTwoDataReducer,
+    getMtnSmeOneDataReducer
     getMtnCoupDataReducer
 } from './netorkCallsReducers';
 // import customizationReducer from './customizationReducer'
@@ -48,7 +48,7 @@ import {
 const reducer = combineReducers({
     customization: customizationReducer,
     myMtnDataPlans: getMtnDataReducer,
-    myMtnSmeDataPlans: getMtnSmeDataReducer,
+    myMtnSme1DataPlans: getMtnSmeOneDataReducer,
     myMtnCgDataPlans: getMtnCgDataReducer,
     myMtnSme2DataPlans: getMtnSmeTwoDataReducer,
     myMtnCoupDataPlans: getMtnCoupDataReducer,
