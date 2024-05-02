@@ -160,9 +160,9 @@ export const initialAirtelCgDataState = {
 };
 
 export const initialUserState = {
+    user: null,
     loading: false,
-    error: null,
-    user: {}
+    error: null
 };
 
 export const initialRegisterState = {
