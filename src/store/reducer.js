@@ -50,7 +50,7 @@ const reducer = combineReducers({
     myMtnDataPlans: getMtnDataReducer,
     myMtnSme1DataPlans: getMtnSmeOneDataReducer,
     myMtnCgDataPlans: getMtnCgDataReducer,
-    myMtnSme2DataPlans: getMtnSmeTwoDataReducer,
+    myMtnSme2DataPlans: getMtnSmeTowDataReducer,
     myMtnCoupDataPlans: getMtnCoupDataReducer,
     myGloDataPlans: getGloDataReducer,
     myAirtelDataPlans: getAirtelDataReducer,
