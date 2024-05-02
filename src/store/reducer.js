@@ -36,8 +36,8 @@ import {
     userStatReducer,
     userStatByDateReducer,
     getMtnCgDataReducer,
-    getMtnSmeTwoDataReducer,
-    getMtnSmeOneDataReducer
+    getMtnSme2DataReducer,
+    getMtnSme1DataReducer
     getMtnCoupDataReducer
 } from './netorkCallsReducers';
 // import customizationReducer from './customizationReducer'
