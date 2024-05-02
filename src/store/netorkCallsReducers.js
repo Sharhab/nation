@@ -127,8 +127,8 @@ export const initialMtnDataState = {
     loading: false,
     error: null
 };
-export const initialMtnSmeDataState = {
-    mtnSmeDataPlans: [],
+export const initialMtnSmeOneDataState = {
+    mtnSme1DataPlans: [],
     loading: false,
     error: null
 };
@@ -332,13 +332,13 @@ export const getGloCgDataReducer = (state = initialGloCgDataState, action) => {
     }
 };
 
-export const getMtnSmeDataReducer = (state = initialMtnSmeDataState, action) => {
+export const getMtnSme1DataReducer = (state = initialMtnSmeOneDataState, action) => {
     switch (action.type) {
         case GET_MTN_SME_DATA_PLAN_REQUEST:
             return { ...state, loading: true };
 
         case GET_MTN_SME_DATA_PLAN_SUCCESS:
-            return { ...state, loading: false, mtnSmeDataPlans: action.payload };
+            return { ...state, loading: false, mtnSme1DataPlans: action.payload };
         case GET_MTN_SME_DATA_PLAN_FAIL:
             return { ...state, loading: false, error: action.payload };
 
@@ -360,7 +360,7 @@ export const getMtnCgDataReducer = (state = initialMtnCgDataState, action) => {
             return state;
     }
 };
-export const getMtnSmeTwoDataReducer = (state = initialMtnSmeTwoDataState, action) => {
+export const getMtnSme2DataReducer = (state = initialMtnSmeTwoDataState, action) => {
     switch (action.type) {
         case GET_MTN_SME_2_DATA_PLAN_REQUEST:
             return { ...state, loading: true };
