@@ -26,7 +26,7 @@ import { CustomButton, CustomSelect, CustomTextField } from '../../ui-component/
 // project imports
 import MainCard from '../../ui-component/cards/MainCard';
 import { generateRequestId } from '../../utils/generateRequestId';
-import FeedBack from '../views/feedBack';
+import FeedBack from '../feedBack';
 import * as yup from 'yup';
 
 // ==============================|| SAMPLE PAGE ||============================== //
