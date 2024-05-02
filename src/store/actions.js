@@ -926,47 +926,45 @@ export const UpdateUserAction =
     };
 
    
+export const userAction = ({ navigate }) => async (dispatch) => {
+    try {
+        dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
 
-    // GET USER INFO
-    export const userAction = ({ navigate}) => async (dispatch) => {
-        try {
-            dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
-    
-            const id = Cookies.get('user_id');
-            const { data } = await makeNetworkCall({
-                method: 'GET',
-                path: `/users/${id}`,
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+        const id = Cookies.get('user_id');
+        // Ensure you're retrieving the token correctly
+
+        const { data } = await makeNetworkCall({
+            method: 'GET',
+            url: `/users/${id}`, // Make sure URL is correctly constructed
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (data) {
+            dispatch({
+                type: GET_LOGGED_IN_USER_SUCCESS,
+                payload: data
             });
-    
-             // Adjusted the property access based on the response structu
-    
-            if (data) {
-                dispatch({
-                    type: GET_LOGGED_IN_USER_SUCCESS,
-                    payload: data
-                });
-            } else {
-                dispatch({
-                    type: GET_LOGGED_IN_USER_FAIL,
-                    payload: 'Unexpected response structure',
-                });
-            }
-        } catch (error) {
-            const errorMessage =  error?.message;
-            console.log(errorMessage)
-            if (error?.status === 401) {
-                navigate('/pages/login');
-            }
-    
+        } else {
             dispatch({
                 type: GET_LOGGED_IN_USER_FAIL,
-                payload: errorMessage,
+                payload: 'No user data found',
             });
         }
-    };
+    } catch (error) {
+        console.error(error); // Log error for debugging
+        dispatch({
+            type: GET_LOGGED_IN_USER_FAIL,
+            payload: error.response?.data?.message || 'An unexpected error occurred'
+        });
+        
+        if (error.response && error.response.status === 401) {
+            navigate('/pages/login');
+        }
+    }
+};
+
         
 
 export const userTransactionStat =
