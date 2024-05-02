@@ -134,11 +134,12 @@ const EarningCard = ({ isLoading, message }) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {Cookies.get('user') && user?.username (
+                                        {Cookies.get('user') && user?.username && ( 
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {`Welcome Back, ${user?.username}`}
-                                            </Typography>
-                                        )}
+                                                 {`Welcome Back, ${user.username}`}  {/* Access as a property, not a function */}
+                                              </Typography>
+                                           )}
+
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
                                             <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {Cookies.get('user')
