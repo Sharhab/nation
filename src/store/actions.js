@@ -656,14 +656,24 @@ export const LogoutAction = () => async (dispatch) => {
         dispatch({
             type: LOGOUT_USER_REQUEST
         });
+        const { data } = await makeNetworkCall({
+            method: 'POST',
+            path: '/logout',
+            requestBody: {},
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         dispatch({
             type: LOGOUT_USER_SUCCESS,
-            payload: 'successfully logged out'
+            payload: data?.message || 'logout succefully'
         });
+
+    
     } catch (error) {
         dispatch({
             type: LOGOUT_USER_FAIL,
-            payload: error?.message || error?.messag
+            payload: "failed to logout"
         });
     }
 };
