@@ -5,7 +5,7 @@ import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 // assets
-import EarningIcon from '../../../assets/images/icons/earning.svg';
+import EarningIcon from '../../assets/images/icons/earning.svg';
 import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -51,14 +51,14 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
     }
 }));
 
-// ===========================|| DASHBOARD DEFAULT - EARNING
-// ... (import statements remain the same)
+// ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
 const EarningCard = ({ isLoading, message }) => {
     const { loggedInUser } = useSelector((state) => state);
     const { user } = loggedInUser;
-console.log(user)
+
     const theme = useTheme();
+
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -134,17 +134,17 @@ console.log(user)
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {Cookies.get('user') && user?.username && (
+                                        {Cookies.get('user') && (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {`Welcome Back, ${user.username}`}
+                                                {`Welcome Back, ${user?.username}`}
                                             </Typography>
                                         )}
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                            {Cookies.get('user') && user?.AccountBalance && (
-                                                <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                    {`Wallet Balance: ${user.AccountBalance}`}
-                                                </Typography>
-                                            )}
+                                            <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                                {Cookies.get('user')
+                                                    ? `Wallet Balance:₦${user?.AccountBalance} `
+                                                    : 'Welcome To Gbrain Ventures'}
+                                            </Typography>
                                         </div>
 
                                         {Cookies.get('user') ? (
@@ -170,6 +170,9 @@ console.log(user)
                                                                 sx={{
                                                                     mb: 1.75,
                                                                     mt: 1.75,
+                                                                    // position: 'relative',
+                                                                    // top: 6,
+                                                                    // bottom: 0,
                                                                     cursor: 'pointer',
                                                                     ...theme.typography.smallAvatar,
                                                                     backgroundColor: theme.palette.secondary[200],
@@ -185,7 +188,7 @@ console.log(user)
                                                     </Grid>
                                                 </Link>
 
-                                                {/* <marquee
+                                                <marquee
                                                     style={{
                                                         backgroundColor: 'red',
                                                         marginTop: 1.7,
@@ -195,7 +198,7 @@ console.log(user)
                                                     }}
                                                 >
                                                     <Typography sx={{ fontSize: '1.0rem' }}>{message ? message : ''}</Typography>
-                                                </marquee> */}
+                                                </marquee>
                                             </>
                                         ) : (
                                             <Link to={'/pages/login'}>
@@ -205,6 +208,9 @@ console.log(user)
                                             </Link>
                                         )}
                                     </Grid>
+                                    {/* <Grid item>
+                                  
+                                    </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
