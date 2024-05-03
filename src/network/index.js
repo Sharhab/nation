@@ -39,16 +39,16 @@ export const makeNetworkCall = async ({ method, path, requestBody, params, heade
 
     return response.data;
   } catch (error) {
-    // Check if the error has a response object from Axios
-    if (error.response) {
+    // Log the entire error object for debugging purposes
+    console.error('Network Request Error:', error);
 
-console.log(error.response) 
-     const errorMessage = error.response.data.message || 'Bad Request';
+    if (error.response) {
+      // Handle specific HTTP status codes or error messages
+      const errorMessage = error.response.data.message || 'Bad Request';
       throw new Error(errorMessage);
     } else {
       // Handle other types of errors or network issues
-      throw new Error(error.message || 'An unexpected network error occurred');
+      throw new Error('An unexpected network error occurred');
     }
-  
   }
 };
