@@ -9,7 +9,9 @@ export const CustomTextField = ({ name, fullWidth, ...other }) => {
   const defaultConfiq = {
       ...field,
       ...other,
-      variant: 'outlined',
+       variant: 'outlined',
+      inputMode: "numeric",
+      type: "tel",
       fullWidth: true || fullWidth
   };
   if (meta && meta.touched && meta.error) {
