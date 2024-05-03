@@ -925,45 +925,44 @@ export const UpdateUserAction =
         }
     };
 
-   
-export const userAction = ({ navigate }) => async (dispatch) => {
+   export const userAction = ({ navigate }) => async (dispatch) => {
     try {
-        dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
-
-        const id = Cookies.get('user_id');
-        // Ensure you're retrieving the token correctly
-
-        const { data } = await makeNetworkCall({
-            method: 'GET',
-            url: `/users/${id}`, // Make sure URL is correctly constructed
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
-        if (data) {
-            dispatch({
-                type: GET_LOGGED_IN_USER_SUCCESS,
-                payload: data
-            });
-        } else {
-            dispatch({
-                type: GET_LOGGED_IN_USER_FAIL,
-                payload: 'No user data found',
-            });
-        }
-    } catch (error) {
-        console.error(error); // Log error for debugging
+      const id = Cookies.get('user_id');
+      dispatch({
+        type: GET_LOGGED_IN_USER_REQUEST,
+      });
+      const { data } = await makeNetworkCall({
+        method: 'GET',
+        path: `https://globstad-backend.onrender.com/api/users/${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (data && data.message) {
+        // Assuming data.user contains the user object
         dispatch({
-            type: GET_LOGGED_IN_USER_FAIL,
-            payload:error.message || 'An unexpected error occurred'
+          type: GET_LOGGED_IN_USER_SUCCESS,
+          payload: { user: data.user },
         });
-        
-        if (error.status === 401) {
-            navigate('/pages/login');
-        }
+      } else {
+        // Handle unexpected response structure
+        dispatch({
+          type: GET_LOGGED_IN_USER_FAIL,
+          payload: 'Unexpected response structure',
+        });
+      }
+    } catch (error) {
+      if (error.response?.data?.error?.status === 401) {
+        navigate('/pages/login');
+      }
+      dispatch({
+        type: GET_LOGGED_IN_USER_FAIL,
+        payload: error.response?.data?.error?.message || error?.message,
+      });
     }
-};
+  };
+
 
         
 
