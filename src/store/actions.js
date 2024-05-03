@@ -943,7 +943,7 @@ export const UpdateUserAction =
       });
       const { data } = await makeNetworkCall({
         method: 'GET',
-        path: `https://globstad-backend.onrender.com/api/users/${id}`,
+        path: `/users/${id}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
