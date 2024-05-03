@@ -5,7 +5,7 @@ import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 // assets
-import EarningIcon from '../../assets/images/icons/earning.svg';
+import EarningIcon from '../../../assets/images/icons/earning.svg';
 import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
