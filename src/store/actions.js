@@ -949,11 +949,11 @@ export const UpdateUserAction =
         },
       });
   
-      if (data && data.message) {
+      if (data) {
         // Assuming data.user contains the user object
         dispatch({
           type: GET_LOGGED_IN_USER_SUCCESS,
-          payload: { user: data.user },
+          payload: data,
         });
       } else {
         // Handle unexpected response structure
@@ -963,7 +963,7 @@ export const UpdateUserAction =
         });
       }
     } catch (error) {
-      if (error.response?.data?.error?.status === 401) {
+      if (error.status === 401) {
         navigate('/pages/login');
       }
       dispatch({
