@@ -625,7 +625,7 @@ export const registerUserReducer = (state = initialRegisterState, action) => {
             Cookies.set('user_id',id, { expires: 1 });
             Cookies.set('token', token, { expires: 1 });
 
-            window.location.replace('/');
+          
             return { ...state, loading: false, user: action.payload };
         }
       case REGISTER_USER_FAIL:
