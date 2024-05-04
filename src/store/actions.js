@@ -945,21 +945,21 @@ export const userAction = ({ navigate }) => async (dispatch) => {
 
     dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
 
-    const { data } = await axios.get(`https://globstand-backend.onrender.com/api/users/${id}`, {
+    const response = await axios.get(`https://globstand-backend.onrender.com/api/users/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (data.data) {
+    if (response.data) {
       dispatch({
         type: GET_LOGGED_IN_USER_SUCCESS,
-        payload: { user: data.data },
+        payload: { user: response.data },
       });
     } else {
       dispatch({
         type: GET_LOGGED_IN_USER_FAIL,
-        payload: data.message || 'No user data returned',
+        payload: response.data.message || 'No user data returned',
       });
     }
   } catch (error) {
