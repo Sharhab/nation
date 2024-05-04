@@ -537,7 +537,7 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
             Cookies.remove('user');
             Cookies.remove('user_id');
             Cookies.remove ('token')
-            window.location.replace('/pages/login');
+            window.location.replace('/');
 
             return { ...state, loading: false, user: action.payload };
 
