@@ -40,7 +40,7 @@ const Login = () => {
                                                     color: '#83529f'
                                                 }}
                                             >
-                                                SHARAHADATA
+                                                SHARHADATA
                                             </Typography>
                                         </Link>
                                     </Grid>
