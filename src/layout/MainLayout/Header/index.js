@@ -59,7 +59,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
 
             {/* header search */}
             {/* <SearchSection /> */}
-            <Box sx={{ flexGrow: 1, position: 'absolute', right: "60%"}}>
+            <Box sx={{ flexGrow: 1, position: 'absolute', right: "90%"}}>
             
             <ProfileSection />
           
