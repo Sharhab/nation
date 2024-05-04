@@ -134,7 +134,7 @@ const EarningCard = ({ isLoading, message }) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {Cookies.get('user') && (
+                                        {Cookies.get('user') && user.username && (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {`Welcome Back, ${user?.username}`}
                                             </Typography>
@@ -143,7 +143,7 @@ const EarningCard = ({ isLoading, message }) => {
                                             <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {Cookies.get('user')
                                                     ? `Wallet Balance:₦${user?.AccountBalance} `
-                                                    : 'Welcome To Gbrain Ventures'}
+                                                    : 'Welcome To SharhaData'}
                                             </Typography>
                                         </div>
 
