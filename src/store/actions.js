@@ -1,4 +1,6 @@
 import Cookies from 'js-cookie';
+import axios from 'axios';
+
 import { makeNetworkCall } from '../network';
 import {
     BUY_AIRTIME_FAIL,
@@ -935,44 +937,46 @@ export const UpdateUserAction =
         }
     };
 
-   export const userAction = ({ navigate }) => async (dispatch) => {
-    try {
-      const id = Cookies.get('user_id');
+   
+export const userAction = ({ navigate }) => async (dispatch) => {
+  try {
+    const id = Cookies.get('user_id');
+     // Ensure token is retrieved securely
+
+    dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
+
+    const { data } = await axios.get(`https://globstand-backend.onrender.com/api/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (data.data) {
       dispatch({
-        type: GET_LOGGED_IN_USER_REQUEST,
+        type: GET_LOGGED_IN_USER_SUCCESS,
+        payload: { user: data.data },
       });
-      const { data } = await makeNetworkCall({
-        method: 'GET',
-        path: `/users/${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      if (data) {
-        // Assuming data.user contains the user object
-        dispatch({
-          type: GET_LOGGED_IN_USER_SUCCESS,
-          payload: data,
-        });
-      } else {
-        // Handle unexpected response structure
-        dispatch({
-          type: GET_LOGGED_IN_USER_FAIL,
-          payload: 'Unexpected response structure',
-        });
-      }
-    } catch (error) {
-      if (error.status === 401) {
-        navigate('/pages/login');
-      }
+    } else {
       dispatch({
         type: GET_LOGGED_IN_USER_FAIL,
-        payload: error.response?.data?.error?.message || error?.message,
+        payload: data.message || 'No user data returned',
       });
     }
-  };
+  } catch (error) {
+    // More comprehensive error handling
+    const status = error.response?.data.status;
+    const message = error.response?.data?.message || error.message;
 
+    if (status === 401) {
+      navigate('/pages/login');
+    } else {
+      dispatch({
+        type: GET_LOGGED_IN_USER_FAIL,
+        payload: message,
+      });
+    }
+  }
+};
 
         
 
