@@ -141,9 +141,9 @@ const MainRoutes = {
         },
         {
             path: '/buy-mtn-data-sme-1',
-            element: <BuyData title="Mtn Sme Data " sme={true} network="Mtn" />
+            element: <BuyData title="Mtn Sme 1 Data" sme={true} network="Mtn" />
         },
-        {
+       {
             path: '/buy-mtn-data-sme-2',
             element: <BuyData title="Mtn Sme 2 Data" sme_2={true} network="Mtn" />
         },
