@@ -279,8 +279,8 @@ const handleSubmit = (values, { resetForm }) => {
                                         // onChange={(value, index) => {
                                         //     settpin(value);
                                         // }}
-                                        type="numeric"
-                                        inputMode="number"
+                                        type="tel"
+                                        inputMode="numeric"
                                         inputStyle={{ borderColor: 'black' }}
                                         inputFocusStyle={{ borderColor: 'blue' }}
                                         onComplete={(value, index) => {}}
