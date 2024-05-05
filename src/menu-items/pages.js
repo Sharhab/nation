@@ -82,7 +82,7 @@ const pages = {
                     id: 'mtn1',
                     title: 'Mtn SME Data',
                     type: 'item',
-                    url: '/buy-mtn-data-1',
+                    url: '/buy-mtn-data-sme-1',
                     target: false
                 },
                 {
@@ -106,8 +106,7 @@ const pages = {
                     url: '/buy-mtn-data-coup',
                     target: false
                 },
-                
-
+            
                 {
                     id: 'glo',
                     title: 'Glo Data ',
