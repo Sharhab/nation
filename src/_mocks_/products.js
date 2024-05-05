@@ -67,11 +67,11 @@ export const dataProducts = [
         id: 1,
         name: 'MTN SME Data',
         image: mtnLogo,
-        url: '/buy-mtn-data'
+        url: '/buy-mtn-data-1'
     },
     {
         id: 2,
-        name: 'MTN Corporate Gifting',
+        name: 'MTN Corporate',
         image: mtnLogo,
         url: '/buy-mtn-corporate-gifting'
     },
@@ -89,26 +89,26 @@ export const dataProducts = [
     },
 
     {
-        id: 6,
+        id: 5,
         name: 'Glo Data',
         image: gloLogo,
         url: '/buy-glo-data'
     },
     {
-        id: 7,
-        name: 'Glo Corporate Gifting',
+        id: 6,
+        name: 'Glo Corporate ',
         image: gloLogo,
         url: '/buy-glo-cg-data'
     },
     {
-        id: 8,
+        id: 7,
         name: 'Airtel Data',
         image: airtelLogo,
         url: '/buy-airtel-data'
     },
     {
-        id: 9,
-        name: 'Airtel Corporate Gifting ',
+        id: 8,
+        name: 'Airtel Corporate',
         image: airtelLogo,
         url: '/buy-airtel-cg-data'
     }
