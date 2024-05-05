@@ -94,9 +94,9 @@ const pages = {
                 },
                 {
                     id: 'mtn3',
-                    title: 'Mtn-corporate-gifting ',
+                    title: 'Mtn Corporate ',
                     type: 'item',
-                    url: 'buy-mtn-corporate-gifting',
+                    url: '/buy-mtn-corporate-gifting',
                     target: false
                 },
                 {
@@ -117,7 +117,7 @@ const pages = {
                 },
                 {
                     id: 'glo-cg',
-                    title: 'Glo Corporate Gifting ',
+                    title: 'Glo Corporate,
                     type: 'item',
                     url: '/buy-glo-cg-data',
                     target: false
@@ -131,7 +131,7 @@ const pages = {
                 },
                 {
                     id: 'airtel-cg',
-                    title: 'Airtel Corporate Gifting ',
+                    title: 'Airtel Corporate',
                     type: 'item',
                     url: '/buy-airtel-cg-data',
                     target: false
