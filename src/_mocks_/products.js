@@ -71,9 +71,9 @@ export const dataProducts = [
     },
     {
         id: 2,
-        name: 'MTN SME 1 Data',
+        name: 'MTN Corporate Gifting',
         image: mtnLogo,
-        url: '/buy-mtn-data-sme-1'
+        url: '/buy-mtn-corporate-gifting'
     },
     {
         id: 3,
@@ -87,12 +87,7 @@ export const dataProducts = [
         image: mtnLogo,
         url: '/buy-mtn-data-coup'
     },
-    {
-        id: 5,
-        name: 'MTN Data (Gifting)',
-        image: mtnLogo,
-        url: '/buy-mtn-gift-data'
-    },
+
     {
         id: 6,
         name: 'Glo Data',
