@@ -140,7 +140,7 @@ const MainRoutes = {
             element: <BuyData title="Glo CG Data" cg={true} network="Glo" />
         },
         {
-            path: '/buy-mtn-data',
+            path: '/buy-mtn-data-1',
             element: <BuyData title="Mtn Sme Data " sme={true} network="Mtn" />
         },
         {
