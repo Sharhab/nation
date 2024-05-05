@@ -87,21 +87,21 @@ const pages = {
                 },
                 {
                     id: 'mtn2',
-                    title: 'Mtn SME 2 Data ',
+                    title: 'Mtn SME 2 Data',
                     type: 'item',
                     url: '/buy-mtn-data-sme-2',
                     target: false
                 },
                 {
                     id: 'mtn3',
-                    title: 'Mtn Corporate ',
+                    title: 'Mtn Corporate',
                     type: 'item',
                     url: '/buy-mtn-corporate-gifting',
                     target: false
                 },
                 {
                     id: 'mtn4',
-                    title: 'Mtn COUPON Data ',
+                    title: 'Mtn COUPON Data',
                     type: 'item',
                     url: '/buy-mtn-data-coup',
                     target: false
@@ -109,14 +109,14 @@ const pages = {
             
                 {
                     id: 'glo',
-                    title: 'Glo Data ',
+                    title: 'Glo Data',
                     type: 'item',
                     url: '/buy-glo-data',
                     target: false
                 },
                 {
                     id: 'glo-cg',
-                    title: 'Glo Corporate,
+                    title: 'Glo Corporate',
                     type: 'item',
                     url: '/buy-glo-cg-data',
                     target: false
