@@ -945,40 +945,40 @@ export const userAction = ({ navigate }) => async (dispatch) => {
 
     dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
 
-    const response = await axios.get(`https://globstand-backend.onrender.com/api/users/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+      const { data } = await makeNetworkCall({
+                method: 'GET',
+                path: `/users/${id}`,
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
-    if (response.data) {
+    if (data) {
       dispatch({
         type: GET_LOGGED_IN_USER_SUCCESS,
-        payload: { user: response.data },
+        payload: data,
       });
     } else {
       dispatch({
         type: GET_LOGGED_IN_USER_FAIL,
-        payload: response.data.message || 'No user data returned',
+        payload: data.message || 'No user data returned',
       });
     }
   } catch (error) {
     // More comprehensive error handling
     const status = error.response?.data.status;
-    const message = error.response?.data?.message || error.message;
+    const message = error.message || error.message;
 
     if (status === 401) {
       navigate('/pages/login');
     } else {
       dispatch({
         type: GET_LOGGED_IN_USER_FAIL,
-        payload: message,
+        payload: error.message,
       });
     }
   }
-};
-
-        
+};        
 
 export const userTransactionStat =
     ({ navigate }) =>
