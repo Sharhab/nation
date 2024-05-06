@@ -78,13 +78,7 @@ const pages = {
             icon: icons.FaMobile,
 
             children: [
-                {
-                    id: 'mtn1',
-                    title: 'Mtn SME Data',
-                    type: 'item',
-                    url: '/buy-mtn-data-sme-1',
-                    target: false
-                },
+                
                 {
                     id: 'mtn2',
                     title: 'Mtn SME 2 Data',
