@@ -139,13 +139,13 @@ const MainRoutes = {
             path: '/buy-glo-cg-data',
             element: <BuyData title="Glo CG Data" cg={true} network="Glo" />
         },
-        {
-            path: '/buy-mtn-data-sme-1',
-            element: <BuyData title="Mtn Sme 1 Data" sme={true} network="Mtn" />
-        },
+        //{
+       //  path: '/buy-mtn-data-sme-1',
+       //     element: <BuyData title="Mtn Sme 1 Data" sme={true} network="Mtn" />
+      //  },
        {
             path: '/buy-mtn-data-sme-2',
-            element: <BuyData title="Mtn Sme 2 Data" sme_2={true} network="Mtn" />
+            element: <BuyData title="Mtn Sme  Data" sme_2={true} network="Mtn" />
         },
         {
             path: '/buy-mtn-corporate-gifting',
