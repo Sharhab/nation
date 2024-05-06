@@ -952,8 +952,9 @@ export const userAction = ({ navigate }) => async (dispatch) => {
                     Authorization: `Bearer ${token}`
                 }
             });
-
+      
     if (data) {
+        console.log("DATA", data)
       dispatch({
         type: GET_LOGGED_IN_USER_SUCCESS,
         payload: data,
