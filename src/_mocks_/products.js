@@ -64,12 +64,6 @@ export const products = [
 
 export const dataProducts = [
     {
-        id: 1,
-        name: 'MTN SME 1 DATA',
-        image: mtnLogo,
-        url: '/buy-mtn-data-sme-1'
-    },
-    {
         id: 2,
         name: 'MTN CORPORATE',
         image: mtnLogo,
@@ -77,7 +71,7 @@ export const dataProducts = [
     },
     {
         id: 3,
-        name: 'MTN SME 2 DATA',
+        name: 'MTN SME DATA',
         image: mtnLogo,
         url: '/buy-mtn-data-sme-2'
     },
