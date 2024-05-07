@@ -479,12 +479,15 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
             setErrorAlert((prevState) => !prevState);
         }
     };
+
 export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert, path }) =>
     async (dispatch) => {
         try {
-            dispatch({
-                type: BUY_DATA_REQUEST
-            });
+            dispatch({ type: BUY_DATA_REQUEST });
+
+            // Assume token is stored in the Redux store, or adapt this to however you manage authentication state
+              // Or however you store/retrieve tokens
+
             const { data } = await makeNetworkCall({
                 method: 'POST',
                 path,
@@ -493,47 +496,39 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
                     Authorization: `Bearer ${token}`
                 }
             });
-            if (data&&data.message) {
-           
-                // Remove the if statement checking for status === 200
-    dispatch({
-        type: BUY_DATA_SUCCESS,
-        payload: data.message
-      });
-      
-      enqueueSnackbar(data.message, {
-        variant: 'success',
-        autoHideDuration: 2000
-      });
-      
-      setshowAlert((prevState) => !prevState);
-                dispatch({
-                  type: BUY_DATA_FAIL,
-                  payload:data.message
-                });
-          
-                enqueueSnackbar(data.message, {
-                  variant: 'error',
-                  autoHideDuration: 2000
-                });
-          
-                setErrorAlert((prevState) => !prevState);
-              }        
-        } catch (error) {
 
-            console.log(error)
-            dispatch({
-                type: BUY_DATA_FAIL,
-                payload: error?.message
-              });
-            
-                enqueueSnackbar(error?.message, {
-                    variant: 'error',
+            // Assuming data contains a success indicator; adjust according to your API response structure
+            if (data.success) {
+                dispatch({
+                    type: BUY_DATA_SUCCESS,
+                    payload: data
+                });
+
+                enqueueSnackbar(data.message || "Data purchase successful!", {
+                    variant: 'success',
                     autoHideDuration: 2000
                 });
-            setErrorAlert((prevState) => !prevState);
+            } else {
+                throw new Error(data.message || "Failed to purchase data. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error purchasing data:", error);
+            dispatch({
+                type: BUY_DATA_FAIL,
+                payload: error.message || "An unexpected error occurred"
+            });
+
+            enqueueSnackbar(error.message || "Error processing your request", {
+                variant: 'error',
+                autoHideDuration: 2000
+            });
+
+            setErrorAlert(true);  // Set alert state to true to show an error alert if needed
+        } finally {
+            setshowAlert(true);  // This could be used to handle generic alert visibility if needed
         }
     };
+
     export const buyCouponData =
     ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert }) =>
     async (dispatch) => {
