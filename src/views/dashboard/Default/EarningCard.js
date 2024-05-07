@@ -4,11 +4,12 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
+import {useNavigate} from 'react-router-dom'
 // assets
 import EarningIcon from '../../../assets/images/icons/earning.svg';
 import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // project imports
@@ -56,7 +57,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 const EarningCard = ({ isLoading, message }) => {
     const { loggedInUser } = useSelector((state) => state);
     const { user } = loggedInUser;
-
+const navigate = useNavigate()
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -68,7 +69,9 @@ const EarningCard = ({ isLoading, message }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+useEffect(()=>{
+!Cookies.get('user') && navigate('/pages/login')
+}, [user])
     return (
         <>
             {isLoading ? (
