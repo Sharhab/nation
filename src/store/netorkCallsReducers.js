@@ -471,6 +471,7 @@ export const userReducer = (state = initialUserState, action) => {
             
             return { ...state, loading: false, user: action.payload };
         }
+            
         case GET_LOGGED_IN_USER_FAIL:
             return { ...state, loading: false, error: action.payload };
 
@@ -537,7 +538,8 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
             Cookies.remove('user');
             Cookies.remove('user_id');
             Cookies.remove ('token')
-            window.location.replace('/');
+            
+            window.location.replace('/pages/login');
 
             return { ...state, loading: false, user: action.payload };
 
@@ -721,9 +723,9 @@ export const monnifyFundingReducer = (state = initialFundingState, action) => {
 
         case FUND_WALLET_BY_MONNIFY_SUCCESS:
             window.open(
-                action.payload.response.data?.link ||
-                    action.payload.response.data?.authorizationUrl ||
-                    action.payload.response?.responseBody?.checkoutUrl,
+                action.payload.data?.link ||
+                    action.payload.data?.authorizationUrl ||
+                    action.payload.data.responseBody?.checkoutUrl,
                 '_blank'
             );
             return { ...state, loading: false, paymentStatus: action.payload.message };
