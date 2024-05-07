@@ -593,7 +593,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
     };
 
 
-export const buyCGData = ({
+export const buyCgData = ({
     orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert, token // Ensure `token` is managed and passed correctly
 }) =>
     async (dispatch) => {
