@@ -553,7 +553,7 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
                     variant: 'success',
                     autoHideDuration: 2000
                 });
-            setshowAlert((prevState)=> !prevStste);
+            setshowAlert((prevState)=> !prevState);
         } catch (error) {
             dispatch({
                 type: BUY_DATA_FAIL,
