@@ -480,13 +480,10 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
         }
     };
 
-export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert, path }) =>
+   export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert, path, token }) =>
     async (dispatch) => {
         try {
             dispatch({ type: BUY_DATA_REQUEST });
-
-            // Assume token is stored in the Redux store, or adapt this to however you manage authentication state
-              // Or however you store/retrieve tokens
 
             const { data } = await makeNetworkCall({
                 method: 'POST',
@@ -497,8 +494,7 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
                 }
             });
 
-            // Assuming data contains a success indicator; adjust according to your API response structure
-            if (data&&data.message) {
+            if (data && data.success) {  // Assuming 'success' is a boolean indicating the operation's success
                 dispatch({
                     type: BUY_DATA_SUCCESS,
                     payload: data
@@ -509,7 +505,18 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
                     autoHideDuration: 2000
                 });
             } else {
-                throw new Error(data.message || "Failed to purchase data. Please try again.");
+                // If 'success' is false, handle it as an error
+                dispatch({
+                    type: BUY_DATA_FAIL,
+                    payload: data.message || "Failed to purchase data. Please try again."
+                });
+
+                enqueueSnackbar(data.message || "Failed to purchase data. Please try again.", {
+                    variant: 'error',
+                    autoHideDuration: 2000
+                });
+
+                setErrorAlert(true); // Explicitly set alert state
             }
         } catch (error) {
             console.error("Error purchasing data:", error);
@@ -523,17 +530,17 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
                 autoHideDuration: 2000
             });
 
-            setErrorAlert((prevState)=> !prevState);  // Set alert state to true to show an error alert if needed
+            setErrorAlert(true); // Explicitly set alert state
         } 
     };
 
-    export const buyCouponData =
-    ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert }) =>
+    export const buyCouponData = ({
+    orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert, token  // Ensure `token` is passed or retrieved correctly
+}) =>
     async (dispatch) => {
         try {
-            dispatch({
-                type: BUY_DATA_REQUEST
-            });
+            dispatch({ type: BUY_DATA_REQUEST });
+
             const { data } = await makeNetworkCall({
                 method: 'POST',
                 path: '/mtn-coupon-data-orders',
@@ -543,38 +550,56 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
                 }
             });
 
-            
-            dispatch({
-                type: BUY_DATA_SUCCESS,
-                payload: data
-            });
-            data &&
-             enqueueSnackbar(data?.data.message, {
+            if (data.success) {  // Assuming there is a 'success' field indicating the request's success
+                dispatch({
+                    type: BUY_DATA_SUCCESS,
+                    payload: data
+                });
+
+                enqueueSnackbar(data.data.message || "Coupon purchase successful!", {
                     variant: 'success',
                     autoHideDuration: 2000
                 });
-            setshowAlert((prevState)=> !prevState);
-        } catch (error) {
-            dispatch({
-                type: BUY_DATA_FAIL,
-                payload: error?.message || error?.message
-            });
-            error &&
-                enqueueSnackbar(error?.message || error?.message, {
+                setshowAlert(false); // Assume setshowAlert is to control visibility of an alert. `false` since operation was successful
+            } else {
+                // Handle cases where success is false or not present
+                dispatch({
+                    type: BUY_DATA_FAIL,
+                    payload: data.data.message || "Failed to purchase coupon. Please try again."
+                });
+
+                enqueueSnackbar(data.data.message || "Failed to purchase coupon. Please try again.", {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
-            setErrorAlert((prevState) => !prevState);
+
+                setErrorAlert(true); // Set error alert to true to indicate an error
+            }
+        } catch (error) {
+            console.error("Error purchasing coupon data:", error);
+
+            dispatch({
+                type: BUY_DATA_FAIL,
+                payload: error.message || "An unexpected error occurred"
+            });
+
+            enqueueSnackbar(error.message || "Error processing your request", {
+                variant: 'error',
+                autoHideDuration: 2000
+            });
+
+            setErrorAlert(true);  // Ensure error alert is activated on catch
         }
     };
 
-export const buyCgData =
-    ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert }) =>
+
+export const buyCGData = ({
+    orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert, token // Ensure `token` is managed and passed correctly
+}) =>
     async (dispatch) => {
         try {
-            dispatch({
-                type: BUY_CG_DATA_REQUEST
-            });
+            dispatch({ type: BUY_CG_DATA_REQUEST });
+
             const { data } = await makeNetworkCall({
                 method: 'POST',
                 path: '/cg-data-orders',
@@ -583,36 +608,48 @@ export const buyCgData =
                     Authorization: `Bearer ${token}`
                 }
             });
-            if(data&&data.message) {
-            dispatch({
-                type: BUY_CG_DATA_SUCCESS,
-                payload: data
-            });
-        
-                enqueueSnackbar(data?.message || data.message, {
+
+            // Assuming `data.success` is provided to indicate operation success
+            if (data && data.success) {
+                dispatch({
+                    type: BUY_CG_DATA_SUCCESS,
+                    payload: data
+                });
+
+                enqueueSnackbar(data.message || "Data purchase successful!", {
                     variant: 'success',
                     autoHideDuration: 2000
                 });
-            setshowAlert((prevState) => !prevState);
+                setshowAlert(false); // Assuming `setshowAlert` controls visibility of a success alert
             } else {
-                enqueueSnackbar("somthing wrowng", {
-                    variant: "error",
-                    autoHideDuration: 2000
-                })
-            }
-        } catch (error) {
-            dispatch({
-                type: BUY_CG_DATA_FAIL,
-                payload: error?.message || error?.message
-            });
-            error &&
-                enqueueSnackbar(error?.message || error?.message, {
+                dispatch({
+                    type: BUY_CG_DATA_FAIL,
+                    payload: data.message || "Failed to purchase data. Please try again."
+                });
+
+                enqueueSnackbar(data.message || "Failed to purchase data. Please try again.", {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
-            setErrorAlert((prevState) => !prevState);
+                setErrorAlert(true); // Set error alert to true indicating a problem
+            }
+        } catch (error) {
+            console.error("Error purchasing CG data:", error);
+
+            dispatch({
+                type: BUY_CG_DATA_FAIL,
+                payload: error.message || "An unexpected error occurred"
+            });
+
+            enqueueSnackbar(error.message || "Error processing your request", {
+                variant: 'error',
+                autoHideDuration: 2000
+            });
+
+            setErrorAlert(true);  // Activate the error alert
         }
     };
+
 
 export const giftData =
     ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert }) =>
