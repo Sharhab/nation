@@ -523,7 +523,7 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
                 autoHideDuration: 2000
             });
 
-            setErrorAlert((prev)=> !prev));  // Set alert state to true to show an error alert if needed
+            setErrorAlert((prevState)=> !prevState);  // Set alert state to true to show an error alert if needed
         } 
     };
 
