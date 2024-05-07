@@ -524,9 +524,7 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
             });
 
             setErrorAlert(true);  // Set alert state to true to show an error alert if needed
-        } finally {
-            setshowAlert(true);  // This could be used to handle generic alert visibility if needed
-        }
+        } 
     };
 
     export const buyCouponData =
