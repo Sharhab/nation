@@ -1,5 +1,4 @@
 import Cookies from 'js-cookie';
-import {useNavigate} from 'react-router-dom'
 import {
     BUY_AIRTIME_FAIL,
     BUY_AIRTIME_REQUEST,
@@ -531,7 +530,7 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
 
 //logout user reducers starts her
  export const logoutReducer = (state = initialLogoutState, action) => {
-     const navigate = useNavigate()
+     
     switch (action.type) {
         case LOGOUT_USER_REQUEST:
             return { ...state, loading: true };
@@ -541,7 +540,7 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
             Cookies.remove('user_id');
             Cookies.remove ('token')
             
-           navigate('/pages/login');
+           window.location.replace('/');
 
             return { ...state, loading: false, user: action.payload };
 
