@@ -498,13 +498,13 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
             });
 
             // Assuming data contains a success indicator; adjust according to your API response structure
-            if (data.success) {
+            if (data.data.message) {
                 dispatch({
                     type: BUY_DATA_SUCCESS,
-                    payload: data
+                    payload: data.data
                 });
 
-                enqueueSnackbar(data.message || "Data purchase successful!", {
+                enqueueSnackbar(data.data.message || "Data purchase successful!", {
                     variant: 'success',
                     autoHideDuration: 2000
                 });
@@ -515,15 +515,15 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
             console.error("Error purchasing data:", error);
             dispatch({
                 type: BUY_DATA_FAIL,
-                payload: error.message || "An unexpected error occurred"
+                payload: error.data.message || "An unexpected error occurred"
             });
 
-            enqueueSnackbar(error.message || "Error processing your request", {
+            enqueueSnackbar(error.data.message || "Error processing your request", {
                 variant: 'error',
                 autoHideDuration: 2000
             });
 
-            setErrorAlert(true);  // Set alert state to true to show an error alert if needed
+            setErrorAlert((prev)=> !prev));  // Set alert state to true to show an error alert if needed
         } 
     };
 
@@ -543,23 +543,24 @@ export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorA
                 }
             });
 
+            
             dispatch({
                 type: BUY_DATA_SUCCESS,
-                payload: data
+                payload: data.data
             });
             data &&
-                enqueueSnackbar(data?.message, {
+             enqueueSnackbar(data?.data.message, {
                     variant: 'success',
                     autoHideDuration: 2000
                 });
-            setshowAlert((prevState) => !prevState);
+            setshowAlert(true);
         } catch (error) {
             dispatch({
                 type: BUY_DATA_FAIL,
-                payload: error?.message || error?.message
+                payload: error?.data.message || error?.message
             });
             error &&
-                enqueueSnackbar(error?.message || error?.message, {
+                enqueueSnackbar(error?.data.message || error?.message, {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
@@ -585,10 +586,10 @@ export const buyCgData =
 
             dispatch({
                 type: BUY_CG_DATA_SUCCESS,
-                payload: data
+                payload: data.data
             });
             data &&
-                enqueueSnackbar(data?.message, {
+                enqueueSnackbar(data?.data.message || data.message, {
                     variant: 'success',
                     autoHideDuration: 2000
                 });
@@ -596,10 +597,10 @@ export const buyCgData =
         } catch (error) {
             dispatch({
                 type: BUY_CG_DATA_FAIL,
-                payload: error?.message || error?.messag
+                payload: error?.data.message || error?.message
             });
             error &&
-                enqueueSnackbar(error?.message || error?.message, {
+                enqueueSnackbar(error?.data.message || error?.message, {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
@@ -628,7 +629,7 @@ export const giftData =
                 payload: data
             });
             data &&
-                enqueueSnackbar(data?.data?.message, {
+                enqueueSnackbar(data?.data?.message || data.message, {
                     variant: 'success',
                     autoHideDuration: 2000
                 });
@@ -639,7 +640,7 @@ export const giftData =
                 payload: error?.message
             });
             error &&
-                enqueueSnackbar(error?.message, {
+                enqueueSnackbar(error?.data.message || error.message, {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
