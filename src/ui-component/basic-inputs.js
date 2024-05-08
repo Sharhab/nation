@@ -1,5 +1,6 @@
 import {Button, Select} from '@mui/material';
 import { useField, useFormikContext , } from 'formik';
+import { Button, CircularProgress } from '@mui/material';
 import React from 'react';
 import TextField from '@mui/material/TextField'
 import MenuItem from '@mui/material/MenuItem';
@@ -59,19 +60,30 @@ export const CustomSelect = ({ name, options, vtplan, ...other }) => {
 //Custom
 
 // Custom button
-export const CustomButton = ({ children, fullWidth, disabled, ...others }) => {
+
+export const CustomButton = ({ children, fullWidth, disabled, loading, style, ...others }) => {
   const { submitForm } = useFormikContext();
+
   const handleSubmit = () => {
-      submitForm();
+    submitForm();
   };
 
-  const defaultConfiq = {
-      onClick: handleSubmit,
-      variant: 'contained',
-      color: 'primary',
-      disabled: disabled,
-      fullWidth: true || fullWidth
+  // Conditional style for disabled state
+  const disabledStyle = disabled ? { opacity: 0.7 } : {};
+
+  const defaultConfig = {
+    onClick: handleSubmit,
+    variant: 'contained',
+    color: 'primary',
+    disabled: disabled || loading, // Consider loading state as a disabling condition
+    fullWidth: true || fullWidth, // Ensure the button is always full-width unless specified otherwise
+    style: { ...style, ...disabledStyle }, // Merge custom styles with conditional styles
+    ...others
   };
 
-  return <Button {...defaultConfiq}>{children}</Button>;
+  return (
+    <Button {...defaultConfig}>
+      {loading ? <CircularProgress size={24} /> : children}
+    </Button>
+  );
 };
