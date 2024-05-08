@@ -442,11 +442,14 @@ export const loginUserReducer = (state = initialLoginState, action) => {
         return { ...state, loading: true };
   
       case LOGIN_USER_SUCCESS: {
-        const { id } = action.payload;
-        // Stringify the user data and set cookies
-        // const serializedUser = JSON.stringify(userData);
-        Cookies.set('user_id', id, {expires: 1 });
-        Cookies.set('user', action?.payload?.jwt, { expires: 1 });
+    
+        Cookies.set('user_id', action.payload.id, {expiresIn: "1h" });
+        Cookies.set('user', action?.payload.jwt, { 
+        httpOnly: true,   // This makes the cookie inaccessible to client-side JavaScript
+        secure: true,     // This ensures the cookie is only sent over HTTPS
+        sameSite: 'strict',
+        expiresIn: "1h" });
+          
         window.location.replace('/');
         return { ...state, loading: false, user: action.payload};
       }
@@ -604,13 +607,6 @@ export const forgetPasswordReducer = (state = initialLoginState, action) => {
     }
 };
 
-// Assuming that you have an initial state defined somewhere in your code like:
-// const initialRegisterState = {
-//   loading: false,
-//   user: null,
-//   error: null,
-// };
-
         
 export const registerUserReducer = (state = initialRegisterState, action) => {
     switch (action.type) {
@@ -618,9 +614,14 @@ export const registerUserReducer = (state = initialRegisterState, action) => {
         return { ...state, loading: true, error: null };
   
         case REGISTER_USER_SUCCESS: {
-            Cookies.set('user_id', action?.payload.id, {expires: 1 });
-             Cookies.set('user', action?.payload.jwt, { expires: 1 });
-
+            
+        Cookies.set('user_id', action.payload.id, {expiresIn: "1h" });
+        Cookies.set('user', action?.payload.jwt, { 
+        httpOnly: true,   // This makes the cookie inaccessible to client-side JavaScript
+        secure: true,     // This ensures the cookie is only sent over HTTPS
+        sameSite: 'strict',
+        expiresIn: "1h" });
+          
             return { ...state, loading: false, user: action.payload };
         }
       case REGISTER_USER_FAIL:
