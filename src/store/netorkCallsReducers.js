@@ -535,7 +535,8 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
 
         case LOGOUT_USER_SUCCESS:   
           
-        window.location.href = "/pages/login";
+    
+        window.location.replace('https://globstandpay.onrender.com/pages/login');
 
             return { ...state, loading: false, user: action.payload };
 
