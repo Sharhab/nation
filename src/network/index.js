@@ -39,12 +39,12 @@ export const makeNetworkCall = async ({ method, path, requestBody, params, heade
 
     return response.data;
   } catch (error) {
-    // Log the entire error object for debugging purposes
     console.error('Network Request Error:', error);
 
     if (error.response) {
       // Handle specific HTTP status codes or error messages
-      const errorMessage = error.response.data.message || 'Bad Request';
+      // Assume the message might be nested and try accessing it
+      const errorMessage = error.response.data.message || error.response.data.data?.message || 'Bad Request';
       throw new Error(errorMessage);
     } else {
       // Handle other types of errors or network issues
