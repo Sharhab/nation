@@ -536,7 +536,7 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
         case LOGOUT_USER_SUCCESS:   
           Cookies.remove('user');
             Cookies.remove('user_id');
-            window.location.replace('/pages/login');
+            window.location.replace('/');
 
 
             return { ...state, loading: false, user: action.payload };
