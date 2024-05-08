@@ -534,7 +534,7 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
             return { ...state, loading: true };
 
         case LOGOUT_USER_SUCCESS:   
-           window.location.replace('/');
+           window.location.replace('/pages/login');
 
             return { ...state, loading: false, user: action.payload };
 
