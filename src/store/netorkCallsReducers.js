@@ -445,8 +445,8 @@ export const loginUserReducer = (state = initialLoginState, action) => {
         const { id } = action.payload;
         // Stringify the user data and set cookies
         // const serializedUser = JSON.stringify(userData);
-        Cookies.set('user_id', id, {expires: "15m"});
-        Cookies.set('user', action?.payload?.jwt, { expires: "15m" });
+        Cookies.set('user_id', id, {expires: 1 });
+        Cookies.set('user', action?.payload?.jwt, { expires: 1 });
         window.location.replace('/');
         return { ...state, loading: false, user: action.payload};
       }
@@ -618,10 +618,8 @@ export const registerUserReducer = (state = initialRegisterState, action) => {
         return { ...state, loading: true, error: null };
   
         case REGISTER_USER_SUCCESS: {
-            const {id} = action.payload;
-            
-            Cookies.set('user_id',action?.payload.id, {expires: "15m");
-             Cookies.set('user', action?.payload?.jwt, { expires: "15m" });
+            Cookies.set('user_id', action?.payload.id, {expires: 1 });
+             Cookies.set('user', action?.payload.jwt, { expires: 1 });
 
             return { ...state, loading: false, user: action.payload };
         }
