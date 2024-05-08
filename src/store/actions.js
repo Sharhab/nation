@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import axios from 'axios';
+//import axios from 'axios';
 
 import { makeNetworkCall } from '../network';
 import {
@@ -1005,7 +1005,7 @@ export const userAction = ({ navigate }) => async (dispatch) => {
   } catch (error) {
     // More comprehensive error handling
     const status = error.response?.data.status;
-    const message = error.message || error.message;
+   // const message = error.message || error.message;
 
     if (status === 401) {
       navigate('/pages/login');
