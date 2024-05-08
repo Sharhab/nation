@@ -445,8 +445,8 @@ export const loginUserReducer = (state = initialLoginState, action) => {
         const { id } = action.payload;
         // Stringify the user data and set cookies
         // const serializedUser = JSON.stringify(userData);
-        Cookies.set('user_id', id);
-        
+        Cookies.set('user_id', id, {expires: "15m"});
+        Cookies.set('user', action?.payload?.jwt, { expires: "15m" });
         window.location.replace('/');
         return { ...state, loading: false, user: action.payload};
       }
@@ -534,9 +534,10 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
             return { ...state, loading: true };
 
         case LOGOUT_USER_SUCCESS:   
-          
-    
-        window.location.replace('https://globstandpay.onrender.com/pages/login');
+          Cookies.remove('user');
+            Cookies.remove('user_id');
+            window.location.replace('/pages/login');
+
 
             return { ...state, loading: false, user: action.payload };
 
@@ -557,7 +558,7 @@ export const resetPasswordReducer = (state = initialresetState, action) => {
             return { ...state, loading: true };
 
         case RESET_PASSWORD_SUCCESS: {
-            Cookies.set('token', action?.payload?.jwt, { expires: 1 });
+            Cookies.set('user', action?.payload?.jwt, { expires: "15m" });
             Cookies.set('user_id', action?.payload?._id, { expires: 1 });
             window.location.replace('/');
             return { ...state, loading: false };
@@ -619,7 +620,9 @@ export const registerUserReducer = (state = initialRegisterState, action) => {
         case REGISTER_USER_SUCCESS: {
             const {id} = action.payload;
             
-            Cookies.set('user_id',id);
+            Cookies.set('user_id',action?.payload.id, {expires: "15m");
+             Cookies.set('user', action?.payload?.jwt, { expires: "15m" });
+
             return { ...state, loading: false, user: action.payload };
         }
       case REGISTER_USER_FAIL:
