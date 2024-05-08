@@ -442,13 +442,11 @@ export const loginUserReducer = (state = initialLoginState, action) => {
         return { ...state, loading: true };
   
       case LOGIN_USER_SUCCESS: {
-        const { id, jwt,  user} = action.payload;
+        const { id } = action.payload;
         // Stringify the user data and set cookies
         // const serializedUser = JSON.stringify(userData);
-        Cookies.set('user_id', id, { expires: 1 });
-        Cookies.set('user', user, { expires: 1 });
-        Cookies.set('token', jwt, { expires: 1 });
-  
+        Cookies.set('user_id', id);
+        
         window.location.replace('/');
         return { ...state, loading: false, user: action.payload};
       }
@@ -535,11 +533,7 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
         case LOGOUT_USER_REQUEST:
             return { ...state, loading: true };
 
-        case LOGOUT_USER_SUCCESS:
-            Cookies.remove('user');
-            Cookies.remove('user_id');
-            Cookies.remove ('token')
-            
+        case LOGOUT_USER_SUCCESS:   
            window.location.replace('/');
 
             return { ...state, loading: false, user: action.payload };
@@ -621,14 +615,9 @@ export const registerUserReducer = (state = initialRegisterState, action) => {
         return { ...state, loading: true, error: null };
   
         case REGISTER_USER_SUCCESS: {
-            const userD = JSON.stringify(action.payload);
-            const id = action.payload.id
-            const token = action.payload.jwt
-            Cookies.set('user', userD, { expires: 1 });
-            Cookies.set('user_id',id, { expires: 1 });
-            Cookies.set('token', token, { expires: 1 });
-
-          
+            const {id} = action.payload;
+            
+            Cookies.set('user_id',id);
             return { ...state, loading: false, user: action.payload };
         }
       case REGISTER_USER_FAIL:
