@@ -70,7 +70,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const pinRef = useRef('');
     useEffect(() => {
-        !Cookies.get('token') && navigate('/pages/login');
+        !Cookies.get('user') && navigate('/pages/login');
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
         dispatch(getMtnData());
