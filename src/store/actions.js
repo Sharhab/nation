@@ -1,7 +1,4 @@
 import Cookies from 'js-cookie';
-//import axios from 'axios';
-const token = Cookies.get('user');
-
 import { makeNetworkCall } from '../network';
 import {
     BUY_AIRTIME_FAIL,
@@ -123,7 +120,7 @@ export const MENU_TOGGLE = '@customization/MENU_TOGGLE';
 export const MENU_OPEN = '@customization/MENU_OPEN';
 export const SET_FONT_FAMILY = '@customization/SET_FONT_FAMILY';
 export const SET_BORDER_RADIUS = '@customization/SET_BORDER_RADIUS';
-
+const token = Cookies.get('user');
  
 // const id = Cookies.get('user_id')
 export const getGloData = () => async (dispatch) => {
