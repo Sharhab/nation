@@ -76,7 +76,7 @@ export const CustomButton = ({ children, fullWidth, disabled, loading, style, ..
     variant: 'contained',
     color: 'primary',
     disabled: disabled || loading, // Consider loading state as a disabling condition
-    fullWidth: true || fullWidth, // Ensure the button is always full-width unless specified otherwise
+    fullWidth: fullWidth !== undefined ? fullWidth : true, // Ensure the button is always full-width unless specified otherwise
     style: { ...style, ...disabledStyle }, // Merge custom styles with conditional styles
     ...others
   };
@@ -87,3 +87,4 @@ export const CustomButton = ({ children, fullWidth, disabled, loading, style, ..
     </Button>
   );
 };
+ 
