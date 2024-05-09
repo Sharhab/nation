@@ -6,4 +6,4 @@ const ProtectedRoute = ({ children, isAuthenticated }) => {
     return isAuthenticated ? children : <Navigate to="/pages/login" replace />;
 };
 
-module.exports = ProtectedRoute
+export default ProtectedRoute
