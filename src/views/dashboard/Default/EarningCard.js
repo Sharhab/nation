@@ -71,9 +71,8 @@ const navigate = useNavigate()
     };
 useEffect(() => {
         if (!Cookies.get('user')) {
-            navigate('/pages/login');
-            return;
-        })
+            navigate('/');
+        },[])
     return (
         <>
             {isLoading ? (
@@ -139,7 +138,7 @@ useEffect(() => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {Cookies.get('user') && (
+                                        {!Cookies.get('user') ? navigate('/') :  (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {`Welcome Back, ${user?.username}`}
                                             </Typography>
