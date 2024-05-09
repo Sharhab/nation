@@ -4,12 +4,11 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
-import {useNavigate} from 'react-router-dom'
 // assets
 import EarningIcon from '../../../assets/images/icons/earning.svg';
 import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // project imports
@@ -57,7 +56,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 const EarningCard = ({ isLoading, message }) => {
     const { loggedInUser } = useSelector((state) => state);
     const { user } = loggedInUser;
-const navigate = useNavigate()
+
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -69,7 +68,7 @@ const navigate = useNavigate()
     const handleClose = () => {
         setAnchorEl(null);
     };
-    
+
     return (
         <>
             {isLoading ? (
@@ -135,7 +134,7 @@ const navigate = useNavigate()
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {!Cookies.get('user') ? navigate('/pages/login') :  (
+                                        {Cookies.get('user') && (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {`Welcome Back, ${user?.username}`}
                                             </Typography>
@@ -143,8 +142,8 @@ const navigate = useNavigate()
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
                                             <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {Cookies.get('user')
-                                                    ? `Wallet Balance:₦${user?.accountBalance} `
-                                                    : 'Welcome To SharhaData'}
+                                                    ? `Wallet Balance:₦${user?.AccountBalance} `
+                                                    : 'Welcome To Gbrain Ventures'}
                                             </Typography>
                                         </div>
 
