@@ -69,9 +69,11 @@ const navigate = useNavigate()
     const handleClose = () => {
         setAnchorEl(null);
     };
-useEffect(()=>{
-!Cookies.get('user') && navigate('/pages/login')
-}, [user])
+useEffect(() => {
+        if (!Cookies.get('user')) {
+            navigate('/pages/login');
+            return;
+        })
     return (
         <>
             {isLoading ? (
