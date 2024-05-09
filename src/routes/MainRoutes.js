@@ -41,15 +41,20 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
 // const SamplePage = Loadable(lazy(() => import('../views/airtime')));
 
 // ==============================|| MAIN ROUTING ||============================== //
-
+const isAuthenticated = Cookies.get("user")
 const MainRoutes = {
     path: '/',
     element: <MainLayout />,
     children: [
-        {
-            path: '/',
-            element: <DashboardDefault />
-        },
+{
+    path: '/',
+    element: (
+        <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <DashboardDefault />
+        </ProtectedRoute>
+    )
+},
+    
         {
             path: '/reset-pwd',
             element: <ResetPswdWrapper />
