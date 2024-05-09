@@ -443,14 +443,11 @@ export const loginUserReducer = (state = initialLoginState, action) => {
   
       case LOGIN_USER_SUCCESS: {
     
-        Cookies.set('user_id', action.payload.id, {expiresIn: "1h" });
+        Cookies.set('user_id', action.payload.id, {expires : 1});
         Cookies.set('user', action?.payload.jwt, { 
-        httpOnly: true,   // This makes the cookie inaccessible to client-side JavaScript
-        secure: true,     // This ensures the cookie is only sent over HTTPS
-        sameSite: 'strict',
-        expiresIn: "1h" });
+        expires: 1 });
           
-        window.location.replace('/dashboard/default');
+        window.location.replace('/');
         return { ...state, loading: false, user: action.payload};
       }
   
@@ -539,7 +536,7 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
         case LOGOUT_USER_SUCCESS:   
           Cookies.remove('user');
             Cookies.remove('user_id');
-            window.location.replace('/');
+            history.push("/pages/login")
 
 
             return { ...state, loading: false, user: action.payload };
@@ -616,11 +613,7 @@ export const registerUserReducer = (state = initialRegisterState, action) => {
         case REGISTER_USER_SUCCESS: {
             
         Cookies.set('user_id', action.payload.id, {expiresIn: "1h" });
-        Cookies.set('user', action?.payload.jwt, { 
-        httpOnly: true,   // This makes the cookie inaccessible to client-side JavaScript
-        secure: true,     // This ensures the cookie is only sent over HTTPS
-        sameSite: 'strict',
-        expiresIn: "1h" });
+        Cookies.set('user', action?.payload.jwt, {expires: 1 });
           
             return { ...state, loading: false, user: action.payload };
         }
