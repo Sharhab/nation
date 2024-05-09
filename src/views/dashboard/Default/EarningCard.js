@@ -69,10 +69,7 @@ const navigate = useNavigate()
     const handleClose = () => {
         setAnchorEl(null);
     };
-useEffect(() => {
-        if (!Cookies.get('user')) {
-            navigate('/');
-        },[])
+    
     return (
         <>
             {isLoading ? (
@@ -138,7 +135,7 @@ useEffect(() => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {!Cookies.get('user') ? navigate('/') :  (
+                                        {!Cookies.get('user') ? navigate('/pages/login') :  (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {`Welcome Back, ${user?.username}`}
                                             </Typography>
