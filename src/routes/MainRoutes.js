@@ -47,7 +47,7 @@ const MainRoutes = {
     element: <MainLayout />,
     children: [
         {
-            path: '/dashboard/default',
+            path: '/',
             element: <DashboardDefault />
         },
         {
