@@ -450,7 +450,7 @@ export const loginUserReducer = (state = initialLoginState, action) => {
         sameSite: 'strict',
         expiresIn: "1h" });
           
-        window.location.replace('/dashboard');
+        window.location.replace('/pages/login');
         return { ...state, loading: false, user: action.payload};
       }
   
