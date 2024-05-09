@@ -289,9 +289,13 @@ const handleSubmit = (values, { resetForm }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <CustomButton disabled={loading || Cgdataloading || dataGiftloading ? true : false}>
-                                            Submit
-                                        </CustomButton>
+                                    <CustomButton
+                                       disabled={loading || Cgdataloading || dataGiftloading}
+                                       loading={loading || Cgdataloading || dataGiftloading}
+                                      >
+                                          Submit
+                                       </CustomButton>
+
                                 </Grid>
                             </Grid>
                         </Box>
