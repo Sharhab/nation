@@ -1,4 +1,5 @@
 // project imports
+import Cookies from 'js-cookie';
 import MainLayout from '../layout/MainLayout';
 import { lazy } from 'react';
 import Loadable from '../ui-component/Loadable';
@@ -41,7 +42,7 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
 // const SamplePage = Loadable(lazy(() => import('../views/airtime')));
 
 // ==============================|| MAIN ROUTING ||============================== //
-const isAuthenticated = Cookies.get("user")
+const isAuthenticated = Cookies.get("user");
 const MainRoutes = {
     path: '/',
     element: <MainLayout />,
