@@ -35,16 +35,17 @@ export const makeNetworkCall = async ({ method, path, requestBody, params, heade
       params,
       headers,
       data: requestBody,
+      withCredentials: true, // Enables credentials such as cookies, authorization headers etc.
     });
 
     return response.data;
   } catch (error) {
     console.error('Network Request Error:', error);
-
+    
     // Additional debugging: log the error response to understand the structure
     if (error.response) {
       console.log("Error response data:", error.response.data);
-
+      
       // Attempt to extract the message from known possible paths
       const errorMessage = extractErrorMessage(error.response.data);
       throw new Error(errorMessage);
