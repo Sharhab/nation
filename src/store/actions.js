@@ -52,6 +52,9 @@ import {
     GET_LOGGED_IN_USER_FAIL,
     GET_LOGGED_IN_USER_REQUEST,
     GET_LOGGED_IN_USER_SUCCESS,
+    GET_USER_STATUS_REQUEST,
+    GET_USER_STATUS_SUCCESS,
+    GET_USER_STATUS_FAIL,
     GET_MTN_COUPON_DATA_PLAN_FAIL,
     GET_MTN_COUPON_DATA_PLAN_REQUEST,
     GET_MTN_COUPON_DATA_PLAN_SUCCESS,
@@ -957,8 +960,8 @@ export const UpdateUserAction =
 /**
  * Action creator to check if the user is logged in by trying to fetch user data.
  */
-export const checkLoginStatus = () => async (dispatch) => {
-  dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
+export const checklogedinuserStatus = () => async (dispatch) => {
+  dispatch({ type: GET_USER_STATUS_REQUEST });
 
   try {
     const { data } = await makeNetworkCall({
@@ -970,12 +973,12 @@ export const checkLoginStatus = () => async (dispatch) => {
     const isLoggedIn = !!data && Object.keys(data).length > 0;
 
     dispatch({
-      type: GET_LOGGED_IN_USER_SUCCESS,
+      type: GET_USER_STATUS_SUCCESS,
       payload: isLoggedIn, // true if user data is present, false otherwise
     });
   } catch (error) {
     dispatch({
-      type: GET_LOGGED_IN_USER_FAIL,
+      type: GET_USER_STATUS_FAIL,
       payload: false, // Assumed false since the request failed
     });
   }
