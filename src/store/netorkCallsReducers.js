@@ -441,12 +441,7 @@ export const loginUserReducer = (state = initialLoginState, action) => {
       case LOGIN_USER_REQUEST:
         return { ...state, loading: true };
   
-      case LOGIN_USER_SUCCESS: {
-    
-        Cookies.set('user_id', action.payload.id, {expires : 1});
-        Cookies.set('user', action?.payload.jwt, { 
-        expires: 1 });
-          
+      case LOGIN_USER_SUCCESS: { 
         window.location.replace('/');
         return { ...state, loading: false, user: action.payload};
       }
@@ -612,9 +607,6 @@ export const registerUserReducer = (state = initialRegisterState, action) => {
   
         case REGISTER_USER_SUCCESS: {
             
-        Cookies.set('user_id', action.payload.id, {expiresIn: "1h" });
-        Cookies.set('user', action?.payload.jwt, {expires: 1 });
-          
             return { ...state, loading: false, user: action.payload };
         }
       case REGISTER_USER_FAIL:
