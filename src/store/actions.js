@@ -405,25 +405,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
                 },
                 
             });
-            // if (data) {
-            // console.log(data);
-            // file.append('ref', 'api::sell-airtime.sell-airtime');
-            // file.append('refId', data.data.Order.id);
-            // file.append('field', 'screenshot');
-            // const res = await makeNetworkCall({
-            //     method: 'POST',
-            //     path: 'upload',
-            //     requestBody: file,
-            //     headers: {
-            //         Authorization: `Bearer ${token}`
-            //     }
-            // });
-
-            // console.log('====================================');
-            // console.log(res.data);
-            // console.log('====================================');
-
-            // if (res.data) {
+            
             dispatch({
                 type: SELL_AIRTIME_SUCCESS,
                 payload: data
@@ -578,9 +560,7 @@ export const buyCgData = ({
                 method: 'POST',
                 path: '/cg-data-orders',
                 requestBody: orderDetails,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
 
             // Assuming `data.success` is provided to indicate operation success
@@ -1045,9 +1025,7 @@ export const fundWalletWithMonnify = ({ amount, enqueueSnackbar }) =>
                 method: 'POST',
                 path: `/account-funding`,
                 requestBody: amount,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             dispatch({
                 type: FUND_WALLET_BY_MONNIFY_SUCCESS,
@@ -1070,18 +1048,16 @@ export const fundWalletWithMonnify = ({ amount, enqueueSnackbar }) =>
 
 export const generateMonnifyAccount = ({ enqueueSnackbar, navigate,bvn }) =>
     async (dispatch) => {
-        const id = Cookies.get('user_id')
+        
         try {
             dispatch({
                 type: GENERATE_mONNIFY_ACCOUNT_REQUEST
             });
             const { data } = await makeNetworkCall({
                 method: 'POST',
-                path: `/create-reserved-account/${id}`,
+                path: `/create-reserved-account/me`,
                 requestBody: bvn,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             dispatch({
                 type: GENERATE_mONNIFY_ACCOUNT_SUCCESS,
