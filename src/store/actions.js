@@ -131,9 +131,7 @@ export const getGloData = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: '/data-plans',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
         console.log('glodata', data);
         dispatch({
@@ -156,9 +154,7 @@ export const getMtnSmeOneData = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: '/mtn-sme-1-data-plans',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
         console.log('mtnsemdata', data);
         dispatch({
@@ -181,9 +177,7 @@ export const getMtnSmeTwoData = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: '/mtn-sme-2-data-plans',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
 
         dispatch({
@@ -229,9 +223,7 @@ export const getMtnCgData = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: '/mtn-corporate-gifting',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
         dispatch({
             type: GET_MTN_CG_DATA_PLAN_SUCCESS,
@@ -252,9 +244,7 @@ export const getMtnSmeCoupData = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: '/mtn-coupon-data-plans',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
 
         dispatch({
@@ -276,9 +266,7 @@ export const getMtnData = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: '/mtn-data-plans',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
 
         dispatch({
@@ -301,9 +289,7 @@ export const getAirtelData = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: '/airtel-data-plans',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
 
         dispatch({
@@ -326,9 +312,7 @@ export const getGloCgData = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: '/glo-cg-data-plans',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
 
         dispatch({
@@ -379,9 +363,7 @@ export const buyAirtime =
                 method: 'POST',
                 path: '/airtime-orders',
                 requestBody: orderDetails,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             data&&
             dispatch({
@@ -421,9 +403,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
                 requestBody: {
                     data: orderDetails
                 },
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             // if (data) {
             // console.log(data);
@@ -487,9 +467,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
                 method: 'POST',
                 path,
                 requestBody: orderDetails,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
 
             if (data && data.success) {  // Assuming 'success' is a boolean indicating the operation's success
@@ -543,9 +521,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
                 method: 'POST',
                 path: '/mtn-coupon-data-orders',
                 requestBody: orderDetails,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
 
             if (data.success) {  // Assuming there is a 'success' field indicating the request's success
@@ -660,9 +636,7 @@ export const giftData =
                 method: 'POST',
                 path: '/data-gifting-orders',
                 requestBody: orderDetails,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
 
             dispatch({
@@ -697,9 +671,7 @@ export const LogoutAction = () => async (dispatch) => {
             method: 'POST',
             path: '/logout',
             requestBody: {},
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
         dispatch({
             type: LOGOUT_USER_SUCCESS,
@@ -725,9 +697,6 @@ export const LoginAction = ({ user, navigate, enqueueSnackbar }) => async (dispa
         // Make the network call to perform the login
         const { data } = await makeNetworkCall({
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
             requestBody: JSON.stringify(user),
             path: '/login',
         });
@@ -894,9 +863,7 @@ export const ResetPasswordAction =
             method: 'POST',
             requestBody: user,
             path: '/register',
-            headers: {
-                    Authorization: `Bearer ${token}`
-                }
+            
             });  
               
          if (data && data.message) {
@@ -973,23 +940,17 @@ export const UpdateUserAction =
     };
 
    
-export const userAction = ({ navigate }) => async (dispatch) => {
+    export const userAction = ({ navigate }) => async (dispatch) => {
+  dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
+
   try {
-    const id = Cookies.get('user_id');
-     // Ensure token is retrieved securely
+    const { data } = await makeNetworkCall({
+      method: 'GET',
+      path: `/users/me`, // Endpoint that retrieves user info based on the authenticated session
+      // Remove the Authorization header since the token is handled via HttpOnly cookies
+    });
 
-    dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
-
-      const { data } = await makeNetworkCall({
-                method: 'GET',
-                path: `/users/${id}`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-      
     if (data) {
-        console.log("DATA", data)
       dispatch({
         type: GET_LOGGED_IN_USER_SUCCESS,
         payload: data,
@@ -1001,12 +962,9 @@ export const userAction = ({ navigate }) => async (dispatch) => {
       });
     }
   } catch (error) {
-    // More comprehensive error handling
     const status = error.response?.data.status;
-   // const message = error.message || error.message;
-
     if (status === 401) {
-      navigate('/pages/login');
+      navigate('/login'); // Make sure the navigation path aligns with your routing setup
     } else {
       dispatch({
         type: GET_LOGGED_IN_USER_FAIL,
@@ -1014,7 +972,8 @@ export const userAction = ({ navigate }) => async (dispatch) => {
       });
     }
   }
-};        
+};
+    
 
 export const userTransactionStat =
     ({ navigate }) =>
