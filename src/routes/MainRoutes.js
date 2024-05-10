@@ -28,8 +28,8 @@ import SellAirtimeOtp from '../views/sell-airtime/sell-airtime-otp';
 import FinalizeSellAirtime from '../views/sell-airtime/finalize-sell-airtime';
 //import ProfileSection from '../layout/MainLayout/Header/ProfileSection/index';
 import ProtectedRoute from './ProtectedRout'
-
-// dashboard routing
+import { userStat } = useSelector((state)=> state)
+// dashboard rout ing
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
 
 // utilities routing
@@ -43,7 +43,8 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
 // const SamplePage = Loadable(lazy(() => import('../views/airtime')));
 
 // ==============================|| MAIN ROUTING ||============================== //
-const isAuthenticated = Cookies.get("user");
+const {isLoggedIn} = userStat;
+const isAuthenticated = isLoggedIn;
 const MainRoutes = {
     path: '/',
     element: <MainLayout />,
