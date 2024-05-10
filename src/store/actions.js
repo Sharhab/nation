@@ -954,6 +954,33 @@ export const UpdateUserAction =
   }
 };
     
+/**
+ * Action creator to check if the user is logged in by trying to fetch user data.
+ */
+export const checkLoginStatus = () => async (dispatch) => {
+  dispatch({ type: GET_LOGGED_IN_USER_REQUEST });
+
+  try {
+    const { data } = await makeNetworkCall({
+      method: 'GET',
+      path: '/logedin/active', // Endpoint to fetch current user based on their authenticated session
+    });
+
+    // Assuming the response will be user data if successful and nothing if failed
+    const isLoggedIn = !!data && Object.keys(data).length > 0;
+
+    dispatch({
+      type: GET_LOGGED_IN_USER_SUCCESS,
+      payload: isLoggedIn, // true if user data is present, false otherwise
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_LOGGED_IN_USER_FAIL,
+      payload: false, // Assumed false since the request failed
+    });
+  }
+};
+
 
 export const userTransactionStat =
     ({ navigate }) =>
