@@ -1,5 +1,5 @@
 import { Button, Grid, Paper, Typography } from '@mui/material';
-import Cookies from 'js-cookie';
+
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
@@ -13,8 +13,9 @@ import FeedBack from '../feedBack';
 import * as yup from 'yup';
 
 const Funding = () => {
-    const {  fundWithMonnify, loggedInUser } = useSelector((state) => state);
+    const {  fundWithMonnify, loggedInUser, userStat } = useSelector((state) => state);
     const { user } = loggedInUser;
+    const { isLoggedIn } = userStat;
     const { loading } =  fundWithMonnify;
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Funding = () => {
     const [showAlert, setshowAlert] = useState(false);
 
     useEffect(() => {
-        !Cookies.get('user') && navigate('/pages/login');
+        !isLoggedIn && navigate('/pages/login');
 
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch]);
@@ -107,7 +108,7 @@ const Funding = () => {
                 validationSchema={VALIDATIONS}
                 enableReinitialize={true}
             >
-                {({ values}) => (
+                {({values}) => (
                     <Form>
                         <Grid container spacing={4}>
                             <Grid item xs={6} sx={{ mt: 2 }}>
