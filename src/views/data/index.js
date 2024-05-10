@@ -6,7 +6,7 @@ import { useSnackbar } from 'notistack';
 import { useEffect, useRef, useState } from 'react';
 import PinInput from 'react-pin-input';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import {
     buyData,
     giftData,
@@ -45,7 +45,8 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         myMtnSme1DataPlans,
         myMtnCgDataPlans,
         myMtnSme2DataPlans,
-        myMtnCoupDataPlans
+        myMtnCoupDataPlans,
+        userStat
     } = useSelector((state) => state);
 
     const { gloDataPlans } = myGloDataPlans;
@@ -61,7 +62,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const { loading, data, error } = dataOrder;
     const { dataGiftloading, dataGiftData, dataGiftError } = dataGiftingOrder;
     const { Cgdataloading, CgData, CgdataError } = cgDataOrder;
-
+    const { isLogedin } = userStat;
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -71,6 +72,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const pinRef = useRef('');
     useEffect(() => {
+        !isLogedin && <Navigate to=("/pages/login")
         dispatch(checklogedinuserStatus())
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
