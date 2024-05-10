@@ -1,5 +1,4 @@
-// project imports
-import Cookies from 'js-cookie';
+import { useSelector } from "react-redux";
 import MainLayout from '../layout/MainLayout';
 import { lazy } from 'react';
 import Loadable from '../ui-component/Loadable';
