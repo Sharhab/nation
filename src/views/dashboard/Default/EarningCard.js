@@ -54,9 +54,9 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
 const EarningCard = ({ isLoading, message }) => {
-    const { loggedInUser } = useSelector((state) => state);
+    const { loggedInUser, userStat } = useSelector((state) => state);
     const { user } = loggedInUser;
-
+    const { isLoggedIn } userStat;
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -134,20 +134,20 @@ const EarningCard = ({ isLoading, message }) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {Cookies.get('user') && (
+                                        {isLoggedIn && (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {`Welcome Back, ${user?.username}`}
                                             </Typography>
                                         )}
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
                                             <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {Cookies.get('user')
+                                                {isLoggedIn
                                                     ? `Wallet Balance:₦${user?.accountBalance} `
-                                                    : 'Welcome To Gbrain Ventures'}
+                                                    : 'Welcome To SharhaData'}
                                             </Typography>
                                         </div>
 
-                                        {Cookies.get('user') ? (
+                                        {isLoggedIn ? (
                                             <>
                                                 <Link
                                                     to={'/fund-wallet'}
