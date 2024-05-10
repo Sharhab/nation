@@ -17,6 +17,7 @@ import {
     userAction,
     buyCgData,
     getAirtelCgData,
+    checklogedinuserStatus,
     getGloCgData,
     getMtnSmeTwoData,
     getMtnSmeOneData,
@@ -70,7 +71,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const pinRef = useRef('');
     useEffect(() => {
-        !Cookies.get('user') && navigate('/pages/login');
+        dispatch(checklogedinuserStatus())
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
         dispatch(getMtnData());
