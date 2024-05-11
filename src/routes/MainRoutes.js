@@ -43,7 +43,6 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
 
 // ==============================|| MAIN ROUTING ||============================== //
 const {isLoggedIn} = userStat;
-const isAuthenticated = isLoggedIn;
 const MainRoutes = {
     path: '/',
     element: <MainLayout />,
@@ -51,7 +50,7 @@ const MainRoutes = {
 {
     path: '/',
     element: (
-        <ProtectedRoute isAuthenticated={isAuthenticated}>
+        <ProtectedRoute isLoggedIn={isLoggedIn}>
             <DashboardDefault />
         </ProtectedRoute>
     )
