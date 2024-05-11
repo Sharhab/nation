@@ -6,7 +6,7 @@ import { useSnackbar } from 'notistack';
 import { useEffect, useRef, useState } from 'react';
 import PinInput from 'react-pin-input';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+
 import {
     buyData,
     giftData,
@@ -24,7 +24,8 @@ import {
     getMtnSmeCoupData
 }  from '../../store/actions';
 import { CustomButton, CustomSelect, CustomTextField } from '../../ui-component/basic-inputs';
-// project imports
+// project imports 
+import { useNavigate } from 'react-router-dom';
 import MainCard from '../../ui-component/cards/MainCard';
 import { generateRequestId } from '../../utils/generateRequestId';
 import FeedBack from '../feedBack';
@@ -72,8 +73,10 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const pinRef = useRef('');
     useEffect(() => {
-        !isLoggedIn && <Navigate to = "/pages/login" replace />
-        dispatch(checklogedinuserStatus())
+        if (!isLoggedIn) {
+      navigate('/pages/login', { replace: true });
+    }
+        dispatch(checklogedinuserStatus());
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
         dispatch(getMtnData());
