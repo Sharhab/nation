@@ -3,7 +3,6 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
     Box,
-    Button,
     Checkbox,
     Divider,
     FormControl,
@@ -17,7 +16,8 @@ import {
     Typography,
     useMediaQuery
 } from '@mui/material';
-// material-ui
+// material-ui 
+import { CustomButton } from "../../../ui-component/basic-inputs";
 import { useTheme } from '@mui/material/styles';
 import { Form, Formik } from 'formik';
 import { useSnackbar } from 'notistack';
@@ -421,7 +421,7 @@ const AuthRegister = ({ ...others }) => {
 
                             <Box sx={{ mt: 2 }}>
                                 <AnimateButton>
-                                    <Button
+                                    <CustomButton
                                         sx={{
                                             borderRadius: '30px',
                                             backgroundColor: {
@@ -432,7 +432,8 @@ const AuthRegister = ({ ...others }) => {
                                             },
                                             textTransform: 'uppercase'
                                         }}
-                                        disabled={register.loading ? true : false}
+                                        disabled={register.loading ? true : false} 
+                                        loading={register.loading ? true : false}
                                         disableElevation
                                         fullWidth
                                         size="large"
@@ -441,7 +442,7 @@ const AuthRegister = ({ ...others }) => {
                                         onClick={() => handleSubmit(values)}
                                     >
                                         &#9660; register
-                                    </Button>
+                                    </CustomButton>
                                     {/* <Button
                                         disabled={register.loading ? true : false}
                                         disableElevation
