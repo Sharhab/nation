@@ -3,7 +3,6 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
     Box,
-    Button,
     Checkbox,
     Divider,
     FormControl,
@@ -17,7 +16,7 @@ import {
     Stack,
     Typography
 } from '@mui/material';
-import { CustomButtom } from "../../../ui-component/basic-inputs";
+import { CustomButton } from "../../../ui-component/basic-inputs";
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Form, Formik } from 'formik';
