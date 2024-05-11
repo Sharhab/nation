@@ -6,7 +6,6 @@ import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 // assets
 import EarningIcon from '../../../assets/images/icons/earning.svg';
-import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -56,7 +55,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 const EarningCard = ({ isLoading, message }) => {
     const { loggedInUser, userStat } = useSelector((state) => state);
     const { user } = loggedInUser;
-    const { isLoggedIn } userStat;
+    const { isLoggedIn } = userStat;
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -134,7 +133,7 @@ const EarningCard = ({ isLoading, message }) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {isLoggedIn && (
+                                        {isLoggedIn && user?.username (
                                             <Typography sx={{ fontSize: '1rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {`Welcome Back, ${user?.username}`}
                                             </Typography>
