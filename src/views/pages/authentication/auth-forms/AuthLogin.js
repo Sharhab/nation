@@ -17,6 +17,7 @@ import {
     Stack,
     Typography
 } from '@mui/material';
+import { CustomButtom } from "../../../ui-component/basic-inputs";
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Form, Formik } from 'formik';
@@ -207,7 +208,7 @@ const FirebaseLogin = ({ ...others }) => {
 
                         <Box sx={{ mt: 2 }}>
                             <AnimateButton>
-                                <Button
+                                <CustomButton
                                     sx={{
                                         textTransform: 'uppercase',
                                         borderRadius: '30px',
@@ -224,9 +225,10 @@ const FirebaseLogin = ({ ...others }) => {
                                     size="large"
                                     type="submit"
                                     variant="contained"
+                                    loading = {login.loading ? true : false}
                                 >
                                     &#9660; Sign in
-                                </Button>
+                                  </CustomButton>  </>
                             </AnimateButton>
                         </Box>
                     </Form>
