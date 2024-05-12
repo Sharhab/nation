@@ -1,13 +1,12 @@
 // material-ui
 import { Box, Grid } from '@mui/material';
 import { Form, Formik } from 'formik';
-import Cookies from 'js-cookie';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { UpdateBvn, userAction } from '../store/actions';
-import { CustomButton, CustomTextField } from 'ui-component/basic-inputs';
+import { CustomButton, CustomTextField } from '../ui-component/basic-inputs';
 // project imports
 import MainCard from '../ui-component/cards/MainCard';
 import * as yup from 'yup';
@@ -15,16 +14,18 @@ import * as yup from 'yup';
 // ==============================|| SAMPLE PAGE ||============================== //
 
 const VerifyAccount = () => {
-    const { updateUser } = useSelector((state) => state);
+    const { updateUser, userStat } = useSelector((state) => state);
     const { Update_user_loading } = updateUser;
     const { enqueueSnackbar } = useSnackbar();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-        !Cookies.get('user') && navigate('/pages/login');
+        if (!isLoggedIn) {
+       return navigate('/pages/login', {replace: true});
+        }
         dispatch(userAction({ navigate }));
-    }, [navigate, dispatch]);
+    }, [navigate, dispatch, isLoggedIn]);
 
     const INITIAL_FORM_VALUES = {
         bvn: ''
