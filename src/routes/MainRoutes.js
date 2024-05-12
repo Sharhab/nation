@@ -2,7 +2,7 @@ import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MainLayout from '../layout/MainLayout';
-import ProtectedRoute from './ProtectedRoute';
+import ProtectedRoute from './ProtectedRout';
 import Loadable from '../ui-component/Loadable'; 
 import config from '../config'; 
 import AuthenticationRoutes from './AuthenticationRoutes';
