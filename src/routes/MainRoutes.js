@@ -26,7 +26,9 @@ const SellAirtimeOtp = Loadable(lazy(() => import('../views/sell-airtime/sell-ai
 const FinalizeSellAirtime = Loadable(lazy(() => import('../views/sell-airtime/finalize-sell-airtime')));
 const SelectDataView = Loadable(lazy(() => import('../views/data/dataSelectionView')));
 const BuyAirtime = Loadable(lazy(() => import('../views/airtime')));
-const BuyData = Loadable(lazy(() => import('../views/data')));
+const BuyData = Loadable(lazy(() => import('../views/data'))); 
+import { airtimeProducts, dataProducts } from '../_mocks_/products'; 
+import { SuccessPAyment } from '../views/payments/ConfirmPayment';
 const SubTv = Loadable(lazy(() => import('../views/cables&tv')));
 const Electricity = Loadable(lazy(() => import('../views/electricity')));
 const ExamPin = Loadable(lazy(() => import('../views/exam')));
