@@ -49,31 +49,157 @@ const MainRoutes = () => {
           index: true,
           element: <ProtectedRoute isLoggedIn={isLoggedIn}><DashboardDefault /></ProtectedRoute>
         },
-        { path: '/reset-pwd', element: <ResetPswdWrapper /> },
-        { path: '/reset-pin', element: <PinReset /> },
-        { path: '/forget-pin', element: <PinResetEmail /> },
-        { path: '/pages/login', element: <Login /> },
-        { path: '/pages/register', element: <Register /> },
-        { path: '/pages/auth/forget-pswd', element: <ForgetPswdWrapper /> },
-        { path: '/utils/util-typography', element: <UtilsTypography /> },
-        { path: '/utils/util-color', element: <UtilsColor /> },
-        { path: '/utils/util-shadow', element: <UtilsShadow /> },
-        { path: '/icons/material-icons', element: <UtilsMaterialIcons /> },
-        { path: '/icons/tabler-icons', element: <UtilsTablerIcons /> },
-        { path: '/buy-airtime', element: <SelectAirtimeView /> },
-        { path: '/sell-airtime-otp', element: <SellAirtimeOtp /> },
-        { path: '/finalize-sell-airtime', element: <FinalizeSellAirtime /> },
-        { path: '/buy-data', element: <SelectDataView /> },
-        { path: '/cable-tv-sub', element: <SubTv /> },
-        { path: '/electricity-sub', element: <Electricity /> },
-        { path: '/exam-pin', element: <ExamPin /> },
-        { path: '/fund-wallet', element: <Funding /> },
-        { path: '/confirm-payment', element: <SuccessPayment /> },
-        { path: '/profile', element: <Profile /> },
-        { path: '/edit-profile', element: <EditProfile /> },
-        { path: '/trx-histories', element: <Histories /> },
-        { path: '/contact-us', element: <Contact /> },
-        // Continue adding other routes as needed
+
+      {
+            path: '/reset-pwd',
+            element: <ResetPswdWrapper />
+        },
+        {
+            path: '/reset-pin',
+            element: <PinReset />
+        },
+        {
+            path: '/forget-pin',
+            element: <PinResetEmail />
+        },
+        {
+            path: '/pages/login',
+            element: <Login />
+        },
+        {
+            path: '/pages/auth/forget-pswd',
+            element: <ForgetPswdWrapper />
+        },
+        {
+            path: '/dashboard/default',
+            element: <DashboardDefault />
+        },
+        {
+            path: '/utils/util-typography',
+            element: <UtilsTypography />
+        },
+        {
+            path: '/utils/util-color',
+            element: <UtilsColor />
+        },
+        {
+            path: '/utils/util-shadow',
+            element: <UtilsShadow />
+        },
+        {
+            path: '/icons/tabler-icons',
+            element: <UtilsTablerIcons />
+        },
+        {
+            path: '/icons/material-icons',
+            element: <UtilsMaterialIcons />
+        },
+        {
+            path: '/buy-airtime',
+            element: <SelectAirtimeView airtimeProv={airtimeProducts} />
+        },
+        {
+            path: '/sell-airtime',
+            element: <SellAirtime title="Convert Excess Airtime To Cash" />
+        },
+        {
+            path: '/sell-airtime-otp',
+            element: <SellAirtimeOtp title="Enter The Otp That Was Sent To  " />
+        },
+        {
+            path: '/finalize-sell-airtime',
+            element: <FinalizeSellAirtime title="Transfer Airtime From  " />
+        },
+        {
+            path: '/buy-data',
+            element: <SelectDataView dataplans={dataProducts} />
+        },
+        {
+            path: '/buy-mtn-airtime',
+            element: <BuyAirtime network="mtn" title="MTN Airtime" />
+        },
+        {
+            path: '/buy-airtel-airtime',
+            element: <BuyAirtime network="airtel" title="Airtel Airtime" />
+        },
+        {
+            path: '/buy-glo-airtime',
+            element: <BuyAirtime network="glo" title="Glo Airtime" />
+        },
+        {
+            path: '/buy-glo-data',
+            element: <BuyData title="Glo Data" sme={false} network="Glo" />
+        },
+        {
+            path: '/buy-glo-cg-data',
+            element: <BuyData title="Glo CG Data" cg={true} network="Glo" />
+        },
+        {
+            path: '/buy-mtn-data',
+            element: <BuyData title="Mtn Data" sme={true} network="Mtn" />
+        },
+       // {
+         //   path: '/buy-mtn-data-sme-1',
+          //  element: <BuyData title="Mtn Sme 1 Data" sme_1={true} network="Mtn" />
+      //  },
+        {
+            path: '/buy-mtn-data-sme-2',
+            element: <BuyData title="Mtn Sme  Data" sme_2={true} network="Mtn" />
+        },
+        {
+            path: '/buy-mtn-data-coup',
+            element: <BuyData title="Mtn Coupon Data" coup={true} network="Mtn" />
+        },
+        {
+           path: '/buy-mtn-corporate-gifting',
+            element: <BuyData title="Mtn Corporate" mtn_cg={true} network="Mtn" />
+        },
+        {
+            path: '/buy-airtel-data',
+            element: <BuyData title="Airtel Data" sme={false} network="Airtel" />
+        },
+        {
+            path: '/buy-airtel-cg-data',
+            element: <BuyData title="Airtel CG Data" cg={true} network="Airtel" />
+        },
+        {
+            path: '/cable-tv-sub',
+            element: <SubTv title="Buy Cable TV " />
+        },
+        {
+            path: '/electricity-sub',
+            element: <Electricity title="Buy Electricity (PREPAID)" />
+        },
+        {
+            path: '/exam-pin',
+            element: <ExamPin title="Buy Exam Pin" />
+        },
+        {
+            path: '/fund-wallet',
+            element: <Funding />
+        },
+        {
+            path: '/confirm-payment',
+            element: <SuccessPAyment />
+        },
+        {
+            path: '/profile',
+            element: <Profile />
+        },
+        
+        {
+            path: '/edit-profile',
+            element: <EditProfile />
+        },
+        {
+            path: '/trx-histories',
+            element: <Histories />
+        },
+        {
+            path: '/contact-us',
+            element: <Contact />
+        }
+    
       ]
     }
   ];
