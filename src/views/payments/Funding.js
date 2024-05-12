@@ -23,10 +23,12 @@ const Funding = () => {
     const [showAlert, setshowAlert] = useState(false);
 
     useEffect(() => {
-        !isLoggedIn && navigate('/pages/login');
+        if (!isLoggedIn || !user){
+            navigate("/pages/login",  {replace: true})
+        }
 
         dispatch(userAction({ navigate }));
-    }, [navigate, dispatch]);
+    }, [navigate, dispatch, isLoggedIn]);
 
     useEffect(() => {
         if (Object.keys(user).length === 0) return;
