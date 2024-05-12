@@ -8,7 +8,7 @@ import config from '../config';
 import AuthenticationRoutes from './AuthenticationRoutes';
 import { lazy } from 'react'; 
 import { airtimeProducts, dataProducts } from '../_mocks_/products'; 
-import VerifyAccount from '../views/verify_account'; 
+//import VerifyAccount from '../views/verify_account'; 
 import { SuccessPAyment } from '../views/payments/ConfirmPayment';
 // Lazy imports for components
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
@@ -205,10 +205,10 @@ const MainRoutes = () => {
             path: '/confirm-payment',
             element: <SuccessPAyment />
         },
-         {
-            path: '/verify-account',
-            element: <VerifyAccount />
-        }
+         //{
+           // path: '/verify-account',
+           // element: <VerifyAccount />
+        //}
        
       ]
     }
