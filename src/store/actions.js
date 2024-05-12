@@ -120,7 +120,7 @@ export const MENU_TOGGLE = '@customization/MENU_TOGGLE';
 export const MENU_OPEN = '@customization/MENU_OPEN';
 export const SET_FONT_FAMILY = '@customization/SET_FONT_FAMILY';
 export const SET_BORDER_RADIUS = '@customization/SET_BORDER_RADIUS';
-const token = Cookies.get('user');
+;
  
 // const id = Cookies.get('user_id')
 export const getGloData = () => async (dispatch) => {
@@ -883,7 +883,7 @@ export const ResetPasswordAction =
 export const UpdateUserAction =
     ({ enqueueSnackbar, user }) =>
     async (dispatch) => {
-        const id = Cookies.get('user_id');
+        
 
         try {
             dispatch({
@@ -982,36 +982,7 @@ export const checklogedinuserStatus = () => async (dispatch) => {
 };
 
 
-export const userTransactionStat =
-    ({ navigate }) =>
-    async (dispatch) => {
-        try {
-            dispatch({
-                type: GET_USER_STAT_REQUEST
-            });
-            const { data } = await makeNetworkCall({
-                method: 'GET',
-                path: `users-stat`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            dispatch({
-                type: GET_USER_STAT_SUCCESS,
-                payload: data
-            });
-            console.log('DATA: ', data);
-        } catch (error) {
-            if (error.response?.data?.error?.status === 401) {
-                navigate('/pages/login');
-            }
-            dispatch({
-                type: GET_USER_STAT_FAIL,
-                payload: error.response?.data?.error?.message || error?.messag
-            });
-        }
-    };
-
+ 
 export const userTransactionStatByDate =
     ({ navigate, date }) =>
     async (dispatch) => {
@@ -1023,9 +994,7 @@ export const userTransactionStatByDate =
                 method: 'GET',
                 path: `users-stat-by-date/${date}`,
 
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             dispatch({
                 type: GET_USER_STAT_BY_DATE_SUCCESS,
