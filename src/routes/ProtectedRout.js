@@ -1,9 +1,10 @@
-import React from 'react';
+import React from 'react'; 
+import AuthenticationRoutes from './AuthenticationRoute'
 
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children, isLoggedIn }) => {
-    return isLoggedIn ? children : <Navigate to="/pages/login" replace />;
+    return isLoggedIn ? children : <AuthenticationRoutes />;
 };
 
 export default ProtectedRoute
