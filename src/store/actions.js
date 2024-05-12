@@ -335,9 +335,7 @@ export const getAirtelCgData = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: '/airtel-cg-data-plans',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
 
         dispatch({
@@ -730,9 +728,7 @@ export const ForgetPinAction = ({ email, enqueueSnackbar }) => async (dispatch) 
                 method: 'POST',
                 requestBody: email,
                 path: '/forgotPin',
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             dispatch({
                 type: FORGET_PIN_SUCCESS,
@@ -891,11 +887,9 @@ export const UpdateUserAction =
             });
             const { data } = await makeNetworkCall({
                 method: 'PUT',
-                path: `/updateUser/${id}`,
+                path: `/updateUser/update`,
                 requestBody: user,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             dispatch({
                 type: UPDATE_USER_SUCCESS,
@@ -956,7 +950,9 @@ export const UpdateUserAction =
     
 /**
  * Action creator to check if the user is logged in by trying to fetch user data.
- */
+ */ 
+export const userTransactionStat = () => async (dispatch) => {}
+
 export const checklogedinuserStatus = () => async (dispatch) => {
   dispatch({ type: GET_USER_STATUS_REQUEST });
 
