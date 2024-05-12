@@ -6,8 +6,10 @@ import ProtectedRoute from './ProtectedRout';
 import Loadable from '../ui-component/Loadable'; 
 import config from '../config'; 
 import AuthenticationRoutes from './AuthenticationRoutes';
-import { lazy } from 'react';
-
+import { lazy } from 'react'; 
+import { airtimeProducts, dataProducts } from '../_mocks_/products'; 
+import VerifyAccount from '../views/verify_account'; 
+import { SuccessPAyment } from '../views/payments/ConfirmPayment';
 // Lazy imports for components
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
 const ResetPswdWrapper = Loadable(lazy(() => import('../views/pages/authentication/authentication3/ResetPswd')));
@@ -27,8 +29,6 @@ const FinalizeSellAirtime = Loadable(lazy(() => import('../views/sell-airtime/fi
 const SelectDataView = Loadable(lazy(() => import('../views/data/dataSelectionView')));
 const BuyAirtime = Loadable(lazy(() => import('../views/airtime')));
 const BuyData = Loadable(lazy(() => import('../views/data'))); 
-import { airtimeProducts, dataProducts } from '../_mocks_/products'; 
-import { SuccessPAyment } from '../views/payments/ConfirmPayment';
 const SubTv = Loadable(lazy(() => import('../views/cables&tv')));
 const Electricity = Loadable(lazy(() => import('../views/electricity')));
 const ExamPin = Loadable(lazy(() => import('../views/exam')));
@@ -100,10 +100,10 @@ const MainRoutes = () => {
             path: '/buy-airtime',
             element: <SelectAirtimeView airtimeProv={airtimeProducts} />
         },
-        {
-            path: '/sell-airtime',
-            element: <SellAirtime title="Convert Excess Airtime To Cash" />
-        },
+        //{
+            //path: '/sell-airtime',
+           // element: <SellAirtime title="Convert Excess Airtime To Cash" />
+       // },
         {
             path: '/sell-airtime-otp',
             element: <SellAirtimeOtp title="Enter The Otp That Was Sent To  " />
@@ -200,8 +200,16 @@ const MainRoutes = () => {
         {
             path: '/contact-us',
             element: <Contact />
+        },
+        {
+            path: '/confirm-payment',
+            element: <SuccessPAyment />
+        },
+         {
+            path: '/verify-account',
+            element: <VerifyAccount />
         }
-    
+       
       ]
     }
   ];
