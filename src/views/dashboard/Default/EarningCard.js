@@ -1,4 +1,6 @@
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+
+
+//import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -9,7 +11,7 @@ import EarningIcon from '../../../assets/images/icons/earning.svg';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonEarningCard from '../../../ui-component/cards/Skeleton/EarningCard';
 
