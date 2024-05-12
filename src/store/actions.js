@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+
 import { makeNetworkCall } from '../network';
 import {
     BUY_AIRTIME_FAIL,
@@ -82,9 +82,6 @@ import {
     GET_USER_STAT_BY_DATE_FAIL,
     GET_USER_STAT_BY_DATE_REQUEST,
     GET_USER_STAT_BY_DATE_SUCCESS,
-    GET_USER_STAT_FAIL,
-    GET_USER_STAT_REQUEST,
-    GET_USER_STAT_SUCCESS,
     GET_VARIANTS_FAIL,
     GET_VARIANTS_REQUEST,
     GET_VARIANTS_SUCCESS,
@@ -1127,9 +1124,7 @@ export const getVariants =
             const { data } = await makeNetworkCall({
                 method: 'GET',
                 path: `vtpass-variation/${provider}`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
 
             dispatch({
@@ -1154,9 +1149,7 @@ export const verifyData =
             const { data } = await makeNetworkCall({
                 method: 'POST',
                 path: `buy-tv-cables/verify/`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
+                
                 requestBody: body
             });
 
@@ -1188,9 +1181,7 @@ export const verifyMeter =
             const { data } = await makeNetworkCall({
                 method: 'POST',
                 path: `buy-electricity/verify/`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
+                
                 requestBody: body
             });
 
@@ -1220,9 +1211,7 @@ export const getElectricProviders = () => async (dispatch) => {
         const { data } = await makeNetworkCall({
             method: 'GET',
             path: `electricity-payment-providers`,
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            
         });
 
         dispatch({
@@ -1249,9 +1238,7 @@ export const buyTvCables =
                 method: 'POST',
                 path: 'buy-tv-cables',
                 requestBody: reqBody,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             dispatch({
                 type: BUY_TV_CABLES_SUCCESS,
@@ -1278,9 +1265,7 @@ export const buyElectricity =
                 method: 'POST',
                 path: 'buy-electricity',
                 requestBody: reqBody,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             dispatch({
                 type: BUY_ELECTRICITY_SUCCESS,
@@ -1307,9 +1292,7 @@ export const buyExamPin =
                 method: 'POST',
                 path: 'buy-exam-pin',
                 requestBody: reqBody,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
             dispatch({
                 type: BUY_EXAM_PIN_SUCCESS,
@@ -1334,9 +1317,7 @@ export const getHistories =
             const { data } = await makeNetworkCall({
                 method: 'GET',
                 path: `transaction-histories`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
 
             dispatch({
@@ -1373,9 +1354,7 @@ export const getSellAirtimeDetails =
             const { data } = await makeNetworkCall({
                 method: 'GET',
                 path: `sell-airtime-models?populate=*`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
 
             dispatch({
@@ -1405,9 +1384,7 @@ export const getSellBTCDetails =
             const { data } = await makeNetworkCall({
                 method: 'GET',
                 path: `sell-airtime-models`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
 
             dispatch({
@@ -1437,9 +1414,7 @@ export const getNotificationDetails =
             const { data } = await makeNetworkCall({
                 method: 'GET',
                 path: `notification`,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                
             });
 
             console.log('notification', data?.data?.attributes);
