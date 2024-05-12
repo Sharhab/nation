@@ -16,7 +16,7 @@ import {
     Stack,
     Typography
 } from '@mui/material';
-import { CustomButton } from "../../../ui-component/basic-inputs";
+import { CustomButton } from "../../../../ui-component/basic-inputs";
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Form, Formik } from 'formik';

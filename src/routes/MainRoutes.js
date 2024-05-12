@@ -27,7 +27,7 @@ import SellAirtimeOtp from '../views/sell-airtime/sell-airtime-otp';
 import FinalizeSellAirtime from '../views/sell-airtime/finalize-sell-airtime';
 //import ProfileSection from '../layout/MainLayout/Header/ProfileSection/index';
 import ProtectedRoute from './ProtectedRout'
-import { userStat } = useSelector((state)=> state)
+const { userStat } = useSelector((state)=> state)
 // dashboard rout ing
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
 

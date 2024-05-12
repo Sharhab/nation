@@ -17,7 +17,7 @@ import {
     useMediaQuery
 } from '@mui/material';
 // material-ui 
-import { CustomButton } from "../../../ui-component/basic-inputs";
+import { CustomButton } from "../../../../ui-component/basic-inputs";
 import { useTheme } from '@mui/material/styles';
 import { Form, Formik } from 'formik';
 import { useSnackbar } from 'notistack';
