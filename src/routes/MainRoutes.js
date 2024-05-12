@@ -1,221 +1,82 @@
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useRoutes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import MainLayout from '../layout/MainLayout';
-import { lazy } from 'react';
+import ProtectedRoute from './ProtectedRoute';
 import Loadable from '../ui-component/Loadable';
-import BuyAirtime from '../views/airtime';
-import SelectAirtimeView from '../views/airtime/airtimeSelectionView';
-import SubTv from '../views/cables&tv';
-import Contact from '../views/contact-us/Contact';
-import BuyData from '../views/data';
-import SelectDataView from '../views/data/dataSelectionView';
-import Electricity from '../views/electricity';
-import ExamPin from '../views/exam';
-import Histories from '../views/histories/Transaction_History';
-import ForgetPswdWrapper from '../views/pages/authentication/authentication3/ForgetPswd';
-import Login from '../views/pages/authentication/authentication3/Login3';
-import Register from '../views/pages/authentication/authentication3/Register3'
-import ResetPswdWrapper from '../views/pages/authentication/authentication3/ResetPswd';
-import { SuccessPAyment } from '../views/payments/ConfirmPayment';
-import Funding from '../views/payments/Funding';
-import PinResetEmail from '../views/pin_reset/pin_reset_email';
-import PinReset from '../views/pin_reset/pin_reset_page';
-import Profile from '../views/profile';
-import EditProfile from '../views/profile/edit_profile';
-//import SellAirtime from '../views/sell-airtime/sell-airtime';
-import { airtimeProducts, dataProducts } from '../_mocks_/products';
-import SellAirtimeOtp from '../views/sell-airtime/sell-airtime-otp';
-import FinalizeSellAirtime from '../views/sell-airtime/finalize-sell-airtime';
-//import ProfileSection from '../layout/MainLayout/Header/ProfileSection/index';
-import ProtectedRoute from './ProtectedRout'
-const { userStat } = useSelector((state)=> state)
-// dashboard rout ing
-const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
+import { lazy } from 'react';
 
-// utilities routing
+// Lazy imports for components
+const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
+const ResetPswdWrapper = Loadable(lazy(() => import('../views/pages/authentication/authentication3/ResetPswd')));
+const PinReset = Loadable(lazy(() => import('../views/pin_reset/pin_reset_page')));
+const PinResetEmail = Loadable(lazy(() => import('../views/pin_reset/pin_reset_email')));
+const Login = Loadable(lazy(() => import('../views/pages/authentication/authentication3/Login3')));
+const Register = Loadable(lazy(() => import('../views/pages/authentication/authentication3/Register3')));
+const ForgetPswdWrapper = Loadable(lazy(() => import('../views/pages/authentication/authentication3/ForgetPswd')));
 const UtilsTypography = Loadable(lazy(() => import('../views/utilities/Typography')));
 const UtilsColor = Loadable(lazy(() => import('../views/utilities/Color')));
 const UtilsShadow = Loadable(lazy(() => import('../views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('../views/utilities/MaterialIcons')));
 const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIcons')));
+const SelectAirtimeView = Loadable(lazy(() => import('../views/airtime/airtimeSelectionView')));
+const SellAirtimeOtp = Loadable(lazy(() => import('../views/sell-airtime/sell-airtime-otp')));
+const FinalizeSellAirtime = Loadable(lazy(() => import('../views/sell-airtime/finalize-sell-airtime')));
+const SelectDataView = Loadable(lazy(() => import('../views/data/dataSelectionView')));
+const BuyAirtime = Loadable(lazy(() => import('../views/airtime')));
+const BuyData = Loadable(lazy(() => import('../views/data')));
+const SubTv = Loadable(lazy(() => import('../views/cables&tv')));
+const Electricity = Loadable(lazy(() => import('../views/electricity')));
+const ExamPin = Loadable(lazy(() => import('../views/exam')));
+const Funding = Loadable(lazy(() => import('../views/payments/Funding')));
+const SuccessPayment = Loadable(lazy(() => import('../views/payments/ConfirmPayment')));
+const Profile = Loadable(lazy(() => import('../views/profile')));
+const EditProfile = Loadable(lazy(() => import('../views/profile/edit_profile')));
+const Histories = Loadable(lazy(() => import('../views/histories/Transaction_History')));
+const Contact = Loadable(lazy(() => import('../views/contact-us/Contact')));
 
-// sample page routing
-// const SamplePage = Loadable(lazy(() => import('../views/airtime')));
+const MainRoutes = () => {
+  const isLoggedIn = useSelector(state => state.userStat.isLoggedIn);
 
-// ==============================|| MAIN ROUTING ||============================== //
-const {isLoggedIn} = userStat;
-const MainRoutes = {
-    path: '/',
-    element: <MainLayout />,
-    children: [
-{
-    path: '/',
-    element: (
-        <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <DashboardDefault />
-        </ProtectedRoute>
-    )
-},
-    
+  const routesConfig = [
+    {
+      path: '/',
+      element: <MainLayout />,
+      children: [
         {
-            path: '/reset-pwd',
-            element: <ResetPswdWrapper />
+          index: true,
+          element: <ProtectedRoute isLoggedIn={isLoggedIn}><DashboardDefault /></ProtectedRoute>
         },
-        {
-            path: '/reset-pin',
-            element: <PinReset />
-        },
-        {
-            path: '/forget-pin',
-            element: <PinResetEmail />
-        },
-        {
-            path: '/pages/login',
-            element: <Login />
-        },
-               
-        {
-            path: '/pages/register',
-            element: <Register />
-        }, 
-        {
-            path: '/pages/auth/forget-pswd',
-            element: <ForgetPswdWrapper />
-        },
-        {
-            path: '/dashboard/default',
-            element: <DashboardDefault />
-        },
-        {
-            path: '/utils/util-typography',
-            element: <UtilsTypography />
-        },
-        {
-            path: '/utils/util-color',
-            element: <UtilsColor />
-        },
-        {
-            path: '/utils/util-shadow',
-            element: <UtilsShadow />
-        },
-        {
-            path: '/icons/tabler-icons',
-            element: <UtilsTablerIcons />
-        },
-        {
-            path: '/icons/material-icons',
-            element: <UtilsMaterialIcons />
-        },
-        {
-            path: '/buy-airtime',
-            element: <SelectAirtimeView airtimeProv={airtimeProducts} />
-        },
-        // {
-        //     path: '/sell-airtime',
-        //     element: <SellAirtime title="Convert Excess Airtime To Cash" />
-        // },
-        {
-            path: '/sell-airtime-otp',
-            element: <SellAirtimeOtp title="Enter The Otp That Was Sent To  " />
-        },
-        {
-            path: '/finalize-sell-airtime',
-            element: <FinalizeSellAirtime title="Transfer Airtime From  " />
-        },
-        {
-            path: '/buy-data',
-            element: <SelectDataView dataplans={dataProducts} />
-        },
-        {
-            path: '/buy-mtn-airtime',
-            element: <BuyAirtime network="mtn" title="MTN Airtime" />
-        },
-        {
-            path: '/buy-airtel-airtime',
-            element: <BuyAirtime network="airtel" title="Airtel Airtime" />
-        },
-        {
-            path: '/buy-glo-airtime',
-            element: <BuyAirtime network="glo" title="Glo Airtime" />
-        },
-        {
-            path: '/buy-glo-data',
-            element: <BuyData title="Glo Data" sme={false} network="Glo" />
-        },
-        {
-            path: '/buy-glo-cg-data',
-            element: <BuyData title="Glo CG Data" cg={true} network="Glo" />
-        },
-        //{
-       //  path: '/buy-mtn-data-sme-1',
-       //     element: <BuyData title="Mtn Sme 1 Data" sme={true} network="Mtn" />
-      //  },
-       {
-            path: '/buy-mtn-data-sme-2',
-            element: <BuyData title="Mtn Sme  Data" sme_2={true} network="Mtn" />
-        },
-        {
-            path: '/buy-mtn-corporate-gifting',
-            element: <BuyData title="mtn corporate gifting" mtn_cg={true} network="Mtn" />
-        },
-        {
-            path: '/buy-mtn-data-coup',
-            element: <BuyData title="Mtn Coupon Data" coup={true} network="Mtn" />
-        },
-        // {
-        //     path: '/buy-mtn-gift-data',
-        //     element: <BuyData title="Mtn Data Gifting" sme={false} network="Mtn" />
-        // },
-        {
-            path: '/buy-airtel-data',
-            element: <BuyData title="Airtel Data" sme={false} network="Airtel" />
-        },
-        {
-            path: '/buy-airtel-cg-data',
-            element: <BuyData title="Airtel CG Data" cg={true} network="Airtel" />
-        },
-        {
-            path: '/cable-tv-sub',
-            element: <SubTv title="Buy Cable TV " />
-        },
-        {
-            path: '/electricity-sub',
-            element: <Electricity title="Buy Electricity (PREPAID)" />
-        },
-        {
-            path: '/exam-pin',
-            element: <ExamPin title="Buy Exam Pin" />
-        },
-        {
-            path: '/fund-wallet',
-            element: <Funding />
-        },
-        {
-            path: '/confirm-payment',
-            element: <SuccessPAyment />
-        },
-        {
-            path: '/profile',
-            element: <Profile />
-        },
-        
-        {
-            path: '/edit-profile',
-            element: <EditProfile />
-        },
-        {
-            path: '/trx-histories',
-            element: <Histories />
-        },
-        {
-            path: '/contact-us',
-            element: <Contact />
-        }
+        { path: 'reset-pwd', element: <ResetPswdWrapper /> },
+        { path: 'reset-pin', element: <PinReset /> },
+        { path: 'forget-pin', element: <PinResetEmail /> },
+        { path: 'pages/login', element: <Login /> },
+        { path: 'pages/register', element: <Register /> },
+        { path: 'pages/auth/forget-pswd', element: <ForgetPswdWrapper /> },
+        { path: 'utils/util-typography', element: <UtilsTypography /> },
+        { path: 'utils/util-color', element: <UtilsColor /> },
+        { path: 'utils/util-shadow', element: <UtilsShadow /> },
+        { path: 'icons/material-icons', element: <UtilsMaterialIcons /> },
+        { path: 'icons/tabler-icons', element: <UtilsTablerIcons /> },
+        { path: 'buy-airtime', element: <SelectAirtimeView /> },
+        { path: 'sell-airtime-otp', element: <SellAirtimeOtp /> },
+        { path: 'finalize-sell-airtime', element: <FinalizeSellAirtime /> },
+        { path: 'buy-data', element: <SelectDataView /> },
+        { path: 'cable-tv-sub', element: <SubTv /> },
+        { path: 'electricity-sub', element: <Electricity /> },
+        { path: 'exam-pin', element: <ExamPin /> },
+        { path: 'fund-wallet', element: <Funding /> },
+        { path: 'confirm-payment', element: <SuccessPayment /> },
+        { path: 'profile', element: <Profile /> },
+        { path: 'edit-profile', element: <EditProfile /> },
+        { path: 'trx-histories', element: <Histories /> },
+        { path: 'contact-us', element: <Contact /> },
+        // Continue adding other routes as needed
+      ]
+    }
+  ];
 
-        // {
-        //     path: '/sell-crypto',
-        //     element: <SellCrypto />
-        // }
-    ]
+  return useRoutes(routesConfig);
 };
 
 export default MainRoutes;
