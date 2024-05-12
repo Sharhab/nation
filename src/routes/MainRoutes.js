@@ -3,7 +3,9 @@ import { useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MainLayout from '../layout/MainLayout';
 import ProtectedRoute from './ProtectedRoute';
-import Loadable from '../ui-component/Loadable';
+import Loadable from '../ui-component/Loadable'; 
+import config from '../config'; 
+import AuthenticationRoutes from './AuthenticationRoutes';
 import { lazy } from 'react';
 
 // Lazy imports for components
@@ -76,7 +78,7 @@ const MainRoutes = () => {
     }
   ];
 
-  return useRoutes(routesConfig);
+  return useRoutes([routesConfig, AuthenticationRoutes], config.basename);
 };
 
 export default MainRoutes;
