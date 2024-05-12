@@ -87,7 +87,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         dispatch(getAirtelData());
         dispatch(getAirtelCgData());
         dispatch(getGloCgData());
-    }, [dispatch, navigate]);
+    }, [dispatch, navigate, isLoggedIn]);
 
     const INITIAL_FORM_VALUES = {
     beneficiaryNum: '',
