@@ -1,7 +1,6 @@
 // material-u
 import { Box, Grid, Typography,  } from '@mui/material';
 import { Form, Formik } from 'formik';
-import Cookies from 'js-cookie';
 import { useSnackbar } from 'notistack';
 import { useEffect, useRef, useState } from 'react';
 import PinInput from 'react-pin-input';
