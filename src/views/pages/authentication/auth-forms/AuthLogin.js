@@ -227,7 +227,7 @@ const FirebaseLogin = ({ ...others }) => {
                                     loading = {login.loading ? true : false}
                                 >
                                     &#9660; Sign in
-                                  </CustomButton>  </>
+                                  </CustomButton>  
                             </AnimateButton>
                         </Box>
                     </Form>
