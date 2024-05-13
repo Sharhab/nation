@@ -3,41 +3,42 @@ import { useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MainLayout from '../layout/MainLayout';
 import ProtectedRoute from './ProtectedRout';
-import Loadable from '../ui-component/Loadable'; 
-import config from '../config'; 
-import AuthenticationRoutes from './AuthenticationRoutes';
-import { lazy } from 'react'; 
-import { airtimeProducts, dataProducts } from '../_mocks_/products'; 
-//import VerifyAccount from '../views/verify_account'; 
-const SuccessPAyment = Loadable(lazy(() =>  import('../views/payments/ConfirmPayment')));
-// Lazy imports for components
+import { lazy } from 'react';
+import Loadable from '../ui-component/Loadable';
+import BuyAirtime from '../views/airtime';
+import SelectAirtimeView from '../views/airtime/airtimeSelectionView';
+import SubTv from '../views/cables&tv';
+import Contact from '../views/contact-us/Contact';
+import BuyData from '../views/data';
+import SelectDataView from '../views/data/dataSelectionView';
+import Electricity from '../views/electricity';
+import ExamPin from '../views/exam';
+import Histories from '../views/histories/Transaction_History';
+import ForgetPswdWrapper from '../views/pages/authentication/authentication3/ForgetPswd';
+import Login from '../views/pages/authentication/authentication3/Login3';
+import ResetPswdWrapper from '../views/pages/authentication/authentication3/ResetPswd';
+import { SuccessPAyment } from '../views/payments/ConfirmPayment';
+import Funding from '../views/payments/Funding';
+import PinResetEmail from '../views/pin_reset/pin_reset_email';
+import PinReset from '.. views/pin_reset/pin_reset_page';
+import Profile from '../views/profile';
+import EditProfile from '../views/profile/edit_profile';
+import SellAirtime from '../views/sell-airtime/sell-airtime';
+import { airtimeProducts, dataProducts } from '../_mocks_/products';
+import SellAirtimeOtp from '../views/sell-airtime/sell-airtime-otp';
+import FinalizeSellAirtime from '../views/sell-airtime/finalize-sell-airtime';
+import FundingSelection from '../views/payments/funding_selection';
+import VerifyAccount from '../views/verify_account';
+
+// dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
-const ResetPswdWrapper = Loadable(lazy(() => import('../views/pages/authentication/authentication3/ResetPswd')));
-const PinReset = Loadable(lazy(() => import('../views/pin_reset/pin_reset_page')));
-const PinResetEmail = Loadable(lazy(() => import('../views/pin_reset/pin_reset_email')));
-const Login = Loadable(lazy(() => import('../views/pages/authentication/authentication3/Login3')));
-const Register = Loadable(lazy(() => import('../views/pages/authentication/authentication3/Register3')));
-const ForgetPswdWrapper = Loadable(lazy(() => import('../views/pages/authentication/authentication3/ForgetPswd')));
+
+// utilities routing
 const UtilsTypography = Loadable(lazy(() => import('../views/utilities/Typography')));
 const UtilsColor = Loadable(lazy(() => import('../views/utilities/Color')));
 const UtilsShadow = Loadable(lazy(() => import('../views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('../views/utilities/MaterialIcons')));
 const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIcons')));
-const SelectAirtimeView = Loadable(lazy(() => import('../views/airtime/airtimeSelectionView')));
-const SellAirtimeOtp = Loadable(lazy(() => import('../views/sell-airtime/sell-airtime-otp')));
-const FinalizeSellAirtime = Loadable(lazy(() => import('../views/sell-airtime/finalize-sell-airtime')));
-const SelectDataView = Loadable(lazy(() => import('../views/data/dataSelectionView')));
-const BuyAirtime = Loadable(lazy(() => import('../views/airtime')));
-const BuyData = Loadable(lazy(() => import('../views/data'))); 
-const SubTv = Loadable(lazy(() => import('../views/cables&tv')));
-const Electricity = Loadable(lazy(() => import('../views/electricity')));
-const ExamPin = Loadable(lazy(() => import('../views/exam')));
-const Funding = Loadable(lazy(() => import('../views/payments/Funding')));
-const SuccessPAyment = Loadable(lazy(() => import('../views/payments/ConfirmPayment')));
-const Profile = Loadable(lazy(() => import('../views/profile')));
-const EditProfile = Loadable(lazy(() => import('../views/profile/edit_profile')));
-const Histories = Loadable(lazy(() => import('../views/histories/Transaction_History')));
-const Contact = Loadable(lazy(() => import('../views/contact-us/Contact')));
 
 const MainRoutes = () => {
   const isLoggedIn = useSelector(state => state.userStat.isLoggedIn);
@@ -68,11 +69,11 @@ const MainRoutes = () => {
             path: '/pages/login',
             element: <Login />
         },
-       { 
-         path: '/pages/register',
-         element: <Register />
+      // { 
+       //  path: '/pages/register',
+       //  element: <Register />
 
-        },
+       // },
         {
             path: '/pages/auth/forget-pswd',
             element: <ForgetPswdWrapper />
