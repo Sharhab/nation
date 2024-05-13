@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import {
     BUY_AIRTIME_FAIL,
     BUY_AIRTIME_REQUEST,
@@ -121,7 +120,11 @@ export const initialGloCgDataState = {
     loading: false,
     error: null
 };
-
+export const initialUpdateBvnState = {
+    loading: false,
+    bvn: {},
+    error: null
+};
 export const initialMtnDataState = {
     mtnDataPlans: [],
     loading: false,
@@ -530,10 +533,6 @@ export const userUpdateReducer = (state = initialUserUpdate, action) => {
             return { ...state, loading: true };
 
         case LOGOUT_USER_SUCCESS:   
-          Cookies.remove('user');
-            Cookies.remove('user_id');
-            window.location.replace("/")
-
 
             return { ...state, loading: false, user: action.payload };
 
@@ -554,9 +553,7 @@ export const resetPasswordReducer = (state = initialresetState, action) => {
             return { ...state, loading: true };
 
         case RESET_PASSWORD_SUCCESS: {
-            Cookies.set('user', action?.payload?.jwt, { expires: "15m" });
-            Cookies.set('user_id', action?.payload?._id, { expires: 1 });
-            window.location.replace('/');
+             window.location.replace('/');
             return { ...state, loading: false };
         }
         case RESET_PASSWORD_FAIL:
@@ -651,6 +648,8 @@ export const sellAirtimeReducer = (state = initialSellAirtimeState, action) => {
             return state;
     }
 };
+
+export const updateBvnReducer = (state = initialUpdateBvnState, action) =>{}
 
 // Data order reducers
 export const dataOrderReducer = (state = initialDataOrderState, action) => {
