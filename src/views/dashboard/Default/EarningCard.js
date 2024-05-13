@@ -1,6 +1,6 @@
 
 
-//import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -11,7 +11,7 @@ import EarningIcon from '../../../assets/images/icons/earning.svg';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonEarningCard from '../../../ui-component/cards/Skeleton/EarningCard';
 
@@ -158,7 +158,70 @@ const EarningCard = ({ isLoading, message }) => {
                                                 {showBalance ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}
                                             </Avatar>
                                         </div>
+                                       {isLoggedIn ? (
+                                            <>
+                                                <Link
+                                                    to={'/fund-wallet'}
+                                                    style={{
+                                                        textDecoration: 'none',
+                                                        color: 'white',
+                                                        position: 'relative',
+                                                        top: 6,
+                                                        bottom: 0
+                                                    }}
+                                                >
+                                                    <Grid container columnSpacing={-11}>
+                                                        <Grid item xs={6}>
+                                                            <Typography sx={{ fontSize: '1.0rem', fontWeight: 500, mb: 1.75, mt: 1.75 }}>
+                                                                Fund Wallet
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid item xs={6}>
+                                                            <Avatar
+                                                                sx={{
+                                                                    mb: 1.75,
+                                                                    mt: 1.75,
+                                                                    // position: 'relative',
+                                                                    // top: 6,
+                                                                    // bottom: 0,
+                                                                    cursor: 'pointer',
+                                                                    ...theme.typography.smallAvatar,
+                                                                    backgroundColor: theme.palette.secondary[200],
+                                                                    color: theme.palette.secondary.dark
+                                                                }}
+                                                            >
+                                                                <ArrowUpwardIcon
+                                                                    fontSize="inherit"
+                                                                    sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }}
+                                                                />
+                                                            </Avatar>
+                                                        </Grid>
+                                                    </Grid>
+                                                </Link>
+
+                                                <marquee
+                                                    style={{
+                                                        backgroundColor: 'red',
+                                                        marginTop: 1.7,
+                                                        marginBottom: 0.25,
+                                                        padding: '5px 0',
+                                                        borderRadius: '5px'
+                                                    }}
+                                                >
+                                                    <Typography sx={{ fontSize: '1.0rem' }}>{message ? message : ''}</Typography>
+                                                </marquee>
+                                            </>
+                                        ) : (
+                                            <Link to={'/pages/login'}>
+                                                <Typography variant="subtitle1" color={'white'}>
+                                                    Please Login To Your Account
+                                                </Typography>
+                                            </Link>
+                                        )}
                                     </Grid>
+                                    {/* <Grid item>
+                                  
+                                    </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -166,6 +229,7 @@ const EarningCard = ({ isLoading, message }) => {
                 </CardWrapper>
             )}
         </>
+                                                    
     );
 };
 
