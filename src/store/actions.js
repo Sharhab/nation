@@ -106,6 +106,9 @@ import {
     UPDATE_USER_FAIL,
     UPDATE_USER_REQUEST,
     UPDATE_USER_SUCCESS,
+    UPDATE_USER_BVN_FAIL,
+    UPDATE_USER_BVN_REQUEST,
+    UPDATE_USER_BVN_SUCCESS,
     VERIFY_DETAILS_FAIL,
     VERIFY_DETAILS_REQUEST,
     VERIFY_DETAILS_SUCCESS,
@@ -948,7 +951,31 @@ export const UpdateUserAction =
   }
 };
 
-export const UpdateBvn = ({bvn}) => async (dispatch) => {};
+export const UpdateBvn = ({bvn}) => async (dispatch) => {
+    dispatch({
+                type: UPDATE_USER_BVN_REQUEST
+            });
+            const { data } = await makeNetworkCall({
+                method: 'POST',
+                path: `/users/bvnupdate`,
+                requestBody: bvn
+                
+            });
+            dispatch({
+                type: UPDATE_USER_BVN_SUCCESS,
+                payload: data
+            });
+            console.log(data);
+        } catch (error) {
+            if (error.response?.data?.error?.status === 401) {
+                navigate('/pages/login');
+            }
+            dispatch({
+                type: UPDATE_USER_BVN_FAIL,
+                payload: error.response?.data?.error?.message || error?.messag
+            });
+        }
+};
 
 export const userTransactionStat = () => async (dispatch) => {};
 
