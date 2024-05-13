@@ -33,7 +33,7 @@ const SubTv = Loadable(lazy(() => import('../views/cables&tv')));
 const Electricity = Loadable(lazy(() => import('../views/electricity')));
 const ExamPin = Loadable(lazy(() => import('../views/exam')));
 const Funding = Loadable(lazy(() => import('../views/payments/Funding')));
-const SuccessPayment = Loadable(lazy(() => import('../views/payments/ConfirmPayment')));
+const SuccessPAyment = Loadable(lazy(() => import('../views/payments/ConfirmPayment')));
 const Profile = Loadable(lazy(() => import('../views/profile')));
 const EditProfile = Loadable(lazy(() => import('../views/profile/edit_profile')));
 const Histories = Loadable(lazy(() => import('../views/histories/Transaction_History')));
