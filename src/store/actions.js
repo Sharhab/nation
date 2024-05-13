@@ -948,12 +948,9 @@ export const UpdateUserAction =
   }
 };
 
-export const UpdateBvn({bvn}) => async (dispatch) => {}
-    
-/**
- * Action creator to check if the user is logged in by trying to fetch user data.
- */ 
-export const userTransactionStat = () => async (dispatch) => {}
+export const UpdateBvn = ({bvn}) => async (dispatch) => {};
+
+export const userTransactionStat = () => async (dispatch) => {};
 
 export const checklogedinuserStatus = () => async (dispatch) => {
   dispatch({ type: GET_USER_STATUS_REQUEST });
