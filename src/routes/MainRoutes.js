@@ -3,6 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MainLayout from '../layout/MainLayout';
 import ProtectedRoute from './ProtectedRout';
+import AuthenticationRoutes from './AuthenticationRoutes';
 import { lazy } from 'react'; 
 import config from './config'
 import Loadable from '../ui-component/Loadable';
