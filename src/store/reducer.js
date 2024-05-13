@@ -28,6 +28,7 @@ import {
     sellAirtimeReducer,
     tvCablesPurchase,
     userReducer,
+    updateBvnReducer,
     userUpdateReducer,
     verifyDetailsReducers,
     verifyMeterReducers,
@@ -83,7 +84,8 @@ const reducer = combineReducers({
     notificationDetails: getNotificationReducer,
     monnifyAccountGeneration: generateMonnifyAccountReducer,
     userStat: userStatReducer,
-    userStatByDate: userStatByDateReducer
+    userStatByDate: userStatByDateReducer, 
+    updateUser:  updateBvnReducer
 });
 
 export default reducer;
