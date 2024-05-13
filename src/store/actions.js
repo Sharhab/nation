@@ -1,4 +1,3 @@
-
 import { makeNetworkCall } from '../network';
 import {
     BUY_AIRTIME_FAIL,
@@ -955,6 +954,8 @@ export const UpdateBvn = ({navigate, user, enqueueSnackbar }) => async (dispatch
     dispatch({
                 type: UPDATE_USER_BVN_REQUEST
             });
+    
+       try {
             const { data } = await makeNetworkCall({
                 method: 'POST',
                 path: `/users/bvnupdate`,
@@ -965,7 +966,7 @@ export const UpdateBvn = ({navigate, user, enqueueSnackbar }) => async (dispatch
                 type: UPDATE_USER_BVN_SUCCESS,
                 payload: data
             });
-            console.log(data);
+            
         } catch (error) {
             if (error.response?.data?.error?.status === 401) {
                 navigate('/pages/login');
