@@ -649,7 +649,20 @@ export const sellAirtimeReducer = (state = initialSellAirtimeState, action) => {
     }
 };
 
-export const updateBvnReducer = (state = initialUpdateBvnState, action) =>{}
+export const updateBvnReducer = (state = initialUpdateBvnState, action) =>{
+    switch (action.type) {
+        case UPDATE_USER_BVN_REQUEST:
+            return { ...state, loading: true };
+
+        case UPDATE_USER_BVN_SUCCESS:
+            return { ...state, loading: false, data: action.payload };
+        case UPDATE_USER_BVN_FAIL:
+            return { ...state, loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+}
 
 // Data order reducers
 export const dataOrderReducer = (state = initialDataOrderState, action) => {
