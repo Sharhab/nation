@@ -9,7 +9,7 @@ import AuthenticationRoutes from './AuthenticationRoutes';
 import { lazy } from 'react'; 
 import { airtimeProducts, dataProducts } from '../_mocks_/products'; 
 //import VerifyAccount from '../views/verify_account'; 
-import { SuccessPAyment } from '../views/payments/ConfirmPayment';
+const SuccessPAyment = Loadable(lazy(() =>  import('../views/payments/ConfirmPayment')));
 // Lazy imports for components
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
 const ResetPswdWrapper = Loadable(lazy(() => import('../views/pages/authentication/authentication3/ResetPswd')));
@@ -67,6 +67,11 @@ const MainRoutes = () => {
         {
             path: '/pages/login',
             element: <Login />
+        },
+       { 
+         path: '/pages/register',
+         element: <Register />
+
         },
         {
             path: '/pages/auth/forget-pswd',
