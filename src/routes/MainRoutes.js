@@ -5,7 +5,7 @@ import MainLayout from '../layout/MainLayout';
 import ProtectedRoute from './ProtectedRout';
 import AuthenticationRoutes from './AuthenticationRoutes';
 import { lazy } from 'react'; 
-import config from './config'
+import config from '../config';
 import Loadable from '../ui-component/Loadable';
 import BuyAirtime from '../views/airtime';
 import SelectAirtimeView from '../views/airtime/airtimeSelectionView';
@@ -29,7 +29,7 @@ import EditProfile from '../views/profile/edit_profile';
 import { airtimeProducts, dataProducts } from '../_mocks_/products';
 import SellAirtimeOtp from '../views/sell-airtime/sell-airtime-otp';
 import FinalizeSellAirtime from '../views/sell-airtime/finalize-sell-airtime';
-import FundingSelection from '../views/payments/funding_selection';
+//import FundingSelection from '../views/payments/funding_selection';
 //import VerifyAccount from '../views/verify_account';
 
 // dashboard routing
