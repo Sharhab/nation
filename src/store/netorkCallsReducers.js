@@ -98,9 +98,6 @@ import {
     SELL_AIRTIME_FAIL,
     SELL_AIRTIME_REQUEST,
     SELL_AIRTIME_SUCCESS,
-    UPDATE_USER_FAIL,
-    UPDATE_USER_REQUEST,
-    UPDATE_USER_SUCCESS,
     UPDATE_USER_BVN_FAIL,
     UPDATE_USER_BVN_REQUEST,
     UPDATE_USER_BVN_SUCCESS,
@@ -124,9 +121,9 @@ export const initialGloCgDataState = {
     error: null
 };
 export const initialUpdateBvnState = {
-    loading: false,
-    bvnupdated: false,
-    error: null
+   Update_user_loading: false,
+    error: null,
+    user: {}
 };
 export const initialMtnDataState = {
     mtnDataPlans: [],
@@ -182,11 +179,11 @@ export const initialPinResetState = {
     error: null,
     user: {}
 };
-export const initialUserUpdate = {
-    Update_user_loading: false,
-    error: null,
-    user: {}
-};
+//export const initialUserUpdate = {
+    //Update_user_loading: false,
+ //   error: null,
+//    user: {}
+//};
 
 export const initialLoginState = {
     loading: false,
@@ -510,23 +507,7 @@ export const userStatReducer = (state = initialUserStatState, action) => {
             return state;
     }
 };
-// update user profile reducers
 
-export const userUpdateReducer = (state = initialUserUpdate, action) => {
-    switch (action.type) {
-        case UPDATE_USER_REQUEST:
-            return { ...state, Update_user_loading: true };
-
-        case UPDATE_USER_SUCCESS: {
-            return { ...state, Update_user_loading: false, user: action.payload };
-        }
-        case UPDATE_USER_FAIL:
-            return { ...state, Update_user_loading: false, error: action.payload };
-
-        default:
-            return state;
-    }
-};
 
 //logout user reducers starts her
  export const logoutReducer = (state = initialLogoutState, action) => {
@@ -655,12 +636,12 @@ export const sellAirtimeReducer = (state = initialSellAirtimeState, action) => {
 export const updateBvnReducer = (state = initialUpdateBvnState, action) =>{
     switch (action.type) {
         case UPDATE_USER_BVN_REQUEST:
-            return { ...state, loading: true };
+            return { ...state, Update_user_loading: true };
 
         case UPDATE_USER_BVN_SUCCESS:
-            return { ...state, loading: false, data: action.payload };
+            return { ...state, Update_user_loading: false, user: action.payload };
         case UPDATE_USER_BVN_FAIL:
-            return { ...state, loading: false, error: action.payload };
+            return { ...state, Update_user_loading: false, error: action.payload };
 
         default:
             return state;
