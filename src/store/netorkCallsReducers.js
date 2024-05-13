@@ -101,6 +101,9 @@ import {
     UPDATE_USER_FAIL,
     UPDATE_USER_REQUEST,
     UPDATE_USER_SUCCESS,
+    UPDATE_USER_BVN_FAIL,
+    UPDATE_USER_BVN_REQUEST,
+    UPDATE_USER_BVN_SUCCESS,
     VERIFY_DETAILS_FAIL,
     VERIFY_DETAILS_REQUEST,
     VERIFY_DETAILS_SUCCESS,
@@ -122,7 +125,7 @@ export const initialGloCgDataState = {
 };
 export const initialUpdateBvnState = {
     loading: false,
-    bvn: {},
+    bvnupdated: false,
     error: null
 };
 export const initialMtnDataState = {
