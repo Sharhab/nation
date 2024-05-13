@@ -28,7 +28,7 @@ const Funding = () => {
         }
 
         dispatch(userAction({ navigate }));
-    }, [navigate, dispatch, isLoggedIn]);
+    }, [navigate, dispatch, isLoggedIn, user]);
 
     useEffect(() => {
         if (Object.keys(user).length === 0) return;
