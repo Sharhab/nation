@@ -15,7 +15,8 @@ import * as yup from 'yup';
 
 const VerifyAccount = () => {
     const { updateUser, userStat } = useSelector((state) => state);
-    const { Update_user_loading } = updateUser;
+    const { Update_user_loading } = updateUser; 
+    const { isLoggedIn } = userStat;
     const { enqueueSnackbar } = useSnackbar();
 
     const navigate = useNavigate();
