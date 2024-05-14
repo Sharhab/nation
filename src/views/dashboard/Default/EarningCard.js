@@ -16,7 +16,7 @@ import MainCard from '../../../ui-component/cards/MainCard';
 import SkeletonEarningCard from '../../../ui-component/cards/Skeleton/EarningCard';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: theme.palette.primary.dark,
     color: '#fff',
     overflow: 'hidden',
     position: 'relative',
@@ -25,7 +25,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
         position: 'absolute',
         width: 210,
         height: 210,
-        background: theme.palette.secondary[800],
+        background: theme.palette.primary[800],
         borderRadius: '50%',
         top: -85,
         right: -95,
@@ -39,7 +39,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
         position: 'absolute',
         width: 210,
         height: 210,
-        background: theme.palette.secondary[800],
+        background: theme.palette.primary[800],
         borderRadius: '50%',
         top: -125,
         right: -15,
@@ -87,7 +87,7 @@ const EarningCard = ({ isLoading, message }) => {
                                             sx={{
                                                 ...theme.typography.commonAvatar,
                                                 ...theme.typography.largeAvatar,
-                                                backgroundColor: theme.palette.secondary[800],
+                                                backgroundColor: theme.palette.primary[800],
                                                 mt: 1
                                             }}
                                         >
@@ -100,8 +100,8 @@ const EarningCard = ({ isLoading, message }) => {
                                             sx={{
                                                 ...theme.typography.commonAvatar,
                                                 ...theme.typography.mediumAvatar,
-                                                backgroundColor: theme.palette.secondary.dark,
-                                                color: theme.palette.secondary[200],
+                                                backgroundColor: theme.palette.primary.dark,
+                                                color: theme.palette.primary[200],
                                                 zIndex: 1
                                             }}
                                             aria-controls="menu-earning-card"
@@ -186,8 +186,8 @@ const EarningCard = ({ isLoading, message }) => {
                                                                     // bottom: 0,
                                                                     cursor: 'pointer',
                                                                     ...theme.typography.smallAvatar,
-                                                                    backgroundColor: theme.palette.secondary[200],
-                                                                    color: theme.palette.secondary.dark
+                                                                    backgroundColor: theme.palette.primary[200],
+                                                                    color: theme.palette.primary.dark
                                                                 }}
                                                             >
                                                                 <ArrowUpwardIcon
@@ -199,17 +199,17 @@ const EarningCard = ({ isLoading, message }) => {
                                                     </Grid>
                                                 </Link>
 
-                                                <marquee
-                                                    style={{
-                                                        backgroundColor: 'red',
-                                                        marginTop: 1.7,
-                                                        marginBottom: 0.25,
-                                                        padding: '5px 0',
-                                                        borderRadius: '5px'
-                                                    }}
-                                                >
-                                                    <Typography sx={{ fontSize: '1.0rem' }}>{message ? message : ''}</Typography>
-                                                </marquee>
+                                                //<marquee
+                                                   // style={{
+                                                      //  backgroundColor: 'red',
+                                                      //  marginTop: 1.7,
+                                                      //  marginBottom: 0.25,
+                                                      //  padding: '5px 0',
+                                                      //  borderRadius: '5px'
+                                                  //  }}
+                                               // >
+                                                  //  <Typography sx={{ fontSize: '1.0rem' }}>{message ? message : ''}</Typography>
+                                               // </marquee>
                                             </>
                                         ) : (
                                             <Link to={'/pages/login'}>
