@@ -196,18 +196,6 @@ const EarningCard = ({ isLoading, message }) => {
                                                         </Grid>
                                                     </Grid>
                                                 </Link>
-
-                                                <marquee
-                                                    style={{
-                                                        backgroundColor: 'red',
-                                                        marginTop: 1.7,
-                                                        marginBottom: 0.25,
-                                                      padding: '5px 0',
-                                                      borderRadius: '5px'
-                                                   }}
-                                               >
-                                                  <Typography sx={{ fontSize: '1.0rem' }}>{message ? message : ''}</Typography>
-                                                </marquee>
                                             </>
                                         ) : (
                                             <Link to={'/pages/login'}>
@@ -217,9 +205,6 @@ const EarningCard = ({ isLoading, message }) => {
                                             </Link>
                                         )}
                                     </Grid>
-                                    {/* <Grid item>
-                                  
-                                    </Grid> */}
                                 </Grid>
                             </Grid>
                         </Grid>
