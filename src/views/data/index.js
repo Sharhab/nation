@@ -279,7 +279,7 @@ const handleSubmit = (values, { resetForm }) => {
                                         }}
                                         length={4}
                                         initialValue=""
-                                        ref={(n) => (pinRef.current = n)}
+                                        ref={pinRef}
                                         secret
                                         // onChange={(value, index) => {
                                         //     settpin(value);
