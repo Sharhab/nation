@@ -145,7 +145,10 @@ const BuyAirtime = ({ title, network }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <CustomButton color="primary" disabled={loading ? true : false}>
+                                    <CustomButton color="primary" 
+                                            disabled={loading ? true : false}
+                                            loading={loading ? true : false}
+                                        >
                                         Submit
                                     </CustomButton>
                                 </Grid>
