@@ -8,7 +8,7 @@ import 'dayjs/locale/de';
 import NavigationScroll from './layout/NavigationScroll';
 import { useSelector } from 'react-redux';
 // routing
-import MainRoutes from './routes';
+import Routes from './routes';
 // defaultTheme
 import themes from './themes';
 // third party packages
@@ -28,7 +28,7 @@ const App = () => {
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
                         <CssBaseline />
                         <NavigationScroll>
-                            <MainRoutes />
+                        <Routes />
                         </NavigationScroll>
                     </LocalizationProvider>
                 </ThemeProvider>
