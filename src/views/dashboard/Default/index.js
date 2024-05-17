@@ -1,6 +1,6 @@
 // material-ui
 import { Grid } from '@mui/material';
-import Cookies from 'js-cookie';
+
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -19,7 +19,7 @@ const Dashboard = () => {
     const [isLoading, setLoading] = useState(true);
     const { notificationDetails, userStat } = useSelector((state) => state);
     const { notification } = notificationDetails;
-    const { stat } = userStat;
+    const { isLoggedIn } = userStat;
     const { enqueueSnackbar } = useSnackbar();
     const [showAlert, setshowAlert] = useState(false);
     // const [ setshowErrorAlert] = useState(false);
@@ -28,15 +28,15 @@ const Dashboard = () => {
 
     useEffect(() => {
         setLoading(false);
-        if (!Cookies.get('user')) {
-            navigate('/pages/login');
+        if (!isLoggedIn) {
+            navigate('/pages/login', {replace: true});
             return;
         }
         dispatch(userAction({ navigate }));
         dispatch(userTransactionStat({ navigate }));
         // dispatch(userTransactionStatByDate({ navigate }));
         dispatch(getNotificationDetails({ enqueueSnackbar, setshowAlert }));
-    }, [dispatch, navigate, enqueueSnackbar]);
+    }, [dispatch, navigate, isLoggedIn, enqueueSnackbar]);
 
     return (
         <Grid container spacing={gridSpacing}>
@@ -65,7 +65,7 @@ const Dashboard = () => {
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={8}>
-                        <ProductListing isLoading={isLoading} stat={stat} />
+                        <ProductListing isLoading={isLoading} />
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <PopularCard isLoading={isLoading} />
