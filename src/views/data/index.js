@@ -73,7 +73,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const pinRef = useRef('');
     useEffect(() => {
         if (!isLoggedIn) {
-      navigate('/pages/login', { replace: true });
+    return navigate('/pages/login', { replace: true });
     }
         dispatch(checklogedinuserStatus());
         dispatch(userAction({ navigate }));
