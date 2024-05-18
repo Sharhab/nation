@@ -1,11 +1,7 @@
 import React from 'react';
-import { useRoutes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import MainLayout from '../layout/MainLayout';
 import ProtectedRoute from './ProtectedRout';
-import AuthenticationRoutes from './AuthenticationRoutes';
 import { lazy } from 'react'; 
-import config from '../config';
 import Loadable from '../ui-component/Loadable';
 import BuyAirtime from '../views/airtime';
 import SelectAirtimeView from '../views/airtime/airtimeSelectionView';
@@ -42,10 +38,10 @@ const UtilsShadow = Loadable(lazy(() => import('../views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('../views/utilities/MaterialIcons')));
 const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIcons')));
 
-const MainRoutes = () => {
-  const isLoggedIn = useSelector(state => state.userStat.isLoggedIn);
 
-  const routesConfig = [
+  const isLoggedIn = false;
+
+  const MainRoutes = [
     {
       path: '/',
       element: <MainLayout />,
@@ -222,7 +218,7 @@ const MainRoutes = () => {
     }
   ];
 
-  return useRoutes([routesConfig, AuthenticationRoutes], config.basename);
-};
+
+
 
 export default MainRoutes;
