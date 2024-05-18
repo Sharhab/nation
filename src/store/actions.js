@@ -677,7 +677,7 @@ export const LoginAction = ({ user, navigate, enqueueSnackbar }) => async (dispa
         // Make the network call to perform the login
         const { data } = await makeNetworkCall({
             method: 'POST',
-            requestBody: JSON.stringify(user),
+            requestBody: user,
             path: '/login',
         });
 
