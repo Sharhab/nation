@@ -116,8 +116,8 @@ const FirebaseLogin = ({ ...others }) => {
             <Formik
                 initialValues={{
                     email: '',
-                    password: '',
-                    submit: null
+                    password: ''
+    
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
@@ -225,6 +225,7 @@ const FirebaseLogin = ({ ...others }) => {
                                     type="submit"
                                     variant="contained"
                                     loading = {login.loading ? true : false}
+                                    onClick={() => handleSubmit(values)}
                                 >
                                     &#9660; Sign in
                                   </CustomButton>  
