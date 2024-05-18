@@ -40,17 +40,16 @@ const UtilsMaterialIcons = Loadable(lazy(() => import('../views/utilities/Materi
 const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIcons')));
 
 
-  const isLoggedIn = false;
+  
 
-  const MainRoutes = 
-    {
+  const MainRoutes = {
       path: '/',
       element: <MainLayout />,
       children: [
         {
           path: '/',
           index: true,
-          element: <ProtectedRoute isLoggedIn={isLoggedIn}><DashboardDefault /></ProtectedRoute>
+          element: <ProtectedRoute><DashboardDefault /></ProtectedRoute>
         },
 
       {
