@@ -17,6 +17,7 @@ import Login from '../views/pages/authentication/authentication3/Login3';
 import ResetPswdWrapper from '../views/pages/authentication/authentication3/ResetPswd';
 import { SuccessPAyment } from '../views/payments/ConfirmPayment';
 import Funding from '../views/payments/Funding';
+import Register from '../views/pages/authentication/authentication3/Register3';
 import PinResetEmail from '../views/pin_reset/pin_reset_email';
 import PinReset from '../views/pin_reset/pin_reset_page';
 import Profile from '../views/profile';
@@ -67,11 +68,11 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
             path: '/pages/login',
             element: <Login />
         },
-      // { 
-       //  path: '/pages/register',
-       //  element: <Register />
+      { 
+       path: '/pages/register',
+        element: <Register />
 
-       // },
+       },
         {
             path: '/pages/auth/forget-pswd',
             element: <ForgetPswdWrapper />
