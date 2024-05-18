@@ -41,7 +41,7 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
 
   const isLoggedIn = false;
 
-  const MainRoutes = [
+  const MainRoutes = 
     {
       path: '/',
       element: <MainLayout />,
@@ -215,8 +215,8 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
         //}
        
       ]
-    }
-  ];
+    };
+  
 
 
 
