@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const { userStat } = use useSelector((state) => state);
+const { userStat } = useSelector((state) => state);
 const ProtectedRoute = ({ children }) => {
   const { isLoggedIn } = userStat;
   
