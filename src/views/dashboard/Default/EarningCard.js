@@ -1,8 +1,8 @@
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 import EarningIcon from '../../../assets/images/icons/earning.svg';
@@ -53,6 +53,7 @@ const EarningCard = ({ isLoading, message }) => {
     const { loggedInUser } = useSelector((state) => state);
     const { user } = loggedInUser;
     const theme = useTheme();
+    const token true;
     const [anchorEl, setAnchorEl] = useState(null);
     const [showBalance, setShowBalance] = useState(true);
 
@@ -150,11 +151,11 @@ const EarningCard = ({ isLoading, message }) => {
                                             edge="end"
                                             size="large"
                                         >
-                                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                                            {showBalance ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                         </div>
-                                       {user? (
-                                            <>
+                                  {token ? (      
+                                          <>
                                                 <Link
                                                     to={'/fund-wallet'}
                                                     style={{
