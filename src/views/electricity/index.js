@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import PinInput from 'react-pin-input';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { buyElectricity, getElectricProviders, userAction, verifyMeter } from '../../store/actions';
+import { buyElectricity, userAction, verifyMeter } from '../../store/actions';
 import { CustomButton, CustomSelect, CustomTextField } from '../../ui-component/basic-inputs';
 // project imports
 import MainCard from '../../ui-component/cards/MainCard';
