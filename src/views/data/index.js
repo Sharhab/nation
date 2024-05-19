@@ -16,7 +16,6 @@ import {
     userAction,
     buyCgData,
     getAirtelCgData,
-    checklogedinuserStatus,
     getGloCgData,
     getMtnSmeTwoData,
     getMtnSmeOneData,
@@ -46,7 +45,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         myMtnCgDataPlans,
         myMtnSme2DataPlans,
         myMtnCoupDataPlans,
-        userStat
+        
     } = useSelector((state) => state);
 
     const { gloDataPlans } = myGloDataPlans;
@@ -62,7 +61,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const { loading, data, error } = dataOrder;
     const { dataGiftloading, dataGiftData, dataGiftError } = dataGiftingOrder;
     const { Cgdataloading, CgData, CgdataError } = cgDataOrder;
-    const { isLoggedIn } = userStat;
+    
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -72,10 +71,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const pinRef = useRef('');
     useEffect(() => {
-        if (!isLoggedIn) {
-    return navigate('/pages/login', { replace: true });
-    }
-        dispatch(checklogedinuserStatus());
+        
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
         dispatch(getMtnData());
