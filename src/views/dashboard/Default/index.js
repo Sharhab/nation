@@ -4,7 +4,7 @@ import { Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { getNotificationDetails, userAction, userTransactionStat } from '../../../store/actions';
+import { getNotificationDetails, userAction } from '../../../store/actions';
 import { gridSpacing } from '../../../store/constant';
 // project imports
 import EarningCard from './EarningCard';
