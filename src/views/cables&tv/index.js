@@ -2,7 +2,7 @@
 import { Box, Grid, Paper, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
 
-import Cookies from 'js-cookie';
+
 import { useSnackbar } from 'notistack';
 import { useEffect, useRef, useState } from 'react';
 import PinInput from 'react-pin-input';
@@ -38,7 +38,6 @@ const SubTv = ({ title }) => {
     const pinRef = useRef();
 
     useEffect(() => {
-        !Cookies.get('user') && navigate('/pages/login');
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch]);
     useEffect(() => {
