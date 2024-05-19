@@ -155,7 +155,7 @@ const EarningCard = ({ isLoading, message }) => {
                                                 {showBalance ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}
                                             </Avatar>
                                         </div>
-                                       {user?.username  (
+                                       {user? (
                                             <>
                                                 <Link
                                                     to={'/fund-wallet'}
