@@ -1,7 +1,6 @@
 // material-ui
 import { Box, Grid, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
-import Cookies from 'js-cookie';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import PinInput from 'react-pin-input';
@@ -28,7 +27,6 @@ const BuyAirtime = ({ title, network }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-        !Cookies.get('user') && navigate('/pages/login');
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch]);
 
