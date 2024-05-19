@@ -47,7 +47,6 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         myMtnCoupDataPlans,
         
     } = useSelector((state) => state);
-
     const { gloDataPlans } = myGloDataPlans;
     const { mtnDataPlans } = myMtnDataPlans;
     const { mtnSme1Dataplans } = myMtnSme1DataPlans;
@@ -71,8 +70,6 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const pinRef = useRef('');
     useEffect(() => {
-          
-        
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
         dispatch(getMtnData());
