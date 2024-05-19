@@ -20,9 +20,9 @@ import { userTransactionStatByDate } from '../../../store/actions';
 
 const PopularCard = ({ isLoading }) => {
     const { userStatByDate } = useSelector((state) => state);
-    const { stat, loading } = userStatByDate;
+    const { stat loading } = userStatByDate;
     // const theme = useTheme();
-    console.log(stat);
+    ;
     // const [anchorEl, setAnchorEl] = useState(null);
 
     // const handleClick = (event) => {
@@ -36,11 +36,10 @@ const PopularCard = ({ isLoading }) => {
     const navigate = useNavigate();
 
     const [value, setValue] = useState(dayjs(new Date()));
-    console.log(value.toISOString());
+    
     const handleButtonClick = () => {
         dispatch(userTransactionStatByDate({ date: value.toISOString(), navigate }));
-        console.log('DATE VALUE: ', value.toISOString());
-    };
+        
 
     return (
         <>
@@ -109,7 +108,8 @@ const PopularCard = ({ isLoading }) => {
                                 </div>
                                 {/* </Paper> */}
                             </Grid>
-                            {Object.keys(stat).length !== 0 && (
+                            {
+                                Object.keys(stat).length !== 0 && (
                                 <Grid item xs={12}>
                                     <Grid container direction="column">
                                         <Grid item>
