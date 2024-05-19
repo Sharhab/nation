@@ -500,6 +500,7 @@ export const userStatReducer = (state = initialUserStatState, action) => {
         case GET_USER_STATUS_SUCCESS: {
             return { ...state, loading: false,  isLoggedIn: true };
         }
+
         case GET_USER_STATUS_FAIL:
             return { ...state, loading: false, error: action.payload };
 
