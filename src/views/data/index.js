@@ -68,10 +68,10 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const { enqueueSnackbar } = useSnackbar();
     const [showAlert, setshowAlert] = useState(false);
     const [showErrorAlert, setshowErrorAlert] = useState(false);
-
+    const navigate = useNavigate();
     const pinRef = useRef('');
     useEffect(() => {
-          const navigate = useNavigate();
+          
         
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
@@ -83,7 +83,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         dispatch(getAirtelData());
         dispatch(getAirtelCgData());
         dispatch(getGloCgData());
-    }, [dispatch, navigate, isLoggedIn]);
+    }, [dispatch, navigate]);
 
     const INITIAL_FORM_VALUES = {
     beneficiaryNum: '',
