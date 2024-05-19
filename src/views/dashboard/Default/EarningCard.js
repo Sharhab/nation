@@ -64,7 +64,7 @@ const EarningCard = ({ isLoading, message }) => {
         setAnchorEl(null);
     };
 
-    const toggleBalanceVisibility = () => {
+    const handleClickShowPassword = () => {
         setShowBalance(!showBalance);
     };
 
@@ -142,18 +142,14 @@ const EarningCard = ({ isLoading, message }) => {
                                             <Typography sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {showBalance ? `Wallet Balance: ₦${user?.accountBalance}` : 'Wallet Balance: ****'}
                                             </Typography>
-                                            <Avatar
-                                                sx={{
-                                                    ...theme.typography.smallAvatar,
-                                                    ml: 1,
-                                                    cursor: 'pointer',
-                                                    backguserdColor: theme.palette.secondary[800],
-                                                    color: theme.palette.secondary[200]
-                                                }}
-                                                onClick={toggleBalanceVisibility}
-                                            >
-                                                {showBalance ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}
-                                            </Avatar>
+                                        <IconButton
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                            size="large"
+                                        >
+                                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
                                         </div>
                                        {user? (
                                             <>
