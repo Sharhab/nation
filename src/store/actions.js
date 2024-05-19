@@ -115,7 +115,7 @@ import {
     VERIFY_METER_REQUEST,
     VERIFY_METER_SUCCESS
 } from './constant';
-import { useNavigate } from "react-router-dom";
+
 // action - customization reducer
 export const SET_MENU = '@customization/SET_MENU';
 export const MENU_TOGGLE = '@customization/MENU_TOGGLE';
@@ -667,9 +667,8 @@ export const LogoutAction = () => async (dispatch) => {
     }
 };
 
-export const loginAction = ({ user, enqueueSnackbar }) => async (dispatch) => {
-    const navigate = useNavigate();
-    try {
+export const loginAction = ({ user, navigate, enqueueSnackbar }) => async (dispatch) => {
+        try {
         // Dispatch action to indicate the start of the login request
         dispatch({
             type: LOGIN_USER_REQUEST
