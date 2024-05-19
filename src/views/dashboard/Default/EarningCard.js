@@ -50,9 +50,8 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 }));
 
 const EarningCard = ({ isLoading, message }) => {
-    const { loggedInUser, userStat } = useSelector((state) => state);
-    const { user } = loggedInUser;
-    const { isLoggedIn } = userStat;
+    const { loggedInUser } = useSelector((state) => state);
+    const { user } loggedInUser;
     const theme = useTheme();
     const [anchorEl, setAnchorEl] = useState(null);
     const [showBalance, setShowBalance] = useState(true);
@@ -141,14 +140,14 @@ const EarningCard = ({ isLoading, message }) => {
                                         )}
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <Typography sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {isLoggedIn && showBalance ? `Wallet Balance: ₦${user?.accountBalance}` : 'Wallet Balance: ****'}
+                                                {showBalance ? `Wallet Balance: ₦${user?.accountBalance}` : 'Wallet Balance: ****'}
                                             </Typography>
                                             <Avatar
                                                 sx={{
                                                     ...theme.typography.smallAvatar,
                                                     ml: 1,
                                                     cursor: 'pointer',
-                                                    backgroundColor: theme.palette.secondary[800],
+                                                    backguserdColor: theme.palette.secondary[800],
                                                     color: theme.palette.secondary[200]
                                                 }}
                                                 onClick={toggleBalanceVisibility}
@@ -156,7 +155,7 @@ const EarningCard = ({ isLoading, message }) => {
                                                 {showBalance ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}
                                             </Avatar>
                                         </div>
-                                       {isLoggedIn ? (
+                                       {user ? (
                                             <>
                                                 <Link
                                                     to={'/fund-wallet'}
