@@ -1,7 +1,7 @@
 // material-ui
 import { Box, Grid, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
-import Cookies from 'js-cookie';
+
 import { useSnackbar } from 'notistack';
 import { useEffect, useRef, useState } from 'react';
 import PinInput from 'react-pin-input';
@@ -30,7 +30,7 @@ const ExamPin = ({ title }) => {
     const navigate = useNavigate();
     const pinRef = useRef();
     useEffect(() => {
-        !Cookies.get('user') && navigate('/pages/login');
+        
         dispatch(userAction({ navigate }));
         value && dispatch(getVariants({ provider: value }));
     }, [navigate, value, dispatch]);
@@ -124,8 +124,8 @@ const ExamPin = ({ title }) => {
                                         initialValue=""
                                         secret
                                         ref={(n) => (pinRef.current = n)}
-                                        type="numeric"
-                                        inputMode="number"
+                                        type="tel"
+                                        inputMode="numeric"
                                         inputStyle={{ borderColor: 'black' }}
                                         inputFocusStyle={{ borderColor: 'blue' }}
                                         onComplete={(value, index) => {}}
