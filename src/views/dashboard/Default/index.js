@@ -29,9 +29,9 @@ const Dashboard = () => {
     useEffect(() => {
         setLoading(false);
     
-        }
+        
         dispatch(userAction({ navigate }));
-        dispatch(userTransactionStat({ navigate }));
+       // dispatch(userTransactionStat({ navigate }));
         // dispatch(userTransactionStatByDate({ navigate }));
         dispatch(getNotificationDetails({ enqueueSnackbar, setshowAlert }));
     }, [dispatch, navigate, enqueueSnackbar]);
