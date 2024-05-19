@@ -17,9 +17,9 @@ import PopularCard from './PopularCard';
 
 const Dashboard = () => {
     const [isLoading, setLoading] = useState(true);
-    const { notificationDetails, userStat } = useSelector((state) => state);
+    const { notificationDetails } = useSelector((state) => state);
     const { notification } = notificationDetails;
-    const { isLoggedIn } = userStat;
+    
     const { enqueueSnackbar } = useSnackbar();
     const [showAlert, setshowAlert] = useState(false);
     // const [ setshowErrorAlert] = useState(false);
@@ -28,15 +28,13 @@ const Dashboard = () => {
 
     useEffect(() => {
         setLoading(false);
-        if (!isLoggedIn) {
-            navigate('/pages/login', {replace: true});
-            return;
+    
         }
         dispatch(userAction({ navigate }));
         dispatch(userTransactionStat({ navigate }));
         // dispatch(userTransactionStatByDate({ navigate }));
         dispatch(getNotificationDetails({ enqueueSnackbar, setshowAlert }));
-    }, [dispatch, navigate, isLoggedIn, enqueueSnackbar]);
+    }, [dispatch, navigate, enqueueSnackbar]);
 
     return (
         <Grid container spacing={gridSpacing}>
