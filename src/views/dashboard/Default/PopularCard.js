@@ -20,7 +20,7 @@ import { userTransactionStatByDate } from '../../../store/actions';
 
 const PopularCard = ({ isLoading }) => {
     const { userStatByDate } = useSelector((state) => state);
-    const { stat loading } = userStatByDate;
+    const { stat, loading } = userStatByDate;
     // const theme = useTheme();
     ;
     // const [anchorEl, setAnchorEl] = useState(null);
