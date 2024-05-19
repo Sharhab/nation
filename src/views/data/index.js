@@ -71,6 +71,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const pinRef = useRef('');
     useEffect(() => {
+          const navigate = useNavigate();
         
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
