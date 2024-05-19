@@ -48,7 +48,7 @@ const FirebaseLogin = ({ ...others }) => {
     };
 
     const dispatch = useDispatch();
-
+    const navigate = useNavigate()
     const handleSubmit = (values) => {
         const user = {
             email: values.email,
