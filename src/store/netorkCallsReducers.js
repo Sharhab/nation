@@ -445,8 +445,7 @@ export const loginUserReducer = (state = initialLoginState, action) => {
       case LOGIN_USER_REQUEST:
         return { ...state, loading: true };
   
-      case LOGIN_USER_SUCCESS: { 
-        window.location.replace('/');
+      case LOGIN_USER_SUCCESS: {
         return { ...state, loading: false, user: action.payload};
       }
   
