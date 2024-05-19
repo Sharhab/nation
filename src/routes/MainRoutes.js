@@ -28,7 +28,6 @@ import SellAirtimeOtp from '../views/sell-airtime/sell-airtime-otp';
 import FinalizeSellAirtime from '../views/sell-airtime/finalize-sell-airtime';
 //import FundingSelection from '../views/payments/funding_selection';
 //import VerifyAccount from '../views/verify_account';
-import { Navigate } from 'react-router-dom';
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
 
@@ -40,15 +39,13 @@ const UtilsMaterialIcons = Loadable(lazy(() => import('../views/utilities/Materi
 const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIcons')));
 
 
-  const isLoggedIn = true;
-
   const MainRoutes = {
-    path: '/',
-    element: isLoggedIn ? <DashboardDefault /> : <MainLayout />,
+    path: '/pages/login',
+    element: <MainLayout />,
     children: [
       {
-        index: true,
-        element: isLoggedIn ? <DashboardDefault /> : <Navigate to="/pages/login" />
+        path: '/',
+        element: <DashboardDefault /> 
       },
 
       {
