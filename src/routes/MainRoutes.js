@@ -40,17 +40,16 @@ const UtilsMaterialIcons = Loadable(lazy(() => import('../views/utilities/Materi
 const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIcons')));
 
 
-  
+  const isLoggedIn = true;
 
   const MainRoutes = {
-      path: '/',
-      element: <MainLayout />,
-      children: [
-        {
-         index: true,
-          element: <DashboardDefault />
-                 
-        },
+    path: '/',
+    element: isLoggedIn ? <DashboardDefault /> : <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: isLoggedIn ? <DashboardDefault /> : <Navigate to="/pages/login" />
+      },
 
       {
             path: '/reset-pwd',
