@@ -53,7 +53,7 @@ const EarningCard = ({ isLoading, message }) => {
     const { loggedInUser } = useSelector((state) => state);
     const { user } = loggedInUser;
     const theme = useTheme();
-    const token true;
+    const token = true;
     const [anchorEl, setAnchorEl] = useState(null);
     const [showBalance, setShowBalance] = useState(true);
 
