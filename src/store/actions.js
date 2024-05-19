@@ -667,7 +667,7 @@ export const LogoutAction = () => async (dispatch) => {
     }
 };
 
-export const LoginAction = ({ user, navigate, enqueueSnackbar }) => async (dispatch) => {
+export const loginAction = ({ user, navigate, enqueueSnackbar }) => async (dispatch) => {
     try {
         // Dispatch action to indicate the start of the login request
         dispatch({
