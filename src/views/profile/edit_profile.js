@@ -1,6 +1,5 @@
 import { Grid, useMediaQuery } from '@mui/material';
 import { Form, Formik } from 'formik';
-import Cookies from 'js-cookie';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +14,6 @@ const EditProfile = () => {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     useEffect(() => {
-        !Cookies.get('user') && navigate('/pages/login');
 
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch]);
