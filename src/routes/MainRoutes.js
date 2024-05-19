@@ -47,9 +47,10 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
       element: <MainLayout />,
       children: [
         {
-          path: '/',
           index: true,
-          element: <ProtectedRoute><DashboardDefault /></ProtectedRoute>
+          element: <ProtectedRoute>
+                  <DashboardDefault />
+                 </ProtectedRoute>
         },
 
       {
