@@ -68,7 +68,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const { enqueueSnackbar } = useSnackbar();
     const [showAlert, setshowAlert] = useState(false);
     const [showErrorAlert, setshowErrorAlert] = useState(false);
-    const navigate = useNavigate();
+
     const pinRef = useRef('');
     useEffect(() => {
           
