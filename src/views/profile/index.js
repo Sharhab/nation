@@ -1,6 +1,6 @@
 import { Button, Grid, Paper, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Cookies from 'js-cookie';
+
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -14,7 +14,6 @@ const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-        !Cookies.get('user') && navigate('/pages/login');
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch]);
     const matches = useMediaQuery('(min-width:600px)');
