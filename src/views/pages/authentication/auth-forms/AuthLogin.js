@@ -54,7 +54,7 @@ const FirebaseLogin = ({ ...others }) => {
             email: values.email,
             password: values.password
         };
-        dispatch(loginAction({ user: user, enqueueSnackbar }));
+        dispatch(loginAction({ user: user, navigate, enqueueSnackbar }));
     
     };
 
@@ -123,7 +123,7 @@ const FirebaseLogin = ({ ...others }) => {
                     email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
                     password: Yup.string().max(255).required('Password is required')
                 })}
-            onSubmit = {handleSubmit}
+                onSubmit = {handleSubmit}
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <Form>
