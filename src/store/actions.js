@@ -667,7 +667,7 @@ export const LogoutAction = () => async (dispatch) => {
     }
 };
 
-export const loginAction = ({ user, navigate, enqueueSnackbar }) => async (dispatch) => {
+export const loginAction = ({ user, enqueueSnackbar }) => async (dispatch) => {
     try {
         // Dispatch action to indicate the start of the login request
         dispatch({
@@ -695,7 +695,7 @@ export const loginAction = ({ user, navigate, enqueueSnackbar }) => async (dispa
             });
 
             // Navigate to the dashboard on successful login
-            navigate('/');
+            
         } else {
             // If no data or message received, handle as an error
             dispatch({
