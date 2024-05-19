@@ -24,7 +24,7 @@ import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { LoginAction } from '../../../../store/actions';
+import { loginAction } from '../../../../store/actions';
 import AnimateButton from '../../../../ui-component/extended/AnimateButton';
 // third party
 import * as Yup from 'yup';
@@ -54,7 +54,7 @@ const FirebaseLogin = ({ ...others }) => {
             email: values.email,
             password: values.password
         };
-        dispatch(LoginAction({ user: user, navigate, enqueueSnackbar }));
+        dispatch(loginAction({ user: user, navigate, enqueueSnackbar }));
     
     };
 
@@ -123,7 +123,7 @@ const FirebaseLogin = ({ ...others }) => {
                     email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
                     password: Yup.string().max(255).required('Password is required')
                 })}
-                onSubmit={handleSubmit}
+            onSubmit = {handleSubmit}
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <Form>
