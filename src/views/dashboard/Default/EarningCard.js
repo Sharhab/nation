@@ -51,7 +51,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const EarningCard = ({ isLoading, message }) => {
     const { loggedInUser } = useSelector((state) => state);
-    const { user } loggedInUser;
+    const { user } = loggedInUser;
     const theme = useTheme();
     const [anchorEl, setAnchorEl] = useState(null);
     const [showBalance, setShowBalance] = useState(true);
@@ -155,7 +155,7 @@ const EarningCard = ({ isLoading, message }) => {
                                                 {showBalance ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}
                                             </Avatar>
                                         </div>
-                                       {user ? (
+                                       {user?.username  (
                                             <>
                                                 <Link
                                                     to={'/fund-wallet'}
