@@ -135,11 +135,12 @@ const EarningCard = ({ isLoading, message }) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {login.isLoggedIn && user?.username && (
-                                            <Typography sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {`Welcome Back, ${user?.username}`}
-                                            </Typography>
-                                        )}
+                                 {login.isLoggedIn && user.username && (
+                                     <Typography sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                     {`Welcome Back, ${user.username}`}
+                                     </Typography>
+                                         )}
+
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <Typography sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {login.isLoggedIn && showBalance ? `Wallet Balance: ₦${user?.accountBalance}` : 'Wallet Balance: *******'}
