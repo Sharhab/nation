@@ -50,10 +50,9 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 }));
 
 const EarningCard = ({ isLoading, message }) => {
-    const { loggedInUser } = useSelector((state) => state);
+    const { loggedInUser, login } = useSelector((state) => state);
     const { user } = loggedInUser;
     const theme = useTheme();
-    const token = true;
     const [anchorEl, setAnchorEl] = useState(null);
     const [showBalance, setShowBalance] = useState(true);
 
@@ -136,14 +135,14 @@ const EarningCard = ({ isLoading, message }) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        {user?.username && (
+                                        {login.isLoggedIn && user?.username && (
                                             <Typography sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                                                 {`Welcome Back, ${user?.username}`}
                                             </Typography>
                                         )}
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <Typography sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {showBalance ? `Wallet Balance: ₦${user?.accountBalance}` : 'Wallet Balance: ****'}
+                                                {login.isLoggedIn && showBalance ? `Wallet Balance: ₦${user?.accountBalance}` : 'Wallet Balance: *******'}
                                             </Typography>
                                         <IconButton
                                             onClick={handleClickShowPassword}
@@ -154,7 +153,7 @@ const EarningCard = ({ isLoading, message }) => {
                                             {showBalance ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                         </div>
-                                  {token ? (      
+                                  {login.isLoggedIn ? (      
                                           <>
                                                 <Link
                                                     to={'/fund-wallet'}
