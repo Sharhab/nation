@@ -188,7 +188,8 @@ export const initialPinResetState = {
 export const initialLoginState = {
     loading: false,
     error: null,
-    user: {}
+    user: {},
+    isLoggedIn: false
 };
 export const initialresetState = {
     loading: false,
@@ -442,20 +443,16 @@ export const getAirtelcgDataReducer = (state = initialAirtelCgDataState, action)
 
 export const loginUserReducer = (state = initialLoginState, action) => {
     switch (action.type) {
-      case LOGIN_USER_REQUEST:
-        return { ...state, loading: true };
-  
-      case LOGIN_USER_SUCCESS: {
-        return { ...state, loading: false, user: action.payload};
-      }
-  
-      case LOGIN_USER_FAIL:
-        return { ...state, loading: false, error: action.payload };
-  
-      default:
-        return state;
+        case LOGIN_USER_REQUEST:
+            return { ...state, loading: true };
+        case LOGIN_USER_SUCCESS:
+            return { ...state, loading: false, user: action.payload, isLoggedIn: true };
+        case LOGIN_USER_FAIL:
+            return { ...state, loading: false, error: action.payload, isLoggedIn: false };
+        default:
+            return state;
     }
-  };
+};
 
 //get a user details reducers
 export const userReducer = (state = initialUserState, action) => {
