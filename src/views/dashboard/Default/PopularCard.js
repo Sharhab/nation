@@ -18,7 +18,7 @@ import { userTransactionStatByDate } from '../../../store/actions';
 
 const PopularCard = ({ isLoading }) => {
     const { userStatByDate } = useSelector((state) => state);
-    const { stat, loading } = userStatByDate;
+    const { stat = {}, loading } = userStatByDate;
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
