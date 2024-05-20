@@ -5,7 +5,6 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { generateMonnifyAccount } from '../store/actions';
-import { CustomButton } from '../ui-component/basic-inputs'
 const FeedBack = ({
     title,
     type,
@@ -72,16 +71,16 @@ const FeedBack = ({
                                 Submit
                             </Button>
                         ) : (
-                            <CustomButton
+                            <Button
                                 fullWidth
                                 onClick={onClickGenerate}
                                 variant="contained"
                                 color="primary"
                                 disabled={loading}
-                                loading= {loading}       
+                                      
                             >
                                 {from === 'fund' ? 'Generate now' : 'Ok'}
-                            </CustomButton>
+                            </Button>
                         )}
                     </>
                 }
