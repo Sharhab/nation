@@ -23,7 +23,7 @@ import {
 }  from '../../store/actions';
 import { CustomButton, CustomSelect, CustomTextField } from '../../ui-component/basic-inputs';
 // project imports 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import MainCard from '../../ui-component/cards/MainCard';
 import { generateRequestId } from '../../utils/generateRequestId';
 import FeedBack from '../feedBack';
