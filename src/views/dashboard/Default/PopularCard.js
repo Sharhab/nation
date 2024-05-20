@@ -22,7 +22,7 @@ const PopularCard = ({ isLoading }) => {
     const { userStatByDate } = useSelector((state) => state);
     const { stat, loading } = userStatByDate;
     // const theme = useTheme();
-    ;
+
     // const [anchorEl, setAnchorEl] = useState(null);
 
     // const handleClick = (event) => {
@@ -36,10 +36,10 @@ const PopularCard = ({ isLoading }) => {
     const navigate = useNavigate();
 
     const [value, setValue] = useState(dayjs(new Date()));
-    
+
     const handleButtonClick = () => {
         dispatch(userTransactionStatByDate({ date: value.toISOString(), navigate }));
-        
+    };
 
     return (
         <>
@@ -108,8 +108,7 @@ const PopularCard = ({ isLoading }) => {
                                 </div>
                                 {/* </Paper> */}
                             </Grid>
-                            {
-                                Object.keys(stat).length !== 0 && (
+                            {Object.keys(stat).length !== 0 && (
                                 <Grid item xs={12}>
                                     <Grid container direction="column">
                                         <Grid item>
