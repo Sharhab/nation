@@ -45,7 +45,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         myMtnCgDataPlans,
         myMtnSme2DataPlans,
         myMtnCoupDataPlans,
-        
+        login
     } = useSelector((state) => state);
     const { gloDataPlans } = myGloDataPlans;
     const { mtnDataPlans } = myMtnDataPlans;
@@ -60,7 +60,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const { loading, data, error } = dataOrder;
     const { dataGiftloading, dataGiftData, dataGiftError } = dataGiftingOrder;
     const { Cgdataloading, CgData, CgdataError } = cgDataOrder;
-    
+    const { isLoggedIn } = login;
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -70,6 +70,9 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
     const pinRef = useRef('');
     useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/pages/login');
+        }
         dispatch(userAction({ navigate }));
         dispatch(getGloData());
         dispatch(getMtnData());
