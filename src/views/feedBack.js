@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { Button, Typography, TextField } from '@mui/material';
 import { useSnackbar } from 'notistack';
@@ -6,7 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { generateMonnifyAccount } from '../store/actions';
-
+import { CustomButton } from './menu-items/basic-input'
 const FeedBack = ({
     title,
     type,
@@ -16,7 +15,7 @@ const FeedBack = ({
     showAlert,
     setshowAlert,
     showErrorAlert,
-    setshowErrorAlert
+    setshowErrorAlert,
 }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -57,9 +56,9 @@ const FeedBack = ({
             <SweetAlert
                 type={type ? 'info' : 'success'}
                 title={title || 'Successful!'}
-                show={showAlert}
+             owAlert}
                 onCancel={() => setshowAlert(false)}
-                onConfirm={ onClickSuccess }
+                onConfirm={onClickSuccess}
                 customButtons={
                     <>
                         {bvnInputShown ? (
@@ -73,15 +72,16 @@ const FeedBack = ({
                                 Submit
                             </Button>
                         ) : (
-                            <Button
+                            <CustomButton
                                 fullWidth
                                 onClick={onClickGenerate}
                                 variant="contained"
                                 color="primary"
                                 disabled={loading}
+                                loading= {loading}       
                             >
                                 {from === 'fund' ? 'Generate now' : 'Ok'}
-                            </Button>
+                            </CustomButton>
                         )}
                     </>
                 }
