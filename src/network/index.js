@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://globstand-backend.onrender.com/api';
+const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://sharhapay.onrender.com/api';
 
 export const RequestMethod = {
   POST: 'POST',
@@ -35,7 +35,7 @@ export const makeNetworkCall = async ({ method, path, requestBody, params, heade
       params,
       headers,
       data: requestBody,
-      withCredentials: true, // Enables credentials such as cookies, authorization headers etc.
+      withCredentials: true, // Ensures cookies and other credentials are sent with requests
     });
 
     return response.data;
