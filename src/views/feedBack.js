@@ -5,7 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { generateMonnifyAccount } from '../store/actions';
-import { CustomButton } from './menu-items/basic-input'
+import { CustomButton } from '../menu-items/basic-input'
 const FeedBack = ({
     title,
     type,
