@@ -24,7 +24,7 @@ const Funding = () => {
 
     useEffect(() => {
       if(!isLoggedIn){
-          navigate ('/pages/login')
+          navigate('/pages/login')
       }
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch, isLoggedIn]);
