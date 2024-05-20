@@ -5,6 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { generateMonnifyAccount } from '../store/actions';
+
 const FeedBack = ({
     title,
     type,
@@ -14,7 +15,7 @@ const FeedBack = ({
     showAlert,
     setshowAlert,
     showErrorAlert,
-    setshowErrorAlert,
+    setshowErrorAlert
 }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const FeedBack = ({
             <SweetAlert
                 type={type ? 'info' : 'success'}
                 title={title || 'Successful!'}
-             owAlert}
+                show={showAlert}
                 onCancel={() => setshowAlert(false)}
                 onConfirm={onClickSuccess}
                 customButtons={
@@ -77,7 +78,6 @@ const FeedBack = ({
                                 variant="contained"
                                 color="primary"
                                 disabled={loading}
-                                      
                             >
                                 {from === 'fund' ? 'Generate now' : 'Ok'}
                             </Button>
