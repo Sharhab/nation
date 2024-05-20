@@ -1043,42 +1043,43 @@ export const fundWalletWithMonnify = ({ amount, enqueueSnackbar }) =>
         }
     };
 
-export const generateMonnifyAccount = ({ enqueueSnackbar, navigate, bvn }) =>
-    async (dispatch) => {
-        
-        try {
-            dispatch({
-                type: GENERATE_mONNIFY_ACCOUNT_REQUEST
-            });
-            const { data } = await makeNetworkCall({
-                method: 'POST',
-                path: `/create-reserved-account/me`,
-                requestBody: bvn,
-                
-            });
-            dispatch({
-                type: GENERATE_mONNIFY_ACCOUNT_SUCCESS,
-                payload: data
-            });
-            console.log(data);
-            enqueueSnackbar(data.message, {
-                variant: 'sucess',
-                autoHideDuration: 2000
-            });
-            
-        } catch (error) {
-            console.log('ERROR: ', error);
-            dispatch({
-                type: GENERATE_mONNIFY_ACCOUNT_FAIL,
-                payload:error?.message
-            });
-            error &&
-                enqueueSnackbar( error?.message, {
-                    variant: 'error',
-                    autoHideDuration: 2000
-                });
-        }
-    };
+export const generateMonnifyAccount = ({ enqueueSnackbar, navigate, bvn }) => async (dispatch) => {
+    try {
+        dispatch({
+            type: GENERATE_mONNIFY_ACCOUNT_REQUEST,
+        });
+
+        const { data } = await makeNetworkCall({
+            method: 'POST',
+            path: '/create-reserved-account/me',
+            requestBody: { bvn },  // Ensure bvn is sent as an object
+        });
+
+        dispatch({
+            type: GENERATE_mONNIFY_ACCOUNT_SUCCESS,
+            payload: data,
+        });
+
+        enqueueSnackbar(data.message, {
+            variant: 'success',
+            autoHideDuration: 2000,
+        });
+
+        // Optionally, navigate to another page after success
+        //navigate('/somepage'); // Adjust the path as needed
+    } catch (error) {
+        dispatch({
+            type: GENERATE_mONNIFY_ACCOUNT_FAIL,
+            payload: error?.response?.data?.message || error.message,
+        });
+
+        enqueueSnackbar(error?.response?.data?.message || error.message, {
+            variant: 'error',
+            autoHideDuration: 2000,
+        });
+    }
+};
+
 
 // VTU ACTIONS HERE
 
