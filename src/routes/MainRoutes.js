@@ -1,6 +1,6 @@
 import React from 'react';
 import MainLayout from '../layout/MainLayout';
-//import ProtectedRoute from './ProtectedRout';
+import ProtectedRoute from './ProtectedRout';
 import { lazy } from 'react'; 
 import Loadable from '../ui-component/Loadable';
 import BuyAirtime from '../views/airtime';
@@ -45,7 +45,7 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
     children: [
       {
         index: true,
-        element: <DashboardDefault /> 
+        element: <ProtectedRoute><DashboardDefault /></ProtectedRoute>
       },
 
       {
