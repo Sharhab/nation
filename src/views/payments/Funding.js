@@ -13,8 +13,9 @@ import FeedBack from '../feedBack';
 import * as yup from 'yup';
 
 const Funding = () => {
-    const {  fundWithMonnify, loggedInUser } = useSelector((state) => state);
+    const {  fundWithMonnify, loggedInUser, login} = useSelector((state) => state);
     const { user } = loggedInUser;
+    const { isLoggedIn } = login;
     const { loading } =  fundWithMonnify;
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,9 +23,11 @@ const Funding = () => {
     const [showAlert, setshowAlert] = useState(false);
 
     useEffect(() => {
-
+      if(!isLoggedIn){
+          navigate ('/pages/login')
+      }
         dispatch(userAction({ navigate }));
-    }, [navigate, dispatch]);
+    }, [navigate, dispatch, isLoggedIn]);
 
     useEffect(() => {
         if (Object.keys(user).length === 0) return;
