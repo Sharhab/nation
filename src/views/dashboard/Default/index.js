@@ -36,7 +36,7 @@ const Dashboard = () => {
        // dispatch(userTransactionStat({ navigate }));
         // dispatch(userTransactionStatByDate({ navigate }));
         dispatch(getNotificationDetails({ enqueueSnackbar, setshowAlert }));
-    }, [dispatch, navigate, enqueueSnackbar]);
+    }, [dispatch, navigate, isLoggedIn, enqueueSnackbar]);
 
     return (
         <Grid container spacing={gridSpacing}>
