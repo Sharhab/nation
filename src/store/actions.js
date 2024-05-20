@@ -194,29 +194,6 @@ export const getMtnSmeTwoData = () => async (dispatch) => {
     }
 };
 
-// export const getMtnSmeOneData = () => async (dispatch) => {
-//     try {
-//         dispatch({
-//             type: GET_MTN_SME_2_DATA_PLAN_REQUEST
-//         });
-//         const { data } = await makeNetworkCall({
-//             method: 'GET',
-//             path: '/mtn-sme-1-data-plans',
-//             headers: {
-//                 Authorization: `Bearer ${token}`
-//             }
-//         });
-//         dispatch({
-//             type: GET_MTN_SME_2_DATA_PLAN_SUCCESS,
-//             payload: data
-//         });
-//     } catch (error) {
-//         dispatch({
-//             type: GET_MTN_SME_2_DATA_PLAN_FAIL,
-//             payload: error?.messag
-//         });
-//     }
-// };
 export const getMtnCgData = () => async (dispatch) => {
     try {
         dispatch({
@@ -922,7 +899,7 @@ export const UpdateUserAction =
   try {
     const { data } = await makeNetworkCall({
       method: 'GET',
-      path: `/users/me`, // Endpoint that retrieves user info based on the authenticated session
+      path: '/users/profile', // Endpoint that retrieves user info based on the authenticated session
       // Remove the Authorization header since the token is handled via HttpOnly cookies
     });
 
