@@ -904,6 +904,7 @@ export const UpdateUserAction =
     });
 
     if (data) {
+        console.log(data)
       dispatch({
         type: GET_LOGGED_IN_USER_SUCCESS,
         payload: data,
