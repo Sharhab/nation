@@ -1043,7 +1043,7 @@ export const fundWalletWithMonnify = ({ amount, enqueueSnackbar }) =>
         }
     };
 
-export const generateMonnifyAccount = ({ enqueueSnackbar, navigate,bvn }) =>
+export const generateMonnifyAccount = ({ enqueueSnackbar, navigate, bvn }) =>
     async (dispatch) => {
         
         try {
