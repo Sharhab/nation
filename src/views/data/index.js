@@ -2,7 +2,7 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { useSnackbar } from 'notistack';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PinInput from 'react-pin-input';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -31,7 +31,7 @@ import * as yup from 'yup';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
- const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
+const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const {
         myGloDataPlans,
         getairtelCgDataPlans,
@@ -67,8 +67,8 @@ import * as yup from 'yup';
     const { enqueueSnackbar } = useSnackbar();
     const [showAlert, setshowAlert] = useState(false);
     const [showErrorAlert, setshowErrorAlert] = useState(false);
-    const [pin, setPin] = useState("");
-    const pinRef = useRef('');
+     const [pin, setPin] = useState('');
+    
     useEffect(() => {
         if (!isLoggedIn) {
             navigate('/pages/login');
@@ -101,8 +101,8 @@ import * as yup from 'yup';
             .required('Please enter beneficiary number'),
         amount: yup.number().integer().required('Please enter airtime amount').typeError('amount must be a number'),
         plan: yup.object().required('Please select data plan'),
-        network: yup.string().required('Please select data plan'),
-            });
+        network: yup.string().required('Please select data plan')
+    });
 
     const returnPlan = ({ network, sme, sme_2, mtn_cg, coup, cg }) => {
         switch (network) {
@@ -122,8 +122,8 @@ import * as yup from 'yup';
     };
 
     const sendCgdata = (values) => {
-        if (pin === "") {
-            enqueueSnackbar('please provide transaction pin to proceed', {
+        if (pin === '') {
+            enqueueSnackbar('provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
             });
@@ -137,12 +137,12 @@ import * as yup from 'yup';
             plan_id: values.plan.plan_id,
             network: network,
             request_Id: generateRequestId(),
-            pin: pin
+            pin: pin      
         };
 
         dispatch(
             buyCgData({
-               orderDetails: {
+                orderDetails: {
                     data: { ...body }
                 },
                 enqueueSnackbar,
@@ -152,8 +152,8 @@ import * as yup from 'yup';
         );
     };
     const sendGiftData = (values) => {
-        if (pin === "") {
-            enqueueSnackbar('please provide transaction pin to proceed', {
+        if (pin === '') {
+            enqueueSnackbar('provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
             });
@@ -183,8 +183,8 @@ import * as yup from 'yup';
     };
 
     const handleSubmit = (values, { resetForm }) => {
-        if (pin === "") {
-            enqueueSnackbar('please Provide transaction pin to proceed', {
+        if (pin === '') {
+            enqueueSnackbar('Provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
             });
@@ -213,8 +213,6 @@ import * as yup from 'yup';
         }));
 
         resetForm({ values: { ...INITIAL_FORM_VALUES } });
-        
-            setPin("")
 
     return (
         <MainCard title={title}>
@@ -249,7 +247,7 @@ import * as yup from 'yup';
                                     />
                                 </Grid>
                                 <Grid item xs={12} style={{ display: 'block' }}>
-                                <CustomTextField name="network" disabled value={(values.network = network)} placeholder="Network" />
+                                                                       <CustomTextField name="network" disabled value={(values.network = network)} placeholder="Network" />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography>Enter Transaction Pin</Typography>
@@ -259,13 +257,12 @@ import * as yup from 'yup';
                                         }}
                                         length={4}
                                         initialValue=""
-                                        ref={pinRef}
-                                        secret
+                                        secret 
+                                         onChange={(value, index) => {
+                                            setPin(value) 
+                                         }}
                                         type="tel"
                                         inputMode="numeric"
-                                        onChange={(value, index) => {
-                                            setPin(value);
-                                        }}
                                         inputStyle={{ borderColor: 'black' }}
                                         inputFocusStyle={{ borderColor: 'blue' }}
                                         onComplete={(value, index) => {}}
@@ -306,5 +303,6 @@ import * as yup from 'yup';
     );
 };
 
-
 export default BuyData;
+
+                               
