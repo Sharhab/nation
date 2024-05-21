@@ -1,8 +1,8 @@
-// material-u
+                        // material-u
 import { Box, Grid, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { useSnackbar } from 'notistack';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PinInput from 'react-pin-input';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -67,8 +67,8 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const { enqueueSnackbar } = useSnackbar();
     const [showAlert, setshowAlert] = useState(false);
     const [showErrorAlert, setshowErrorAlert] = useState(false);
-     const [pin, setPin] = useState('');
-    
+
+    const pinRef = useRef('');
     useEffect(() => {
         if (!isLoggedIn) {
             navigate('/pages/login');
@@ -122,7 +122,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     };
 
     const sendCgdata = (values) => {
-        if (pin === '') {
+        if (!pinRef.current.values) {
             enqueueSnackbar('provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
@@ -137,7 +137,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             plan_id: values.plan.plan_id,
             network: network,
             request_Id: generateRequestId(),
-            pin: pin      
+            pin: pinRef.current.values.join('')
         };
 
         dispatch(
@@ -152,7 +152,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         );
     };
     const sendGiftData = (values) => {
-        if (pin === '') {
+        if (!pinRef.current.values) {
             enqueueSnackbar('provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
@@ -167,7 +167,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             network: values.network,
             network_id: values.plan.network_id,
             request_id: generateRequestId(),
-            pin: pin
+            pin: pinRef.current.values.join('')
         };
 
         dispatch(
@@ -183,7 +183,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     };
 
     const handleSubmit = (values, { resetForm }) => {
-        if (pin === '') {
+        if (!pinRef.current.values) {
             enqueueSnackbar('Provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
@@ -199,7 +199,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             plan_id: values.plan.plan_id,
             network: network,
             request_Id: generateRequestId(),
-            pin: pin
+            pin: pinRef.current.values.join('')
         };
 
         dispatch(buyData({
@@ -213,6 +213,13 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         }));
 
         resetForm({ values: { ...INITIAL_FORM_VALUES } });
+
+        if (pinRef.current && pinRef.current.clear) {
+            pinRef.current.clear();
+        } else if (pinRef.current) {
+            pinRef.current.values = '';
+        }
+    };
 
     return (
         <MainCard title={title}>
@@ -247,7 +254,9 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12} style={{ display: 'block' }}>
-                                                                       <CustomTextField name="network" disabled value={(values.network = network)} placeholder="Network" />
+                                    <CustomTextField name="network" disabled value={(values.network = network)} placeholder="Network" />
+                               
+
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography>Enter Transaction Pin</Typography>
@@ -257,10 +266,8 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
                                         }}
                                         length={4}
                                         initialValue=""
-                                        secret 
-                                         onChange={(value, index) => {
-                                            setPin(value) 
-                                         }}
+                                        ref={pinRef}
+                                        secret
                                         type="tel"
                                         inputMode="numeric"
                                         inputStyle={{ borderColor: 'black' }}
@@ -304,5 +311,3 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 };
 
 export default BuyData;
-
-                               
