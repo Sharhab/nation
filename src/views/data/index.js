@@ -102,9 +102,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         amount: yup.number().integer().required('Please enter airtime amount').typeError('amount must be a number'),
         plan: yup.object().required('Please select data plan'),
         network: yup.string().required('Please select data plan'),
-        pin: yub.string().match(/^\d+$/, 'only number')
-        .max(4, 'max of 4 characters allowed').min(4, 'min of 4 characters allowed')
-    });
+            });
 
     const returnPlan = ({ network, sme, sme_2, mtn_cg, coup, cg }) => {
         switch (network) {
