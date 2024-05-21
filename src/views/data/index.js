@@ -139,7 +139,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             plan_id: values.plan.plan_id,
             network: network,
             request_Id: generateRequestId(),
-            pin: pinRef.current.values.join('')
+            pin: pin
         };
 
         dispatch(
@@ -169,7 +169,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             network: values.network,
             network_id: values.plan.network_id,
             request_id: generateRequestId(),
-            pin: pinRef.current.values.join('')
+            pin: pin
         };
 
         dispatch(
@@ -201,7 +201,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             plan_id: values.plan.plan_id,
             network: network,
             request_Id: generateRequestId(),
-            pin: pinRef.current.values.join('')
+            pin: pin
         };
 
         dispatch(buyData({
