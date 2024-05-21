@@ -122,8 +122,8 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     };
 
     const sendCgdata = (values) => {
-        if (!pinRef.current.values) {
-            enqueueSnackbar('provide transaction pin to proceed', {
+        if (pin === "") {
+            enqueueSnackbar('please provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
             });
@@ -152,8 +152,8 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         );
     };
     const sendGiftData = (values) => {
-        if (!pinRef.current.values) {
-            enqueueSnackbar('provide transaction pin to proceed', {
+        if (pin === "") {
+            enqueueSnackbar('please provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
             });
@@ -183,8 +183,8 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     };
 
     const handleSubmit = (values, { resetForm }) => {
-        if (!pinRef.current.values) {
-            enqueueSnackbar('Provide transaction pin to proceed', {
+        if (pin === "") {
+            enqueueSnackbar('please Provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
             });
@@ -214,11 +214,8 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
         resetForm({ values: { ...INITIAL_FORM_VALUES } });
 
-        if (pinRef.current && pinRef.current.clear) {
-            pinRef.current.clear();
-        } else if (pinRef.current) {
-            pinRef.current.values = '';
-        }
+        if (pin) {
+            setPin("")
     };
 
     return (
