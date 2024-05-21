@@ -31,7 +31,7 @@ import * as yup from 'yup';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
-const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
+export const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const {
         myGloDataPlans,
         getairtelCgDataPlans,
@@ -308,5 +308,4 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     );
 };
 
-export default BuyData;
 
