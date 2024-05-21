@@ -1072,8 +1072,9 @@ export const generateMonnifyAccount = ({ enqueueSnackbar, navigate, bvn }) => as
             type: GENERATE_mONNIFY_ACCOUNT_FAIL,
             payload: error?.response?.data?.message || error.message,
         });
-
-        enqueueSnackbar(error?.response?.data?.message || error.message, {
+        const errorMessage = error?.response?.data?.message || error.message;
+        const monnifyMessage = error?.response?.data?.monnifyResponse?.message;
+        enqueueSnackbar(monnifyMessage || errorMessage, {
             variant: 'error',
             autoHideDuration: 2000,
         });
