@@ -63,8 +63,8 @@ const Funding = () => {
                         Bank Transfer
                     </Typography>
                     <Typography variant="body" color="initial" sx={{ fontSize: '1.1rem', fontWeight: 200, mr: 0.4, mt: 10, mb: 1.75 }}>
-                        These are your unique monnify vitual accounts, you can always transfer to it anytime and it will reflect immediately
-                        and automatically in your wallet. Note: Charges of 1.65% will be deducted from amount deposited.
+                        These are your unique account numbers, you can always transfer to it anytime and it will reflect immediately
+                        and automatically in your wallet. Note: Charges of 1.60% will be deducted from amount deposited.
                     </Typography>
                 </>
             )}
@@ -75,6 +75,7 @@ const Funding = () => {
                             <Paper variant="outlined" sx={{ mt: 2, py: 1.5, textAlign: 'center' }}>
                                 <Typography variant="subtitle1">Bank Name: {acc.bank_name}</Typography>
                                 <Typography variant="subtitle1">Account Number: {acc.account_number}</Typography>
+                                <Typography variant="subtitle1">Account Number: {acc.account_name}</Typography>
                             </Paper>
                         </Grid>
                     ))}
