@@ -69,7 +69,6 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const [showErrorAlert, setshowErrorAlert] = useState(false);
 
     const pinRef = useRef('');
-
     useEffect(() => {
         if (!isLoggedIn) {
             navigate('/pages/login');
@@ -89,37 +88,28 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const INITIAL_FORM_VALUES = {
         beneficiaryNum: '',
         amount: '',
-        plan: '',  // Adjust according to what "empty" means for this field
+        plan: '',
         network: '',
-        pin: ''  // Add pin field
+        pin: ''
     };
-
     const VALIDATIONS = yup.object().shape({
         beneficiaryNum: yup
             .string()
             .matches(/^\d+$/, 'Only numbers are allowed')
             .max(11, 'Maximum 11 characters allowed')
-            .min(11, 'Number is not complete')
+            .min(11, 'number is not complete')
             .required('Please enter beneficiary number'),
-        amount: yup
-            .number()
-            .integer()
-            .required('Please enter airtime amount')
-            .typeError('Amount must be a number'),
+        amount: yup.number().integer().required('Please enter airtime amount').typeError('amount must be a number'),
         plan: yup.object().required('Please select data plan'),
-        network: yup.string().required('Please select network'),
-        pin: yup
-            .string()
-            .matches(/^\d{4}$/, 'Pin must be 4 digits')
-            .required('Please enter your transaction pin')
+        network: yup.string().required('Please select data plan'),
+        pin: yub.string().match(/^\d+$/, 'only number')
+        .max(4, 'max of 4 characters allowed').min(4, 'min of 4 characters allowed')
     });
 
     const returnPlan = ({ network, sme, sme_2, mtn_cg, coup, cg }) => {
-        console.log('SME1', sme_2);
         switch (network) {
             case 'Glo':
                 return cg ? gloCgDataPlans : gloDataPlans;
-
             case 'Mtn':
                 if (sme) return mtnSme1Dataplans;
                 if (sme_2) return mtnSme2DataPlans;
@@ -128,15 +118,14 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
                 return mtnDataPlans;
             case 'Airtel':
                 return cg ? airtelCgDataPlans : airtelDataPlans;
-
             default:
                 return [];
         }
     };
 
     const sendCgdata = (values) => {
-        if (!pinRef.current.values || pinRef.current.values.length !== 4) {
-            enqueueSnackbar('Provide transaction pin to proceed', {
+        if (!pinRef.current.values) {
+            enqueueSnackbar('provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
             });
@@ -155,7 +144,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 
         dispatch(
             buyCgData({
-                orderDetails: {
+               orderDetails: {
                     data: { ...body }
                 },
                 enqueueSnackbar,
@@ -164,11 +153,9 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             })
         );
     };
-
     const sendGiftData = (values) => {
-        console.log(pinRef.current.values);
-        if (!pinRef.current.values || pinRef.current.values.length !== 4) {
-            enqueueSnackbar('Provide transaction pin to proceed', {
+        if (!pinRef.current.values) {
+            enqueueSnackbar('provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
             });
@@ -185,9 +172,6 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             pin: pinRef.current.values.join('')
         };
 
-        console.log('from body');
-        console.log(body);
-
         dispatch(
             giftData({
                 orderDetails: {
@@ -201,7 +185,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     };
 
     const handleSubmit = (values, { resetForm }) => {
-        if (!pinRef.current.values || pinRef.current.values.length !== 4) {
+        if (!pinRef.current.values) {
             enqueueSnackbar('Provide transaction pin to proceed', {
                 variant: 'error',
                 autoHideDuration: 2000
@@ -245,13 +229,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
                 initialValues={{ ...INITIAL_FORM_VALUES }}
                 enableReinitialize={true}
                 onSubmit={
-                    sme ?
-                        handleSubmit : sme_2 ?
-                            handleSubmit : mtn_cg ?
-                                handleSubmit : coup ?
-                                    handleSubmit : cg ?
-                                        sendCgdata :
-                                        sendGiftData
+                    sme ? handleSubmit : sme_2 ? handleSubmit : mtn_cg ? handleSubmit : coup ? handleSubmit : cg ? sendCgdata : sendGiftData
                 }
                 validationSchema={VALIDATIONS}
             >
@@ -278,31 +256,34 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12} style={{ display: 'block' }}>
-                                    <CustomTextField name="network" disabled value={(values.network = network)} placeholder="Amount" />
+                                <CustomTextField name="network" disabled value={(values.network = network)} placeholder="Network" />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography>Enter Transaction Pin</Typography>
                                     <PinInput
-                                        style={{ margin: 'auto' }}
+                                        style={{
+                                            margin: 'auto'
+                                        }}
                                         length={4}
                                         initialValue=""
                                         ref={pinRef}
                                         secret
+                                        type="tel"
                                         inputMode="numeric"
                                         inputStyle={{ borderColor: 'black' }}
                                         inputFocusStyle={{ borderColor: 'blue' }}
-                                        onComplete={(value, index) => { }}
+                                        onComplete={(value, index) => {}}
                                         autoSelect={true}
-                                        regexCriteria={/^\d{4}$/}
+                                        regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <CustomButton
-                                        disabled={loading || Cgdataloading || dataGiftloading}
-                                        loading={loading || Cgdataloading || dataGiftloading}
-                                    >
-                                        Submit
-                                    </CustomButton>
+                                       disabled={loading || Cgdataloading || dataGiftloading}
+                                       loading={loading || Cgdataloading || dataGiftloading}
+                                      >
+                                          Submit
+                                       </CustomButton>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -330,3 +311,4 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 };
 
 export default BuyData;
+
