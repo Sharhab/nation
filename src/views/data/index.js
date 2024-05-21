@@ -67,7 +67,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const { enqueueSnackbar } = useSnackbar();
     const [showAlert, setshowAlert] = useState(false);
     const [showErrorAlert, setshowErrorAlert] = useState(false);
-
+    const [pin, setPin] = useState("");
     const pinRef = useRef('');
     useEffect(() => {
         if (!isLoggedIn) {
@@ -270,6 +270,9 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
                                         secret
                                         type="tel"
                                         inputMode="numeric"
+                                        onChange={(value, index) => {
+                                            setPin(value);
+                                        }}
                                         inputStyle={{ borderColor: 'black' }}
                                         inputFocusStyle={{ borderColor: 'blue' }}
                                         onComplete={(value, index) => {}}
