@@ -1,6 +1,6 @@
 // material-u
 import { Box, Grid, Typography } from '@mui/material';
-import { Form, Formik, Field } from 'formik';
+import { Form, Formik } from 'formik';
 import { useSnackbar } from 'notistack';
 import { useEffect, useRef, useState } from 'react';
 import PinInput from 'react-pin-input';
@@ -90,7 +90,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         beneficiaryNum: '',
         amount: '',
         plan: '',  // Adjust according to what "empty" means for this field
-        network: network,
+        network: '',
         pin: ''  // Add pin field
     };
 
@@ -134,6 +134,72 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         }
     };
 
+    const sendCgdata = (values) => {
+        if (!pinRef.current.values || pinRef.current.values.length !== 4) {
+            enqueueSnackbar('Provide transaction pin to proceed', {
+                variant: 'error',
+                autoHideDuration: 2000
+            });
+            return;
+        }
+        const body = {
+            beneficiary: values.beneficiaryNum,
+            amount: values.amount,
+            network_id: values.plan.network_id,
+            plan: values.plan.bundle,
+            plan_id: values.plan.plan_id,
+            network: network,
+            request_Id: generateRequestId(),
+            pin: pinRef.current.values.join('')
+        };
+
+        dispatch(
+            buyCgData({
+                orderDetails: {
+                    data: { ...body }
+                },
+                enqueueSnackbar,
+                setshowAlert,
+                setErrorAlert: setshowErrorAlert
+            })
+        );
+    };
+
+    const sendGiftData = (values) => {
+        console.log(pinRef.current.values);
+        if (!pinRef.current.values || pinRef.current.values.length !== 4) {
+            enqueueSnackbar('Provide transaction pin to proceed', {
+                variant: 'error',
+                autoHideDuration: 2000
+            });
+            return;
+        }
+        const body = {
+            beneficiary: values.beneficiaryNum,
+            amount: values.amount,
+            plan: values.plan.bundle,
+            plan_id: values.plan.plan_id,
+            network: values.network,
+            network_id: values.plan.network_id,
+            request_id: generateRequestId(),
+            pin: pinRef.current.values.join('')
+        };
+
+        console.log('from body');
+        console.log(body);
+
+        dispatch(
+            giftData({
+                orderDetails: {
+                    data: { ...body }
+                },
+                enqueueSnackbar,
+                setshowAlert,
+                setErrorAlert: setshowErrorAlert
+            })
+        );
+    };
+
     const handleSubmit = (values, { resetForm }) => {
         if (!pinRef.current.values || pinRef.current.values.length !== 4) {
             enqueueSnackbar('Provide transaction pin to proceed', {
@@ -149,14 +215,12 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             network_id: values.plan.network_id,
             plan: values.plan.bundle,
             plan_id: values.plan.plan_id,
-            network: values.network,
+            network: network,
             request_Id: generateRequestId(),
             pin: pinRef.current.values.join('')
         };
 
-        const action = sme ? buyData : sme_2 ? buyData : mtn_cg ? buyData : coup ? buyData : cg ? buyCgData : giftData;
-
-        dispatch(action({
+        dispatch(buyData({
             path: sme ? '/mtn-sme-data-orders' : sme_2 ? '/mtn-sme-2-data-orders' : mtn_cg ? '/mtn-corporate-orders' : coup ? '/mtn-coupon-data-orders' : '/mtn-sme-2-data-orders',
             orderDetails: {
                 data: { ...body }
@@ -180,7 +244,15 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
             <Formik
                 initialValues={{ ...INITIAL_FORM_VALUES }}
                 enableReinitialize={true}
-                onSubmit={handleSubmit}
+                onSubmit={
+                    sme ?
+                        handleSubmit : sme_2 ?
+                            handleSubmit : mtn_cg ?
+                                handleSubmit : coup ?
+                                    handleSubmit : cg ?
+                                        sendCgdata :
+                                        sendGiftData
+                }
                 validationSchema={VALIDATIONS}
             >
                 {({ values, setFieldValue }) => (
@@ -188,37 +260,25 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
                                 <Grid item xs={12}>
-                                    <Field
-                                        name="beneficiaryNum"
-                                        component={CustomTextField}
-                                        label="Beneficiary Number"
-                                    />
+                                    <CustomTextField name="beneficiaryNum" label="Beneficiary Number" />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Field
+                                    <CustomSelect
                                         name="plan"
-                                        component={CustomSelect}
                                         options={returnPlan({ network, sme, sme_2, mtn_cg, coup, cg })}
                                         label="Select Plan"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Field
+                                    <CustomTextField
                                         name="amount"
-                                        component={CustomTextField}
                                         disabled
-                                        value={values.plan ? values.plan.price : ''}
+                                        value={(values.amount = values.plan.price)}
                                         placeholder="Amount"
                                     />
                                 </Grid>
                                 <Grid item xs={12} style={{ display: 'block' }}>
-                                    <Field
-                                        name="network"
-                                        component={CustomTextField}
-                                        disabled
-                                        value={network}
-                                        placeholder="Network"
-                                    />
+                                    <CustomTextField name="network" disabled value={(values.network = network)} placeholder="Amount" />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography>Enter Transaction Pin</Typography>
