@@ -1068,13 +1068,15 @@ export const generateMonnifyAccount = ({ enqueueSnackbar, navigate, bvn }) => as
         // Optionally, navigate to another page after success
         //navigate('/somepage'); // Adjust the path as needed
     } catch (error) {
+        console.log(error);
+       const errorMessage = error?.response?.data?.message || error.message;
+        const monnifyMessage = error?.response?.data?.monnifyResponse?.message;
+  
         dispatch({
             type: GENERATE_mONNIFY_ACCOUNT_FAIL,
             payload: error?.response?.data?.message || error.message,
         });
-        const errorMessage = error?.response?.data?.message || error.message;
-        const monnifyMessage = error?.response?.data?.monnifyResponse?.message;
-        enqueueSnackbar(monnifyMessage || errorMessage, {
+      enqueueSnackbar(monnifyMessage || errorMessage, {
             variant: 'error',
             autoHideDuration: 2000,
         });
