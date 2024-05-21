@@ -31,7 +31,7 @@ import * as yup from 'yup';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
-export const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
+ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const {
         myGloDataPlans,
         getairtelCgDataPlans,
@@ -213,10 +213,8 @@ export const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
         }));
 
         resetForm({ values: { ...INITIAL_FORM_VALUES } });
-
-        if (pin) {
+        
             setPin("")
-    };
 
     return (
         <MainCard title={title}>
@@ -309,3 +307,4 @@ export const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
 };
 
 
+export default BuyData;
