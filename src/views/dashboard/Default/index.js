@@ -9,7 +9,7 @@ import ProductListing from './ProductListing';
 import { useSnackbar } from 'notistack';
 import FeedBack from '../../feedBack';
 import PopularCard from './PopularCard';
-import AccountDetails from '../../payment/AccountDetail'; // Import the AccountDetails component
+import AccountDetails from '../../payments/AccountDetail'; // Import the AccountDetails component
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
