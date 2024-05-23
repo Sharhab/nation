@@ -1,8 +1,6 @@
 import { Button, Grid, Paper, Typography } from '@mui/material';
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-
 import { Form, Formik } from 'formik';
 import { useSnackbar } from 'notistack';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,29 +9,29 @@ import { CustomTextField } from '../../ui-component/basic-inputs';
 import MainCard from '../../ui-component/cards/MainCard';
 import FeedBack from '../feedBack';
 import * as yup from 'yup';
+import AccountDetails from './AccountDetail'; // Import the new component
 
 const Funding = () => {
-    const {  fundWithMonnify, loggedInUser, login} = useSelector((state) => state);
+    const { fundWithMonnify, loggedInUser, login } = useSelector((state) => state);
     const { user } = loggedInUser;
     const { isLoggedIn } = login;
-    const { loading } =  fundWithMonnify;
+    const { loading } = fundWithMonnify;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const [showAlert, setshowAlert] = useState(false);
 
     useEffect(() => {
-      if(!isLoggedIn){
-          navigate('/pages/login')
-      }
+        if (!isLoggedIn) {
+            navigate('/pages/login');
+        }
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch, isLoggedIn]);
 
     useEffect(() => {
         if (Object.keys(user).length === 0) return;
-        console.log('USER:', user);
         if (!user?.hasAccountNum) {
-            setshowAlert((prevAlert) => true);
+            setshowAlert(true);
         }
     }, [user]);
 
@@ -52,11 +50,10 @@ const Funding = () => {
                 enqueueSnackbar
             })
         );
-      
     };
 
     return (
-        <MainCard title="Fund Wallet By Transferring To Your Unique Account Number Or With Monnify, Credo or Flutter Wave  ">
+        <MainCard title="Fund Wallet By Transferring To Your Unique Account Number Or With Monnify, Credo or Flutter Wave">
             {user?.hasAccountNum && (
                 <>
                     <Typography variant="h4" sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 0.4, mt: 1, mb: 1.75 }}>
@@ -69,137 +66,32 @@ const Funding = () => {
                 </>
             )}
             {user?.hasAccountNum ? (
-                <Grid container spacing={3}>
-                    {user.monnify_bank_details.map((acc, index) => (
-                        <Grid key={index} item xs={12} md={3}>
-                            <Paper variant="outlined" sx={{ mt: 2, py: 1.5, textAlign: 'center' }}>
-                                <Typography variant="subtitle1">Bank Name: {acc.bank_name}</Typography>
-                                <Typography variant="subtitle1">Account Number: {acc.account_number}</Typography>
-                                <Typography variant="subtitle1">Account Number: {acc.account_name}</Typography>
-                            </Paper>
-                        </Grid>
-                    ))}
-                </Grid>
+                <AccountDetails accounts={user.monnify_bank_details} /> // Use the new component
             ) : (
                 <></>
-            )}
-            {user?.hasAccountNum && (
-                <>
-                    <br />
-                    <br />
-                </>
             )}
             <Typography variant="h4" sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 0.4, mt: 1, mb: 1.75 }}>
                 Monnify
             </Typography>
-            {/* <Typography variant="h4" sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 0.4, mt: 2.5, mb: 1.75 }}>
-                Card Payment
-            </Typography> */}
             <Typography variant="body" color="initial" sx={{ fontSize: '1.1rem', fontWeight: 200, mr: 0.4, mt: 10, mb: 1.75 }}>
                 Enter amount to fund and you will be redirected to monnify payment gateway.
             </Typography>
-            <br />
-            <br />
-            <Typography variant="subtile" color="initial" sx={{ fontSize: '1.1rem', fontWeight: 200, mr: 0.4, mt: 10, mb: 1.75 }}>
-                You can choose any payment method you are comfortable with, after payment is successful, you will be redirected back to our
-                website.
-            </Typography>
             <Formik
                 initialValues={{ ...INITIAL_FORM_VALUES }}
                 onSubmit={handleSubmit}
                 validationSchema={VALIDATIONS}
                 enableReinitialize={true}
             >
-                {({values}) => (
+                {({ values }) => (
                     <Form>
                         <Grid container spacing={4}>
                             <Grid item xs={6} sx={{ mt: 2 }}>
                                 <CustomTextField fullWidth={true} name="amount" label="Amount" />
                             </Grid>
                         </Grid>
-
                         <Button
-                            disabled={loading ? true : false}
+                            disabled={loading}
                             onClick={() => handleSubmit({ values, gateway: 'monify' })}
-                            variant="contained"
-                            color="primary"
-                            sx={{ mt: 2 }}
-                        >
-                            Pay Now
-                        </Button>
-                    </Form>
-                )}
-            </Formik>
-            <br /> <br />
-            <Typography variant="h4" sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 0.4, mt: 1, mb: 1.75 }}>
-                Flutter Wave
-            </Typography>
-            {/* <Typography variant="h4" sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 0.4, mt: 2.5, mb: 1.75 }}>
-                Card Payment
-            </Typography> */}
-            <Typography variant="body" color="initial" sx={{ fontSize: '1.1rem', fontWeight: 200, mr: 0.4, mt: 10, mb: 1.75 }}>
-                Enter amount to fund and you will be redirected to flutter wave payment gateway.
-            </Typography>
-            <br />
-            <br />
-            <Typography variant="subtile" color="initial" sx={{ fontSize: '1.1rem', fontWeight: 200, mr: 0.4, mt: 10, mb: 1.75 }}>
-                You can choose any payment method you are comfortable with, after payment is successful, you will be redirected back to our
-                website.
-            </Typography>
-            <Formik
-                initialValues={{ ...INITIAL_FORM_VALUES }}
-                onSubmit={handleSubmit}
-                validationSchema={VALIDATIONS}
-                enableReinitialize={true}
-            >
-                {({ values, setFieldValue }) => (
-                    <Form>
-                        <Grid container spacing={4}>
-                            <Grid item xs={6} sx={{ mt: 2 }}>
-                                <CustomTextField fullWidth={true} name="amount" label="Amount" />
-                            </Grid>
-                        </Grid>
-
-                        <Button
-                            disabled={loading ? true : false}
-                            onClick={() => handleSubmit({ values, gateway: 'fwave' })}
-                            variant="contained"
-                            color="primary"
-                            sx={{ mt: 2 }}
-                        >
-                            Pay Now
-                        </Button>
-                    </Form>
-                )}
-            </Formik>
-            <br /> <br />
-            <Typography variant="h4" sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 0.4, mt: 1, mb: 1.75 }}>
-                Credo
-            </Typography>
-            {/* <Typography variant="h4" sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 0.4, mt: 2.5, mb: 1.75 }}>
-                Card Payment
-            </Typography> */}
-            <Typography variant="body" color="initial" sx={{ fontSize: '1.1rem', fontWeight: 200, mr: 0.4, mt: 10, mb: 1.75 }}>
-                Enter amount to fund and you will be redirected to Credo wave payment gateway.
-            </Typography>
-            <br />
-            <br />
-            <Typography variant="subtile" color="initial" sx={{ fontSize: '1.1rem', fontWeight: 200, mr: 0.4, mt: 10, mb: 1.75 }}>
-                You can choose any payment method you are comfortable with, after payment is successful, you will be redirected back to our
-                website.
-            </Typography>
-            <Formik initialValues={{ ...INITIAL_FORM_VALUES }} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
-                {({ values, setFieldValue }) => (
-                    <Form>
-                        <Grid container spacing={4}>
-                            <Grid item xs={6} sx={{ mt: 2 }}>
-                                <CustomTextField fullWidth={true} name="amount" label="Amount" />
-                            </Grid>
-                        </Grid>
-
-                        <Button
-                            disabled={loading ? true : false}
-                            onClick={() => handleSubmit({ values, gateway: 'credo' })}
                             variant="contained"
                             color="primary"
                             sx={{ mt: 2 }}
