@@ -14,9 +14,9 @@ import * as yup from 'yup';
 // ==============================|| SAMPLE PAGE ||============================== //
 
 const VerifyAccounts = () => {
-    const { updateUser, userStat } = useSelector((state) => state);
+    const { updateUser, login } = useSelector((state) => state);
     const { Update_user_loading } = updateUser; 
-    const { isLoggedIn } = userStat;
+    const { isLoggedIn } = login;
     const { enqueueSnackbar } = useSnackbar();
 
     const navigate = useNavigate();
