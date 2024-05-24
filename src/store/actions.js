@@ -634,7 +634,7 @@ export const LogoutAction = () => async (dispatch) => {
             type: LOGOUT_USER_SUCCESS,
             payload: data?.message || 'logout succefully'
         });
-      navigate('/pages/login');
+      
     
     } catch (error) {
         dispatch({
