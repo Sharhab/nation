@@ -928,7 +928,7 @@ export const UpdateUserAction =
   }
 };
 
-export const UpdateBvn = ({navigate, user, enqueueSnackbar }) => async (dispatch) => {
+export const UpdateBvn = ({navigate, data, enqueueSnackbar }) => async (dispatch) => {
     dispatch({
                 type: UPDATE_USER_BVN_REQUEST
             });
@@ -936,8 +936,8 @@ export const UpdateBvn = ({navigate, user, enqueueSnackbar }) => async (dispatch
        try {
             const { data } = await makeNetworkCall({
                 method: 'POST',
-                path: `/bvnupdate/me`,
-                requestBody: user
+                path: `/bvnupdate/verify`,
+                requestBody: data
                 
             });
             dispatch({
