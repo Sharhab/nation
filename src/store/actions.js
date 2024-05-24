@@ -1056,7 +1056,7 @@ export const fundWalletWithMonnify = ({ amount, enqueueSnackbar }) =>
         }
     };
 
-export const generateMonnifyAccount = ({ enqueueSnackbar, navigate}) => async (dispatch) => {
+export const generateMonnifyAccount = ({ enqueueSnackbar, bvn, navigate}) => async (dispatch) => {
     try {
         dispatch({
             type: GENERATE_mONNIFY_ACCOUNT_REQUEST,
@@ -1065,6 +1065,7 @@ export const generateMonnifyAccount = ({ enqueueSnackbar, navigate}) => async (d
         const { data } = await makeNetworkCall({
             method: 'POST',
             path: '/create-reserved-account/me',
+            requestBody: { bvn }
               // Ensure bvn is sent as an object
         });
 
