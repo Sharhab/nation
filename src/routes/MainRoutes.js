@@ -208,9 +208,8 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
         },
          {
           path: '/verify-account',
-                     
-            element: <ProtectedRoute><VerifyAccount /></ProtectedRout>
-        }
+           element: <VerifyAccount />
+        },
        
       ]
     };
