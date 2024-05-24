@@ -9,7 +9,8 @@ import ProductListing from './ProductListing';
 import { useSnackbar } from 'notistack';
 import FeedBack from '../../feedBack';
 import PopularCard from './PopularCard';
-import AccountDetails from '../../payments/AccountDetail'; // Import the AccountDetails component
+import AccountDetails from '../../path/to/AccountDetails'; // Adjust the path as needed
+import BvnVerificationStatus from '../../path/to/BvnVerificationStatus'; // Adjust the path as needed
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -48,7 +49,8 @@ const Dashboard = () => {
             </Grid>
             {user?.hasAccountNum && (
                 <Grid item xs={12}>
-                    <AccountDetails accounts={user.monnify_bank_details || []} /> {/* Integrate AccountDetails here */}
+                    <AccountDetails accounts={user.monnify_bank_details || []} />
+                    <BvnVerificationStatus user={user} /> {/* Integrate BvnVerificationStatus here */}
                 </Grid>
             )}
             <Grid item xs={12}>
