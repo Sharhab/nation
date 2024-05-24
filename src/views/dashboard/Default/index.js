@@ -10,7 +10,7 @@ import { useSnackbar } from 'notistack';
 import FeedBack from '../../feedBack';
 import PopularCard from './PopularCard';
 import AccountDetails from '../../payments/AccountDetail'; // Adjust the path as needed
-import BvnVerificationStatus from '../../payment/BvnVerificationStat'; // Adjust the path as needed
+import BvnVerificationStatus from '../../payments/BvnVerificationStat'; // Adjust the path as needed
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
