@@ -936,7 +936,7 @@ export const UpdateBvn = ({navigate, user, enqueueSnackbar }) => async (dispatch
        try {
             const { data } = await makeNetworkCall({
                 method: 'POST',
-                path: `/users/bvnupdate`,
+                path: `/bvnupdate/me`,
                 requestBody: user
                 
             });
@@ -944,6 +944,12 @@ export const UpdateBvn = ({navigate, user, enqueueSnackbar }) => async (dispatch
                 type: UPDATE_USER_BVN_SUCCESS,
                 payload: data
             });
+
+           data &&
+                enqueueSnackbar(data?.message, {
+                    variant: 'success',
+                    autoHideDuration: 2000
+                });
             
         } catch (error) {
             if (error.response?.data?.error?.status === 401) {
@@ -951,8 +957,14 @@ export const UpdateBvn = ({navigate, user, enqueueSnackbar }) => async (dispatch
             }
             dispatch({
                 type: UPDATE_USER_BVN_FAIL,
-                payload: error.response?.data?.error?.message || error?.messag
+                payload: error?.message || error?.messag
             });
+
+           error &&
+                enqueueSnackbar(error?.message, {
+                    variant: 'error',
+                    autoHideDuration: 2000
+                });
         }
 };
 
