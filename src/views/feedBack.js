@@ -1,10 +1,11 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, TextField } from '@mui/material';
 import { useSnackbar } from 'notistack';
-// import { useSnackbar } from 'notistack';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 import { generateMonnifyAccount } from '../store/actions';
+
 const FeedBack = ({
     title,
     type,
@@ -19,23 +20,27 @@ const FeedBack = ({
     setshowErrorAlert
 }) => {
     const navigate = useNavigate();
+    const [bvn, setBvn] = useState('');
+    const [showBvnField, setShowBvnField] = useState(false);
+    const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+    const { monnifyAccountGeneration } = useSelector((state) => state);
+    const { loading } = monnifyAccountGeneration;
+
     const onClickSuccess = (setshowAlert, goHome) => {
         setshowAlert((prevAlert) => !prevAlert);
         if (goHome) {
             navigate('/');
         }
     };
-    const dispatch = useDispatch();
-    const { enqueueSnackbar } = useSnackbar();
-    const { monnifyAccountGeneration } = useSelector((state) => state);
-    const { loading } = monnifyAccountGeneration;
 
-    const generateAccount = async (setshowAlert) => {
-        await dispatch(generateMonnifyAccount({ enqueueSnackbar, navigate }));
-        setshowAlert((prevAlert) => !prevAlert);
-    };
     const onClickFailure = () => {
         setshowErrorAlert(false);
+    };
+
+    const handleBvnSubmit = async () => {
+        await dispatch(generateMonnifyAccount({ enqueueSnackbar, navigate, bvn }));
+        setshowAlert(false);
     };
 
     const SuccessFullAlert = ({ title, message, from }) => {
@@ -45,7 +50,7 @@ const FeedBack = ({
                 type={type ? 'info' : 'success'}
                 title={title || 'Successful!'}
                 show={showAlert}
-                onConfirm={() => (from === 'fund' ? generateAccount(setshowAlert) : onClickSuccess(setshowAlert, goHome))}
+                onConfirm={() => (from === 'fund' ? setShowBvnField(true) : onClickSuccess(setshowAlert, goHome))}
                 onCancel={() => setshowAlert(false)}
                 customButtons={
                     <div
@@ -58,7 +63,7 @@ const FeedBack = ({
                     >
                         <Button
                             sx={{ backgroundColor: '#83529f', color: 'white', mr: 1, '&:hover': { backgroundColor: '#83529f' } }}
-                            onClick={() => (from === 'fund' ? generateAccount(setshowAlert) : onClickSuccess(setshowAlert, goHome))}
+                            onClick={() => (from === 'fund' ? setShowBvnField(true) : onClickSuccess(setshowAlert, goHome))}
                             variant="contained"
                             disabled={loading}
                         >
@@ -72,9 +77,32 @@ const FeedBack = ({
                     {message}
                 </Typography>
                 {purchasePin && <Typography variant="subtitle1">{purchasePin}</Typography>}
+                {showBvnField && (
+                    <div>
+                        <Typography variant="subtitle1" sx={{ textAlign: 'justify', marginBottom: '10px' }}>
+                            To update your virtual account as required by CBN provide your BVN.
+                        </Typography>
+                        <TextField
+                            label="Enter BVN"
+                            variant="outlined"
+                            fullWidth
+                            value={bvn}
+                            onChange={(e) => setBvn(e.target.value)}
+                            sx={{ marginBottom: '10px' }}
+                        />
+                        <Button
+                            sx={{ backgroundColor: '#83529f', color: 'white', '&:hover': { backgroundColor: '#83529f' } }}
+                            onClick={handleBvnSubmit}
+                            variant="contained"
+                        >
+                            Submit BVN
+                        </Button>
+                    </div>
+                )}
             </SweetAlert>
         );
     };
+
     const FailureAlert = ({ message }) => {
         return (
             <SweetAlert
@@ -89,17 +117,12 @@ const FeedBack = ({
                 customButtons={
                     <>
                         <Button
-                            sx={{ mr: 2, backgroundColor: '#83529f', color: 'white', mr: 1, '&:hover': { backgroundColor: '#83529f' } }}
+                            sx={{ mr: 2, backgroundColor: '#83529f', color: 'white', '&:hover': { backgroundColor: '#83529f' } }}
                             onClick={onClickFailure}
                             variant="contained"
                         >
                             Ok
                         </Button>
-                        {/* {!disableTopup && (
-                            <Button onClick={() => navigate('/fund-wallet')} variant="contained" color="primary">
-                                Top up now
-                            </Button>
-                        )} */}
                     </>
                 }
             >
