@@ -13,7 +13,7 @@ import * as yup from 'yup';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
-const VerifyAccount = () => {
+const VerifyAccounts = () => {
     const { updateUser, userStat } = useSelector((state) => state);
     const { Update_user_loading } = updateUser; 
     const { isLoggedIn } = userStat;
@@ -75,4 +75,4 @@ const VerifyAccount = () => {
     );
 };
 
-export default VerifyAccount;
+export default VerifyAccounts;
