@@ -18,7 +18,8 @@ const BvnVerificationStatus = ({ user }) => {
             ) : (
                 <Typography variant="subtitle1">
                     <Link to="/verifyBvn" style={{ textDecoration: 'none', color: 'red' }}>
-                        Verify your BVN. This is required by CBN to secure your account.
+                        To update your virtual accounts, as required
+                         by the CBN CLICK HERE
                     </Link>
                 </Typography>
             )}
