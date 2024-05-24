@@ -39,7 +39,7 @@ const VerifyAccounts = () => {
         dispatch(
             UpdateBvn({
                 navigate,
-                    data: {
+                    user: {
                         bvn: values.bvn
                     },
                 enqueueSnackbar
