@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Form, Formik } from 'formik';
