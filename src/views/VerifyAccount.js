@@ -61,7 +61,8 @@ const VerifyAccount = () => {
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <CustomButton color="primary" disabled={Update_user_loading ? true : false}>
+                                    <CustomButton color="primary" 
+                                 disabled={Update_user_loading ? true : false}>
                                         Submit
                                     </CustomButton>
                                 </Grid>
