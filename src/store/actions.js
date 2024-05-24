@@ -522,7 +522,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
                 autoHideDuration: 2000
             });
 
-            setErrorAlert(true  // Ensure error alert is activated on catch
+            setErrorAlert((prevState) => !prevState); // Ensure error alert is activated on catch
         }
     };
 
