@@ -417,7 +417,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
         }
     };
 
-   export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert, path, token }) =>
+   export const buyData = ({ orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert, path}) =>
     async (dispatch) => {
         try {
             dispatch({ type: BUY_DATA_REQUEST });
@@ -428,8 +428,8 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
                 requestBody: orderDetails,
                 
             });
-
-            if (data && data.success) {  // Assuming 'success' is a boolean indicating the operation's success
+             console.log(data)
+            if (data && data.message) {  // Assuming 'success' is a boolean indicating the operation's success
                 dispatch({
                     type: BUY_DATA_SUCCESS,
                     payload: data.message
@@ -446,7 +446,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
                     type: BUY_DATA_FAIL,
                     payload: data.message || "Failed to purchase data. Please try again."
                 });
-
+                 console.log(data)
                 enqueueSnackbar(data.message || "Failed to purchase data. Please try again.", {
                     variant: 'error',
                     autoHideDuration: 2000
@@ -454,6 +454,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
 
                  setErrorAlert((prevState) => !prevState); // Explicitly set alert state
             }
+            
         } catch (error) {
             console.error("Error purchasing data:", error);
             dispatch({
@@ -528,7 +529,7 @@ export const sellAirtime = ({ orderDetails, enqueueSnackbar, setshowAlert, setEr
 
 
 export const buyCgData = ({
-    orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert, token // Ensure `token` is managed and passed correctly
+    orderDetails, enqueueSnackbar, setshowAlert, setErrorAlert
 }) =>
     async (dispatch) => {
         try {
