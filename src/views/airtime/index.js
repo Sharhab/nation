@@ -56,38 +56,12 @@ const BuyAirtime = ({ title, network }) => {
             });
             return;
         }
-  let network_amount;
-  if (values.network === 'mtn' && values.amount === 100){
-        network_amount = 1
-    }else if(values.network ==='mtn'&& values.amount === 200){
-        network_amount = 2
-    }else if(values.network ==='mtn'&& values.amount === 500){
-        network_amount = 3
-    }else if(values.network ==='glo'&& values.amount === 100){
-        network_amount = 4
-    }else if(values.network ==='glo'&& values.amount === 200){
-        network_amount = 5
-    }else if(values.network ==='glo'&& values.amount === 500){
-        network_amount = 6
-    }else if(values.network ==='airtel'&& values.amount === 100){
-        network_amount = 10
-    }else if(values.network ==='airtel'&& values.amount === 200){
-        network_amount = 11;
-    }else if(values.network ==='airtel'&& values.amount === 500) {
-        network_amount = 12;
-    }else{
-      network_amount = null;  
-    }
-
-    console.log(network_amount)
         const body = {
             beneficiary: values.beneficiary,
             serviceID: values.network,
             request_id: generateRequestId(),
             amount: values.amount,
-            network_amount,
             network: values.network,
-            network_id: values.network_id,
             pin: pin
         };
 
