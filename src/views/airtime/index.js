@@ -12,14 +12,15 @@ import { generateRequestId } from '../../utils/generateRequestId';
 import * as yup from 'yup';
 import FeedBack from '../feedBack';
 
+// Simplified validAmounts for temporary debugging
 const validAmounts = {
-    1: [100, 200, 500], // MTN
-    2: [100, 200, 500], // GLO
-    3: [100, 200],      // 9MOBILE
-    4: [100, 200, 500]  // AIRTEL
+    1: [100, 200, 500],
+    2: [100, 200, 500],
+    3: [100, 200],
+    4: [100, 200, 500]
 };
 
-const BuyAirtime = ({ title, network }) => {
+const BuyAirtime = ({ title, network = 1 }) => {
     const { airtimeOrder } = useSelector((state) => state);
     const { loading, airtime, error } = airtimeOrder;
     const { enqueueSnackbar } = useSnackbar();
@@ -52,8 +53,9 @@ const BuyAirtime = ({ title, network }) => {
             .number()
             .integer()
             .required('Please enter airtime amount')
-            .typeError('Amount must be a number')
-            .oneOf(validAmounts[network], `Invalid amount for the selected network. Valid amounts are: ${validAmounts[network].join(', ')}`),
+            .typeError('Amount must be a number'),
+            // Temporarily simplified validation for debugging
+            //.oneOf(validAmounts[network], `Invalid amount for the selected network. Valid amounts are: ${validAmounts[network].join(', ')}`),
         network: yup.string()
     });
 
@@ -85,10 +87,13 @@ const BuyAirtime = ({ title, network }) => {
         );
     };
 
+    console.log("Network:", network); // Debugging: Check network prop
+    console.log("Form Values:", INITIAL_FORM_VALUES); // Debugging: Check initial form values
+
     return (
         <MainCard title={title}>
             <Formik initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
-                {() => (
+                {({ values }) => (
                     <Form>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
@@ -99,7 +104,7 @@ const BuyAirtime = ({ title, network }) => {
                                     <CustomTextField name="amount" label="Airtime Amount" />
                                 </Grid>
                                 <Grid item xs={12} style={{ display: 'none' }}>
-                                    <CustomTextField name="network" label="Network" value={network} />
+                                    <CustomTextField name="network" label="Network" value={values.network} />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography>Enter Transaction Pin</Typography>
