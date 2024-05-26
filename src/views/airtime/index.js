@@ -13,7 +13,7 @@ import MainCard from '../../ui-component/cards/MainCard';
 import { generateRequestId } from '../../utils/generateRequestId';
 import * as yup from 'yup';
 import FeedBack from '../feedBack';
-import FixedNotification from '../../ui-component/fixed-notification';
+//import FixedNotification from '../../ui-component/fixed-notification';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
