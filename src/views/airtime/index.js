@@ -12,17 +12,6 @@ import { generateRequestId } from '../../utils/generateRequestId';
 import * as yup from 'yup';
 import FeedBack from '../feedBack';
 
-const validAmounts = {
-    1: [100, 200, 500],
-    2: [100, 200, 500],
-    3: [100, 200],
-    4: [100, 200, 500]
-};
-
-const validateAmount = (network, amount) => {
-    return validAmounts[network]?.includes(amount);
-};
-
 const BuyAirtime = ({ title, network = 1 }) => {
     const { airtimeOrder } = useSelector((state) => state);
     const { loading, airtime, error } = airtimeOrder;
@@ -52,15 +41,7 @@ const BuyAirtime = ({ title, network = 1 }) => {
             .max(11, 'Maximum 11 characters allowed')
             .min(11, 'Number is not complete')
             .required('Please enter beneficiary number'),
-        amount: yup
-            .number()
-            .integer()
-            .required('Please enter airtime amount')
-            .typeError('Amount must be a number')
-            .test('valid-amount', 'Invalid amount for the selected network', function (value) {
-                const { network } = this.parent;
-                return validateAmount(network, value);
-            }),
+        amount: yup.number().integer().required('Please enter airtime amount').typeError('Amount must be a number'),
         network: yup.string().required('Network is required')
     });
 
@@ -114,17 +95,16 @@ const BuyAirtime = ({ title, network = 1 }) => {
                                 <Grid item xs={12}>
                                     <Typography>Enter Transaction Pin</Typography>
                                     <PinInput
-                                        style={{ margin: 'auto' }}
                                         length={4}
                                         initialValue=""
                                         secret
                                         onChange={(value) => setPin(value)}
-                                        type="tel"
+                                        type="numeric"
                                         inputMode="numeric"
-                                        inputStyle={{ borderColor: 'black' }}
+                                        inputStyle={{ borderColor: 'black', width: '50px', height: '50px' }}
                                         inputFocusStyle={{ borderColor: 'blue' }}
-                                        autoSelect
-                                        regexCriteria={/^[0-9]{4}$/}
+                                        onComplete={(value) => setPin(value)}
+                                        autoSelect={true}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
