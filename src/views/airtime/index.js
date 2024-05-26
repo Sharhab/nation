@@ -106,7 +106,7 @@ const BuyAirtime = ({ title, network }) => {
     return (
         <MainCard title={title}>
             <Formik initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
-                {({ isValid, handleSubmit }) => (
+                {({ isValid, dirty, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
@@ -136,7 +136,7 @@ const BuyAirtime = ({ title, network }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <CustomButton type="submit" color="primary" disabled={loading || !isValid} loading={loading}>
+                                    <CustomButton type="submit" color="primary" disabled={loading || !(isValid && dirty)} loading={loading}>
                                         Submit
                                     </CustomButton>
                                 </Grid>
