@@ -118,7 +118,7 @@ const BuyAirtime = ({ title, network }) => {
                                         initialValue=""
                                         secret
                                         onChange={(value) => setPin(value)}
-                                        type="tel"
+                                        type="numeric"
                                         inputMode="numeric"
                                         inputStyle={{ borderColor: 'black' }}
                                         inputFocusStyle={{ borderColor: 'blue' }}
