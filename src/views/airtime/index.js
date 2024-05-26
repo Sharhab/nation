@@ -12,7 +12,21 @@ import { generateRequestId } from '../../utils/generateRequestId';
 import * as yup from 'yup';
 import FeedBack from '../feedBack';
 
-const BuyAirtime = ({ title, network = 1 }) => {
+const networkIDs = {
+    MTN: 1,
+    GLO: 2,
+    '9MOBILE': 3,
+    AIRTEL: 4
+};
+
+const validAmounts = {
+    1: [100, 200, 500], // MTN
+    2: [100, 200, 500], // GLO
+    3: [100, 200],      // 9MOBILE
+    4: [100, 200, 500]  // AIRTEL
+};
+
+const BuyAirtime = ({ title, network }) => {
     const { airtimeOrder } = useSelector((state) => state);
     const { loading, airtime, error } = airtimeOrder;
     const { enqueueSnackbar } = useSnackbar();
@@ -26,6 +40,8 @@ const BuyAirtime = ({ title, network = 1 }) => {
     useEffect(() => {
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch]);
+
+    const networkId = networkIDs[network] || 1; // Default to MTN if network is not recognized
 
     const INITIAL_FORM_VALUES = {
         beneficiary: '',
@@ -41,8 +57,13 @@ const BuyAirtime = ({ title, network = 1 }) => {
             .max(11, 'Maximum 11 characters allowed')
             .min(11, 'Number is not complete')
             .required('Please enter beneficiary number'),
-        amount: yup.number().integer().required('Please enter airtime amount').typeError('Amount must be a number'),
-        network: yup.number().required('Network is required')
+        amount: yup
+            .number()
+            .integer()
+            .required('Please enter airtime amount')
+            .typeError('Amount must be a number')
+            .oneOf(validAmounts[networkId], `Invalid amount for the selected network. Valid amounts are: ${validAmounts[networkId].join(', ')}`),
+        network: yup.string().required('Please select a network')
     });
 
     const handleSubmit = (values) => {
@@ -56,10 +77,10 @@ const BuyAirtime = ({ title, network = 1 }) => {
 
         const body = {
             beneficiary: values.beneficiary,
-            serviceID: parseInt(values.network), // Ensure network is sent as an integer
+            serviceID: networkId,  // Use network ID
             request_id: generateRequestId(),
-            amount: values.amount,
-            network: parseInt(values.network), // Ensure network is sent as an integer
+            amount: values.amount,  // The amount to be purchased
+            network: networkId,  // Use network ID
             pin: pin
         };
 
@@ -73,44 +94,36 @@ const BuyAirtime = ({ title, network = 1 }) => {
         );
     };
 
-    console.log("Network:", network); // Debugging: Check network prop
-    console.log("Form Values:", INITIAL_FORM_VALUES); // Debugging: Check initial form values
-
     return (
         <MainCard title={title}>
             <Formik initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
-                {({ values, errors, touched, isValid }) => (
+                {({ isValid }) => (
                     <Form>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
                                 <Grid item xs={12}>
                                     <CustomTextField name="beneficiary" label="Beneficiary Number" />
-                                    {errors.beneficiary && touched.beneficiary && (
-                                        <Typography color="error">{errors.beneficiary}</Typography>
-                                    )}
                                 </Grid>
                                 <Grid item xs={12}>
                                     <CustomTextField name="amount" label="Airtime Amount" />
-                                    {errors.amount && touched.amount && (
-                                        <Typography color="error">{errors.amount}</Typography>
-                                    )}
                                 </Grid>
                                 <Grid item xs={12} style={{ display: 'none' }}>
-                                    <CustomTextField name="network" label="Network" value={values.network} />
+                                    <CustomTextField name="network" label="Network" value={network} />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography>Enter Transaction Pin</Typography>
                                     <PinInput
+                                        style={{ margin: 'auto' }}
                                         length={4}
                                         initialValue=""
                                         secret
                                         onChange={(value) => setPin(value)}
-                                        type="numeric"
+                                        type="tel"
                                         inputMode="numeric"
-                                        inputStyle={{ borderColor: 'black', width: '50px', height: '50px' }}
+                                        inputStyle={{ borderColor: 'black' }}
                                         inputFocusStyle={{ borderColor: 'blue' }}
-                                        onComplete={(value) => setPin(value)}
-                                        autoSelect={true}
+                                        autoSelect
+                                        regexCriteria={/^[0-9]{4}$/}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
