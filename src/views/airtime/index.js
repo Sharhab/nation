@@ -59,7 +59,14 @@ const BuyAirtime = ({ title, network }) => {
             .number()
             .integer()
             .required('Please enter airtime amount')
-            .typeError('Amount must be a number'),
+            .typeError('Amount must be a number')
+            .test(
+                'is-valid-amount',
+                `Invalid amount for the selected network. Valid amounts are: ${validAmounts[network].join(', ')}`,
+                function (value) {
+                    return validAmounts[network].includes(value);
+                }
+            ),
         network: yup.string().required('Please select a network')
     });
 
@@ -104,7 +111,7 @@ const BuyAirtime = ({ title, network }) => {
     return (
         <MainCard title={title}>
             <Formik initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
-                {({ values, setFieldValue, isValid }) => (
+                {({ isValid }) => (
                     <Form>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
