@@ -12,18 +12,18 @@ import { generateRequestId } from '../../utils/generateRequestId';
 import * as yup from 'yup';
 import FeedBack from '../feedBack';
 
-const networkIDs = {
-    MTN: 1,
-    GLO: 2,
-    '9MOBILE': 3,
-    AIRTEL: 4
+const planMapping = {
+    MTN: { 100: 2, 200: 3 },
+    '9MOBILE': { 100: 5, 200: 4 },
+    GLO: { 100: 6, 200: 7 },
+    AIRTEL: { 100: 8, 200: 9 }
 };
 
 const validAmounts = {
-    1: [100, 200, 500], // MTN
-    2: [100, 200, 500], // GLO
-    3: [100, 200],      // 9MOBILE
-    4: [100, 200, 500]  // AIRTEL
+    MTN: [100, 200],
+    '9MOBILE': [100, 200],
+    GLO: [100, 200],
+    AIRTEL: [100, 200]
 };
 
 const BuyAirtime = ({ title, network }) => {
@@ -40,8 +40,6 @@ const BuyAirtime = ({ title, network }) => {
     useEffect(() => {
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch]);
-
-    const networkId = networkIDs[network] || 1; // Default to MTN if network is not recognized
 
     const INITIAL_FORM_VALUES = {
         beneficiary: '',
@@ -62,7 +60,7 @@ const BuyAirtime = ({ title, network }) => {
             .integer()
             .required('Please enter airtime amount')
             .typeError('Amount must be a number')
-            .oneOf(validAmounts[networkId], `Invalid amount for the selected network. Valid amounts are: ${validAmounts[networkId].join(', ')}`),
+            .oneOf(validAmounts[network], `Invalid amount for the selected network. Valid amounts are: ${validAmounts[network].join(', ')}`),
         network: yup.string().required('Please select a network')
     });
 
@@ -75,12 +73,14 @@ const BuyAirtime = ({ title, network }) => {
             return;
         }
 
+        const selectedPlanId = planMapping[network][values.amount];
+
         const body = {
             beneficiary: values.beneficiary,
-            serviceID: networkId,  // Use network ID
+            serviceID: selectedPlanId,  // Use the plan ID
             request_id: generateRequestId(),
             amount: values.amount,  // The amount to be purchased
-            network: networkId,  // Use network ID
+            network: network,  // Pass the network name
             pin: pin
         };
 
