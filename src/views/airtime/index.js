@@ -30,8 +30,8 @@ const BuyAirtime = ({ title, network }) => {
     const { airtimeOrder } = useSelector((state) => state);
     const { loading, airtime, error } = airtimeOrder;
     const { enqueueSnackbar } = useSnackbar();
-    const [showAlert, setshowAlert] = useState(false);
-    const [showErrorAlert, setshowErrorAlert] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [showErrorAlert, setShowErrorAlert] = useState(false);
     const [pin, setPin] = useState('');
 
     const navigate = useNavigate();
@@ -100,8 +100,8 @@ const BuyAirtime = ({ title, network }) => {
             buyAirtime({
                 orderDetails: { data: body },
                 enqueueSnackbar,
-                setshowAlert,
-                setErrorAlert: setshowErrorAlert
+                setShowAlert,
+                setShowErrorAlert
             })
         );
     };
@@ -148,8 +148,8 @@ const BuyAirtime = ({ title, network }) => {
                     </Form>
                 )}
             </Formik>
-            <FeedBack setshowAlert={setshowAlert} showAlert={showAlert} message={airtime?.data?.message} variant="success" />
-            <FeedBack setshowErrorAlert={setshowErrorAlert} showErrorAlert={showErrorAlert} message={error} variant="error" />
+            <FeedBack setshowAlert={setShowAlert} showAlert={showAlert} message={airtime?.data?.message} variant="success" />
+            <FeedBack setshowErrorAlert={setShowErrorAlert} showErrorAlert={showErrorAlert} message={error} variant="error" />
         </MainCard>
     );
 };
