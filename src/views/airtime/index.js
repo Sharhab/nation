@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { Form, Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import PinInput from 'react-pin-input';
@@ -107,7 +107,7 @@ const BuyAirtime = ({ title, network }) => {
         <MainCard title={title}>
             <Formik initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
                 {({ isValid, handleSubmit }) => (
-                    <form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit}>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
                                 <Grid item xs={12}>
@@ -142,7 +142,7 @@ const BuyAirtime = ({ title, network }) => {
                                 </Grid>
                             </Grid>
                         </Box>
-                    </form>
+                    </Form>
                 )}
             </Formik>
             <FeedBack setshowAlert={setShowAlert} showAlert={showAlert} message={airtime?.data?.message} variant="success" />
