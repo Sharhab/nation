@@ -79,15 +79,21 @@ const BuyAirtime = ({ title, network = 1 }) => {
     return (
         <MainCard title={title}>
             <Formik initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
-                {({ values }) => (
+                {({ values, errors, touched, isValid }) => (
                     <Form>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
                                 <Grid item xs={12}>
                                     <CustomTextField name="beneficiary" label="Beneficiary Number" />
+                                    {errors.beneficiary && touched.beneficiary && (
+                                        <Typography color="error">{errors.beneficiary}</Typography>
+                                    )}
                                 </Grid>
                                 <Grid item xs={12}>
                                     <CustomTextField name="amount" label="Airtime Amount" />
+                                    {errors.amount && touched.amount && (
+                                        <Typography color="error">{errors.amount}</Typography>
+                                    )}
                                 </Grid>
                                 <Grid item xs={12} style={{ display: 'none' }}>
                                     <CustomTextField name="network" label="Network" value={values.network} />
@@ -108,7 +114,7 @@ const BuyAirtime = ({ title, network = 1 }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <CustomButton color="primary" disabled={loading} loading={loading}>
+                                    <CustomButton color="primary" disabled={loading || !isValid} loading={loading}>
                                         Submit
                                     </CustomButton>
                                 </Grid>
