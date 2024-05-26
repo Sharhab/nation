@@ -82,8 +82,7 @@ const BuyAirtime = ({ title, network }) => {
     return (
         <>
             <MainCard>
-                <FixedNotification />
-                <Card>
+           <Card>
                     <CardHeader title={title} />
                     <Formik initialValues={{ ...INITIAL_FORM_VALUES }} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
                         {({ values, setFieldValue }) => (
