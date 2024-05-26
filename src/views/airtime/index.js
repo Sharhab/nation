@@ -91,6 +91,8 @@ const BuyAirtime = ({ title, network }) => {
             pin: pin
         };
 
+        console.log('Submitting form with body:', body);
+
         dispatch(
             buyAirtime({
                 orderDetails: { data: body },
@@ -104,8 +106,8 @@ const BuyAirtime = ({ title, network }) => {
     return (
         <MainCard title={title}>
             <Formik initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
-                {({ isValid }) => (
-                    <Form>
+                {({ isValid, handleSubmit }) => (
+                    <form onSubmit={handleSubmit}>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
                                 <Grid item xs={12}>
@@ -134,13 +136,13 @@ const BuyAirtime = ({ title, network }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <CustomButton color="primary" disabled={loading || !isValid} loading={loading}>
+                                    <CustomButton type="submit" color="primary" disabled={loading || !isValid} loading={loading}>
                                         Submit
                                     </CustomButton>
                                 </Grid>
                             </Grid>
                         </Box>
-                    </Form>
+                    </form>
                 )}
             </Formik>
             <FeedBack setshowAlert={setShowAlert} showAlert={showAlert} message={airtime?.data?.message} variant="success" />
