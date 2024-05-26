@@ -12,12 +12,15 @@ import { generateRequestId } from '../../utils/generateRequestId';
 import * as yup from 'yup';
 import FeedBack from '../feedBack';
 
-// Simplified validAmounts for temporary debugging
 const validAmounts = {
     1: [100, 200, 500],
     2: [100, 200, 500],
     3: [100, 200],
     4: [100, 200, 500]
+};
+
+const validateAmount = (network, amount) => {
+    return validAmounts[network]?.includes(amount);
 };
 
 const BuyAirtime = ({ title, network = 1 }) => {
@@ -53,10 +56,12 @@ const BuyAirtime = ({ title, network = 1 }) => {
             .number()
             .integer()
             .required('Please enter airtime amount')
-            .typeError('Amount must be a number'),
-            // Temporarily simplified validation for debugging
-            //.oneOf(validAmounts[network], `Invalid amount for the selected network. Valid amounts are: ${validAmounts[network].join(', ')}`),
-        network: yup.string()
+            .typeError('Amount must be a number')
+            .test('valid-amount', 'Invalid amount for the selected network', function (value) {
+                const { network } = this.parent;
+                return validateAmount(network, value);
+            }),
+        network: yup.string().required('Network is required')
     });
 
     const handleSubmit = (values) => {
