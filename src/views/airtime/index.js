@@ -42,7 +42,7 @@ const BuyAirtime = ({ title, network = 1 }) => {
             .min(11, 'Number is not complete')
             .required('Please enter beneficiary number'),
         amount: yup.number().integer().required('Please enter airtime amount').typeError('Amount must be a number'),
-        network: yup.string().required('Network is required')
+        network: yup.number().required('Network is required')
     });
 
     const handleSubmit = (values) => {
@@ -56,10 +56,10 @@ const BuyAirtime = ({ title, network = 1 }) => {
 
         const body = {
             beneficiary: values.beneficiary,
-            serviceID: values.network,
+            serviceID: parseInt(values.network), // Ensure network is sent as an integer
             request_id: generateRequestId(),
             amount: values.amount,
-            network: values.network,
+            network: parseInt(values.network), // Ensure network is sent as an integer
             pin: pin
         };
 
