@@ -41,10 +41,6 @@ const BuyAirtime = ({ title, network }) => {
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch]);
 
-    useEffect(() => {
-        console.log('Network:', network); // Debugging network value
-    }, [network]);
-
     const INITIAL_FORM_VALUES = {
         beneficiary: '',
         amount: '',
@@ -63,8 +59,7 @@ const BuyAirtime = ({ title, network }) => {
             .number()
             .integer()
             .required('Please enter airtime amount')
-            .typeError('Amount must be a number')
-            .oneOf(validAmounts[network] || [], `Invalid amount for the selected network. Valid amounts are: ${(validAmounts[network] || []).join(', ')}`),
+            .typeError('Amount must be a number'),
         network: yup.string().required('Please select a network')
     });
 
@@ -109,7 +104,7 @@ const BuyAirtime = ({ title, network }) => {
     return (
         <MainCard title={title}>
             <Formik initialValues={INITIAL_FORM_VALUES} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
-                {({ isValid, values }) => (
+                {({ values, setFieldValue, isValid }) => (
                     <Form>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
@@ -120,7 +115,7 @@ const BuyAirtime = ({ title, network }) => {
                                     <CustomTextField name="amount" label="Airtime Amount" />
                                 </Grid>
                                 <Grid item xs={12} style={{ display: 'none' }}>
-                                    <CustomTextField name="network" label="Network" value={values.network} />
+                                    <CustomTextField name="network" label="Network" value={network} />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography>Enter Transaction Pin</Typography>
