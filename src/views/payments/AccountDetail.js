@@ -20,15 +20,16 @@ const AccountDetails = ({ accounts }) => {
     return (
         <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}>
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', overflowX: 'auto' }}>
-                {accounts.slice(currentPage * accountsPerPage, (currentPage + 1) * accountsPerPage).map((acc, index) => (
-                    <Paper key={index} variant="outlined" sx={{ minWidth: 300, maxWidth: 300, margin: 1, padding: 2, textAlign: 'center' }}>
-                      <Typography variant="h5" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                         Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
                       </Typography>
+                {accounts.slice(currentPage * accountsPerPage, (currentPage + 1) * accountsPerPage).map((acc, index) => (
+                    <Paper key={index} variant="outlined" sx={{ minWidth: 400, maxWidth: 400, margin: 1, padding: 2, textAlign: 'center' }}>
+                      
 
-                        <Typography variant="subtitle1">Bank Name: {acc.bank_name}</Typography>
-                        <Typography variant="subtitle1">Account Number: {acc.account_number}</Typography>
-                        <Typography variant="subtitle1">Account Name: {acc.account_name}</Typography>
+                        <Typography variant="h4">Bank Name: {acc.bank_name}</Typography>
+                        <Typography variant="h4">Account Number: {acc.account_number}</Typography>
+                        <Typography variant="h4">Account Name: {acc.account_name}</Typography>
                     </Paper>
                 ))}
             </Box>
