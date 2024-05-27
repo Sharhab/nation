@@ -930,44 +930,54 @@ export const UpdateUserAction =
   }
 };
 
-export const UpdateBvn = ({navigate, bvn, enqueueSnackbar }) => async (dispatch) => {
+export const UpdateBvn = ({ navigate, bvn, enqueueSnackbar }) => async (dispatch) => {
     dispatch({
-                type: UPDATE_USER_BVN_REQUEST
-            });
-    
-       try {
+        type: UPDATE_USER_BVN_REQUEST
+    });
+
+    const retryLimit = 3;
+    let attempts = 0;
+    let success = false;
+
+    while (attempts < retryLimit && !success) {
+        try {
             const { data } = await makeNetworkCall({
                 method: 'POST',
-                path: `/bvnupdate/verify`,
+                path: '/bvnupdate/verify',
                 requestBody: bvn
-                
             });
+
             dispatch({
                 type: UPDATE_USER_BVN_SUCCESS,
                 payload: data
             });
 
-           data &&
-                enqueueSnackbar(data?.message, {
-                    variant: 'success',
-                    autoHideDuration: 2000
-                });
-            
+            enqueueSnackbar(data?.message, {
+                variant: 'success',
+                autoHideDuration: 2000
+            });
+
+            success = true;
         } catch (error) {
+            attempts += 1;
+
             if (error.response?.data?.error?.status === 401) {
                 navigate('/pages/login');
             }
-            dispatch({
-                type: UPDATE_USER_BVN_FAIL,
-                payload: error?.message || error?.messag
-            });
 
-           error &&
+            if (attempts >= retryLimit) {
+                dispatch({
+                    type: UPDATE_USER_BVN_FAIL,
+                    payload: error?.message || error?.message
+                });
+
                 enqueueSnackbar(error?.message, {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
+            }
         }
+    }
 };
 
 export const userTransactionStat = () => async (dispatch) => {};
