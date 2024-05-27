@@ -1,4 +1,3 @@
-// material-ui
 import { Box, Grid } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { useSnackbar } from 'notistack';
@@ -7,11 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { UpdateBvn, userAction } from '../store/actions';
 import { CustomButton, CustomTextField } from '../ui-component/basic-inputs';
-// project imports
 import MainCard from '../ui-component/cards/MainCard';
 import * as yup from 'yup';
-
-// ==============================|| SAMPLE PAGE ||============================== //
 
 const VerifyAccounts = () => {
     const { updateUser, login } = useSelector((state) => state);
@@ -21,9 +17,10 @@ const VerifyAccounts = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
     useEffect(() => {
         if (!isLoggedIn) {
-       return navigate('/pages/login', {replace: true});
+            return navigate('/pages/login', { replace: true });
         }
         dispatch(userAction({ navigate }));
     }, [navigate, dispatch, isLoggedIn]);
@@ -31,36 +28,38 @@ const VerifyAccounts = () => {
     const INITIAL_FORM_VALUES = {
         bvn: ''
     };
+
     const VALIDATIONS = yup.object().shape({
-        bvn: yup.string().required('please enter your bvn number')
+        bvn: yup.string().required('Please enter your BVN number')
     });
 
     const handleSubmit = (values) => {
-        dispatch(
-            UpdateBvn({
-                navigate,
-                    bvn: {
-                        data: values.bvn
-                    },
-                enqueueSnackbar
-            })
-        );
+        dispatch(UpdateBvn({
+            navigate,
+            bvn: values.bvn,
+            enqueueSnackbar
+        }));
     };
 
     return (
-        <MainCard title={'Verify Account'}>
-            <Formik initialValues={{ ...INITIAL_FORM_VALUES }} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
+        <MainCard title="Verify Account">
+            <Formik
+                initialValues={{ ...INITIAL_FORM_VALUES }}
+                onSubmit={handleSubmit}
+                validationSchema={VALIDATIONS}
+            >
                 {({ values, setFieldValue }) => (
                     <Form>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
                             <Grid container spacing={4}>
                                 <Grid item xs={12}>
-                                    <CustomTextField name="bvn" label="BVN  Number" />
+                                    <CustomTextField name="bvn" label="BVN Number" />
                                 </Grid>
-
                                 <Grid item xs={12}>
-                                    <CustomButton color="primary" 
-                                 disabled={Update_user_loading ? true : false}>
+                                    <CustomButton 
+                                        color="primary" 
+                                        disabled={Update_user_loading}
+                                    >
                                         Submit
                                     </CustomButton>
                                 </Grid>
