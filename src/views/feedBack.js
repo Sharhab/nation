@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button, Typography, TextField, Box } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import SweetAlert from 'react-bootstrap-sweetalert';
@@ -21,12 +21,16 @@ const FeedBack = ({
 }) => {
     const navigate = useNavigate();
     const [bvn, setBvn] = useState('');
+    const bvnInputRef = useRef(null);  // Ref for BVN input field
+    const [isBvnInputVisible, setIsBvnInputVisible] = useState(false);  // State to manage BVN input visibility
+
     const onClickSuccess = (setshowAlert, goHome) => {
         setshowAlert((prevAlert) => !prevAlert);
         if (goHome) {
             navigate('/');
         }
     };
+
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const { monnifyAccountGeneration } = useSelector((state) => state);
@@ -41,6 +45,13 @@ const FeedBack = ({
         setshowErrorAlert(false);
     };
 
+    // Use effect to focus the BVN input field when it becomes visible
+    useEffect(() => {
+        if (isBvnInputVisible && bvnInputRef.current) {
+            bvnInputRef.current.focus();
+        }
+    }, [isBvnInputVisible]);
+
     const SuccessFullAlert = ({ title, message, from }) => {
         return (
             <SweetAlert
@@ -48,7 +59,13 @@ const FeedBack = ({
                 type={type ? 'info' : 'success'}
                 title={title || 'Successful!'}
                 show={showAlert}
-                onConfirm={() => (from === 'fund' ? generateAccount(setshowAlert) : onClickSuccess(setshowAlert, goHome))}
+                onConfirm={() => {
+                    if (from === 'fund') {
+                        setIsBvnInputVisible(true);  // Show BVN input when "Generate now" is clicked
+                    } else {
+                        onClickSuccess(setshowAlert, goHome);
+                    }
+                }}
                 onCancel={() => setshowAlert(false)}
                 customButtons={
                     <div
@@ -61,7 +78,13 @@ const FeedBack = ({
                     >
                         <Button
                             sx={{ backgroundColor: '#83529f', color: 'white', mr: 1, '&:hover': { backgroundColor: '#83529f' } }}
-                            onClick={() => (from === 'fund' ? generateAccount(setshowAlert) : onClickSuccess(setshowAlert, goHome))}
+                            onClick={() => {
+                                if (from === 'fund') {
+                                    setIsBvnInputVisible(true);  // Show BVN input when "Generate now" is clicked
+                                } else {
+                                    onClickSuccess(setshowAlert, goHome);
+                                }
+                            }}
                             variant="contained"
                             disabled={loading}
                         >
@@ -74,7 +97,7 @@ const FeedBack = ({
                 <Typography variant="subtitle1" sx={{ textAlign: 'justify' }}>
                     {message}
                 </Typography>
-                {from === 'fund' && (
+                {from === 'fund' && isBvnInputVisible && (
                     <Box mt={2}>
                         <Typography variant="h6" gutterBottom>
                             To Update Your Virtual Account Number as Required By CBN Provide Your BVN and This will help to enhance privacy and Secure your Account.
@@ -82,13 +105,23 @@ const FeedBack = ({
                         <TextField
                             label="BVN"
                             variant="outlined"
-                            fullWidth 
-                            inputMode="numeric" 
+                            fullWidth
+                            inputMode="numeric"
                             type="tel"
                             value={bvn}
                             onChange={(e) => setBvn(e.target.value)}
                             disabled={loading}
+                            inputRef={bvnInputRef}  // Reference to BVN input field
                         />
+                        <Button
+                            sx={{ mt: 2 }}
+                            variant="contained"
+                            color="primary"
+                            onClick={() => generateAccount(setshowAlert)}
+                            disabled={loading || !bvn}
+                        >
+                            Submit
+                        </Button>
                     </Box>
                 )}
                 {purchasePin && <Typography variant="subtitle1">{purchasePin}</Typography>}
@@ -129,7 +162,7 @@ const FeedBack = ({
     } else if (showErrorAlert) {
         return <FailureAlert message={message} />;
     } else {
-        return '';
+        return null;
     }
 };
 
