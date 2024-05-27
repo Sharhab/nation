@@ -21,31 +21,24 @@ const FeedBack = ({
 }) => {
     const navigate = useNavigate();
     const [bvn, setBvn] = useState('');
-    const [showBvnInput, setShowBvnInput] = useState(false);
-
     const onClickSuccess = (setshowAlert, goHome) => {
         setshowAlert((prevAlert) => !prevAlert);
         if (goHome) {
             navigate('/');
         }
     };
-
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const { monnifyAccountGeneration } = useSelector((state) => state);
     const { loading } = monnifyAccountGeneration;
 
-    const generateAccount = async () => {
+    const generateAccount = async (setshowAlert) => {
         await dispatch(generateMonnifyAccount({ bvn, enqueueSnackbar, navigate }));
         setshowAlert((prevAlert) => !prevAlert);
     };
 
     const onClickFailure = () => {
         setshowErrorAlert(false);
-    };
-
-    const handleBvnChange = (e) => {
-        setBvn(e.target.value);
     };
 
     const SuccessFullAlert = ({ title, message, from }) => {
@@ -55,7 +48,7 @@ const FeedBack = ({
                 type={type ? 'info' : 'success'}
                 title={title || 'Successful!'}
                 show={showAlert}
-                onConfirm={() => (from === 'fund' ? setShowBvnInput(true) : onClickSuccess(setshowAlert, goHome))}
+                onConfirm={() => (from === 'fund' ? generateAccount(setshowAlert) : onClickSuccess(setshowAlert, goHome))}
                 onCancel={() => setshowAlert(false)}
                 customButtons={
                     <div
@@ -68,7 +61,7 @@ const FeedBack = ({
                     >
                         <Button
                             sx={{ backgroundColor: '#83529f', color: 'white', mr: 1, '&:hover': { backgroundColor: '#83529f' } }}
-                            onClick={() => (from === 'fund' ? setShowBvnInput(true) : onClickSuccess(setshowAlert, goHome))}
+                            onClick={() => (from === 'fund' ? generateAccount(setshowAlert) : onClickSuccess(setshowAlert, goHome))}
                             variant="contained"
                             disabled={loading}
                         >
@@ -81,8 +74,7 @@ const FeedBack = ({
                 <Typography variant="subtitle1" sx={{ textAlign: 'justify' }}>
                     {message}
                 </Typography>
-                {purchasePin && <Typography variant="subtitle1">{purchasePin}</Typography>}
-                {showBvnInput && (
+                {from === 'fund' && (
                     <Box mt={2}>
                         <Typography variant="h6" gutterBottom>
                             To Update Your Virtual Account Number as Required By CBN Provide Your BVN and This will help to enhance privacy and Secure your Account.
@@ -92,20 +84,12 @@ const FeedBack = ({
                             variant="outlined"
                             fullWidth
                             value={bvn}
-                            onChange={handleBvnChange}
+                            onChange={(e) => setBvn(e.target.value)}
                             disabled={loading}
                         />
-                        <Button
-                            sx={{ mt: 2 }}
-                            variant="contained"
-                            color="primary"
-                            onClick={generateAccount}
-                            disabled={loading || !bvn}
-                        >
-                            Submit
-                        </Button>
                     </Box>
                 )}
+                {purchasePin && <Typography variant="subtitle1">{purchasePin}</Typography>}
             </SweetAlert>
         );
     };
@@ -143,7 +127,7 @@ const FeedBack = ({
     } else if (showErrorAlert) {
         return <FailureAlert message={message} />;
     } else {
-        return null;
+        return '';
     }
 };
 
