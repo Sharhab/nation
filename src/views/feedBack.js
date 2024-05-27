@@ -82,7 +82,9 @@ const FeedBack = ({
                         <TextField
                             label="BVN"
                             variant="outlined"
-                            fullWidth
+                            fullWidth 
+                            inputMode="numeric" 
+                            type="tel"
                             value={bvn}
                             onChange={(e) => setBvn(e.target.value)}
                             disabled={loading}
