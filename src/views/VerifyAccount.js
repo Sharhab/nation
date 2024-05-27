@@ -59,6 +59,7 @@ const VerifyAccounts = () => {
                                     <CustomButton 
                                         color="primary" 
                                         disabled={Update_user_loading}
+                                        loading={Update_user_loading}
                                     >
                                         Submit
                                     </CustomButton>
