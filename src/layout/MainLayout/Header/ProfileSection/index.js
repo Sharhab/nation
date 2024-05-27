@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import User1 from '../../../../assets/images/user-round.png';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+ import { useNavigate } from 'react-router';
 import { LogoutAction } from '../../../../store/actions';
 // project imports
 import MainCard from '../../../../ui-component/cards/MainCard';
@@ -23,7 +23,7 @@ const ProfileSection = () => {
      * anchorRef is used on different componets and specifying one type leads to other components throwing an error
      * */
     const anchorRef = useRef(null);
-
+    const navigate = useNavigate();
     const handleClose = (event) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
@@ -56,7 +56,7 @@ const ProfileSection = () => {
     const dispatch = useDispatch();
 
     const Logout = () => {
-        dispatch(LogoutAction());
+        dispatch(LogoutAction(navigate));
     };
 
     return (
