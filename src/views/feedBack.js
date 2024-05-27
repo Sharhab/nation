@@ -1,10 +1,11 @@
-import { Button, Typography } from '@mui/material';
+import { useState } from 'react';
+import { Button, Typography, TextField, Box } from '@mui/material';
 import { useSnackbar } from 'notistack';
-// import { useSnackbar } from 'notistack';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { generateMonnifyAccount } from '../store/actions';
+
 const FeedBack = ({
     title,
     type,
@@ -19,6 +20,7 @@ const FeedBack = ({
     setshowErrorAlert
 }) => {
     const navigate = useNavigate();
+    const [bvn, setBvn] = useState('');
     const onClickSuccess = (setshowAlert, goHome) => {
         setshowAlert((prevAlert) => !prevAlert);
         if (goHome) {
@@ -31,9 +33,10 @@ const FeedBack = ({
     const { loading } = monnifyAccountGeneration;
 
     const generateAccount = async (setshowAlert) => {
-        await dispatch(generateMonnifyAccount({ enqueueSnackbar, navigate }));
+        await dispatch(generateMonnifyAccount({ bvn, enqueueSnackbar, navigate }));
         setshowAlert((prevAlert) => !prevAlert);
     };
+
     const onClickFailure = () => {
         setshowErrorAlert(false);
     };
@@ -61,7 +64,6 @@ const FeedBack = ({
                             onClick={() => (from === 'fund' ? generateAccount(setshowAlert) : onClickSuccess(setshowAlert, goHome))}
                             variant="contained"
                             disabled={loading}
-                                
                         >
                             {from === 'fund' ? 'Generate now' : 'Ok'}
                         </Button>
@@ -72,10 +74,26 @@ const FeedBack = ({
                 <Typography variant="subtitle1" sx={{ textAlign: 'justify' }}>
                     {message}
                 </Typography>
+                {from === 'fund' && (
+                    <Box mt={2}>
+                        <Typography variant="h6" gutterBottom>
+                            To Update Your Virtual Account Number as Required By CBN Provide Your BVN and This will help to enhance privacy and Secure your Account.
+                        </Typography>
+                        <TextField
+                            label="BVN"
+                            variant="outlined"
+                            fullWidth
+                            value={bvn}
+                            onChange={(e) => setBvn(e.target.value)}
+                            disabled={loading}
+                        />
+                    </Box>
+                )}
                 {purchasePin && <Typography variant="subtitle1">{purchasePin}</Typography>}
             </SweetAlert>
         );
     };
+
     const FailureAlert = ({ message }) => {
         return (
             <SweetAlert
@@ -96,11 +114,6 @@ const FeedBack = ({
                         >
                             Ok
                         </Button>
-                        {/* {!disableTopup && (
-                            <Button onClick={() => navigate('/fund-wallet')} variant="contained" color="primary">
-                                Top up now
-                            </Button>
-                        )} */}
                     </>
                 }
             >
