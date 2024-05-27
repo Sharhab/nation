@@ -621,7 +621,7 @@ export const giftData =
             setErrorAlert((prevState) => !prevState);
         }
     };
-export const LogoutAction = () => async (dispatch) => {
+export const LogoutAction = ({navigate}) => async (dispatch) => {
     try {
         dispatch({
             type: LOGOUT_USER_REQUEST
@@ -637,7 +637,7 @@ export const LogoutAction = () => async (dispatch) => {
             payload: data?.message || 'logout succefully'
         });
       
-    
+       navigate('/pages/login');
     } catch (error) {
         dispatch({
             type: LOGOUT_USER_FAIL,
