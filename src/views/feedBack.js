@@ -21,12 +21,15 @@ const FeedBack = ({
 }) => {
     const navigate = useNavigate();
     const [bvn, setBvn] = useState('');
+    const [bvnInputRef, setBvnInputRef] = useState(null);
+
     const onClickSuccess = (setshowAlert, goHome) => {
         setshowAlert((prevAlert) => !prevAlert);
         if (goHome) {
             navigate('/');
         }
     };
+
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const { monnifyAccountGeneration } = useSelector((state) => state);
@@ -39,6 +42,16 @@ const FeedBack = ({
 
     const onClickFailure = () => {
         setshowErrorAlert(false);
+    };
+
+    const handleBvnChange = (e) => {
+        setBvn(e.target.value);
+    };
+
+    const handleBvnFocus = () => {
+        if (bvnInputRef) {
+            bvnInputRef.focus();
+        }
     };
 
     const SuccessFullAlert = ({ title, message, from }) => {
@@ -84,7 +97,9 @@ const FeedBack = ({
                             variant="outlined"
                             fullWidth
                             value={bvn}
-                            onChange={(e) => setBvn(e.target.value)}
+                            onChange={handleBvnChange}
+                            onFocus={handleBvnFocus}
+                            inputRef={(input) => setBvnInputRef(input)}
                             disabled={loading}
                         />
                     </Box>
