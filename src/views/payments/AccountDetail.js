@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Grid, Paper, Typography } from '@mui/material';
+import { Box, Button, Grid, Paper, Typography } from '@mui/material';
 
 const AccountDetails = ({ accounts }) => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -18,7 +18,10 @@ const AccountDetails = ({ accounts }) => {
     };
 
     return (
-        <div>
+        <Box sx={{ maxWidth: 1200, margin: 'auto' }}>
+            <Typography variant="h5" gutterBottom>
+                Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
+            </Typography>
             <Grid container spacing={3}>
                 {accounts.slice(currentPage * accountsPerPage, (currentPage + 1) * accountsPerPage).map((acc, index) => (
                     <Grid key={index} item xs={12} md={3}>
@@ -30,15 +33,15 @@ const AccountDetails = ({ accounts }) => {
                     </Grid>
                 ))}
             </Grid>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>
-                <Button onClick={handlePrevPage} disabled={currentPage === 0}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                <Button onClick={handlePrevPage} disabled={currentPage === 0} variant="contained" color="primary">
                     Previous
                 </Button>
-                <Button onClick={handleNextPage} disabled={currentPage >= Math.ceil(accounts.length / accountsPerPage) - 1}>
+                <Button onClick={handleNextPage} disabled={currentPage >= Math.ceil(accounts.length / accountsPerPage) - 1} variant="contained" color="primary">
                     Next
                 </Button>
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 
