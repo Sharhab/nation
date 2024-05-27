@@ -17,7 +17,6 @@ const VerifyAccounts = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
     useEffect(() => {
         if (!isLoggedIn) {
             return navigate('/pages/login', { replace: true });
@@ -28,26 +27,25 @@ const VerifyAccounts = () => {
     const INITIAL_FORM_VALUES = {
         bvn: ''
     };
-
     const VALIDATIONS = yup.object().shape({
         bvn: yup.string().required('Please enter your BVN number')
     });
 
     const handleSubmit = (values) => {
-        dispatch(UpdateBvn({
-            navigate,
-            bvn: values.bvn,
-            enqueueSnackbar
-        }));
+        dispatch(
+            UpdateBvn({
+                navigate,
+                bvn: {
+                    bvn: values.bvn // Ensure the BVN is wrapped in an object with the correct key
+                },
+                enqueueSnackbar
+            })
+        );
     };
 
     return (
         <MainCard title="Verify Account">
-            <Formik
-                initialValues={{ ...INITIAL_FORM_VALUES }}
-                onSubmit={handleSubmit}
-                validationSchema={VALIDATIONS}
-            >
+            <Formik initialValues={{ ...INITIAL_FORM_VALUES }} onSubmit={handleSubmit} validationSchema={VALIDATIONS}>
                 {({ values, setFieldValue }) => (
                     <Form>
                         <Box sx={{ maxWidth: 500, height: '100vh' }}>
@@ -56,11 +54,7 @@ const VerifyAccounts = () => {
                                     <CustomTextField name="bvn" label="BVN Number" />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <CustomButton 
-                                        color="primary" 
-                                        disabled={Update_user_loading}
-                                        loading={Update_user_loading}
-                                    >
+                                    <CustomButton color="primary" disabled={Update_user_loading}>
                                         Submit
                                     </CustomButton>
                                 </Grid>
