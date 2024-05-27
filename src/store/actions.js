@@ -941,6 +941,10 @@ export const UpdateBvn = ({ navigate, bvn, enqueueSnackbar }) => async (dispatch
 
     while (attempts < retryLimit && !success) {
         try {
+            // Log the request body to ensure it's being sent correctly
+            console.log("Attempt:", attempts + 1);
+            console.log("Request Body:", bvn);
+
             const { data } = await makeNetworkCall({
                 method: 'POST',
                 path: '/bvnupdate/verify',
@@ -968,10 +972,10 @@ export const UpdateBvn = ({ navigate, bvn, enqueueSnackbar }) => async (dispatch
             if (attempts >= retryLimit) {
                 dispatch({
                     type: UPDATE_USER_BVN_FAIL,
-                    payload: error?.message || error?.message
+                    payload: error?.message || error?.response?.data?.message || 'Unknown error'
                 });
 
-                enqueueSnackbar(error?.message, {
+                enqueueSnackbar(error?.message || error?.response?.data?.message || 'Unknown error', {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
@@ -979,6 +983,7 @@ export const UpdateBvn = ({ navigate, bvn, enqueueSnackbar }) => async (dispatch
         }
     }
 };
+
 
 export const userTransactionStat = () => async (dispatch) => {};
 
