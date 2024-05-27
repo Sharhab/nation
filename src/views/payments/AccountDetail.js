@@ -3,7 +3,7 @@ import { Box, Button, Grid, Paper, Typography } from '@mui/material';
 
 const AccountDetails = ({ accounts }) => {
     const [currentPage, setCurrentPage] = useState(0);
-    const accountsPerPage = 4;
+    const accountsPerPage = 1;
 
     const handleNextPage = () => {
         if (currentPage < Math.ceil(accounts.length / accountsPerPage) - 1) {
@@ -18,21 +18,20 @@ const AccountDetails = ({ accounts }) => {
     };
 
     return (
-        <Box sx={{ maxWidth: 1200, margin: 'auto' }}>
-            <Typography variant="h5" gutterBottom>
-                Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
-            </Typography>
-            <Grid container spacing={3}>
+        <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', overflowX: 'auto' }}>
                 {accounts.slice(currentPage * accountsPerPage, (currentPage + 1) * accountsPerPage).map((acc, index) => (
-                    <Grid key={index} item xs={12} md={3}>
-                        <Paper variant="outlined" sx={{ mt: 2, py: 1.5, textAlign: 'center' }}>
-                            <Typography variant="subtitle1">Bank Name: {acc.bank_name}</Typography>
-                            <Typography variant="subtitle1">Account Number: {acc.account_number}</Typography>
-                            <Typography variant="subtitle1">Account Name: {acc.account_name}</Typography>
-                        </Paper>
-                    </Grid>
+                    <Paper key={index} variant="outlined" sx={{ minWidth: 300, maxWidth: 300, margin: 1, padding: 2, textAlign: 'center' }}>
+                      <Typography variant="h5" gutterBottom>
+                        Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
+                      </Typography>
+
+                        <Typography variant="subtitle1">Bank Name: {acc.bank_name}</Typography>
+                        <Typography variant="subtitle1">Account Number: {acc.account_number}</Typography>
+                        <Typography variant="subtitle1">Account Name: {acc.account_name}</Typography>
+                    </Paper>
                 ))}
-            </Grid>
+            </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
                 <Button onClick={handlePrevPage} disabled={currentPage === 0} variant="contained" color="primary">
                     Previous
