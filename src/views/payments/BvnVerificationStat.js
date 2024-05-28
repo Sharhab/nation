@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 import VerifiedIcon from '@mui/icons-material/Verified'; // You can use any appropriate icon
 
 const BvnVerificationStatus = ({ user }) => {
-    if (!user?.hasAccountNum !user?.updateBvn) {
+    if (!user?.hasAccountNum || !user?.updateBvn) {
         return null;
     }
 
