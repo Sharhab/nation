@@ -19,7 +19,7 @@ const AccountDetails = ({ accounts }) => {
 
     return (
         <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}> 
-      <Paper key={index} variant="outlined" sx={{ minWidth: 300, maxWidth: 300, margin: 1, padding: 2, textAlign: 'center' }}>
+      <Paper variant="outlined" sx={{ minWidth: 300, maxWidth: 300, margin: 1, padding: 2, textAlign: 'center' }}>
             <Typography variant="h5" gutterBottom>
                 Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
             </Typography>
