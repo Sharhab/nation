@@ -35,7 +35,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const {
         myGloDataPlans,
         getairtelCgDataPlans,
-        getgloCgDataPlans,
+        myGloCgDataPlans,
         myMtnDataPlans,
         myAirtelDataPlans,
         dataOrder,
@@ -54,7 +54,7 @@ const BuyData = ({ title, network, sme, sme_2, mtn_cg, coup, cg }) => {
     const { mtnSme2DataPlans } = myMtnSme2DataPlans;
     const { mtnCoupDataPlans } = myMtnCoupDataPlans;
     const { airtelDataPlans } = myAirtelDataPlans;
-    const { gloCgDataPlans } = getgloCgDataPlans;
+    const { gloCgDataPlans } = myGloCgDataPlans;
     const { airtelCgDataPlans } = getairtelCgDataPlans;
 
     const { loading, data, error } = dataOrder;
