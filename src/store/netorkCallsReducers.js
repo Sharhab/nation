@@ -507,16 +507,17 @@ export const userStatReducer = (state = initialUserStatState, action) => {
 
 
 //logout user reducers starts her
- export const logoutReducer = (state = initialLogoutState, action) => {
-     
+ 
+export const logoutReducer = (state = initialLogoutState, action) => {
     switch (action.type) {
         case LOGOUT_USER_REQUEST:
             return { ...state, loading: true };
 
-        case LOGOUT_USER_SUCCESS:   
-      return { ...state, loading: false, user: action.payload }; 
-            
-          window.location.replace('/pages/login');
+        case LOGOUT_USER_SUCCESS:
+            window.location.replace('/pages/login');
+
+            return { ...state, loading: false, user: action.payload };
+
         case LOGOUT_USER_FAIL:
             return { ...state, loading: false, error: action.payload };
 
@@ -524,7 +525,6 @@ export const userStatReducer = (state = initialUserStatState, action) => {
             return state;
     }
 };
-
 
 
 //RESET PASSWORD REDUCER
