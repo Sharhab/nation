@@ -143,7 +143,7 @@ const EarningCard = ({ isLoading, message }) => {
 
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <Typography sx={{ fontSize: '1.2rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                {login.isLoggedIn && showBalance ? `Wallet Balance: ₦${user?.accountBalance}` : 'Wallet Balance: *******'}
+                                                {login.isLoggedIn && showBalance ? `Wallet Balance: ₦${(user?.accountBalance ?? 0).toFixed(2)}` : 'Wallet Balance: *******'}
                                             </Typography>
                                         <IconButton
                                             onClick={handleClickShowPassword}
