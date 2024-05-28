@@ -621,36 +621,9 @@ export const giftData =
             setErrorAlert((prevState) => !prevState);
         }
     };
-export const LoginAction =
-    ({ user, navigate, enqueueSnackbar }) =>
-    async (dispatch) => {
-        try {
-            dispatch({
-                type: LOGIN_USER_REQUEST
-            });
-            const { data } = await makeNetworkCall({
-                method: 'POST',
-                requestBody: user,
-                path: '/logout'
-            });
-            dispatch({
-                type: LOGIN_USER_SUCCESS,
-                payload: data
-            });
-        } catch (error) {
-            dispatch({
-                type: LOGIN_USER_FAIL,
-                payload: error?.message || error?.messag
-            });
-            error &&
-                enqueueSnackbar(error?.message || error?.messag, {
-                    variant: 'error',
-                    autoHideDuration: 2000
-                });
-        }
-    };
 
-export const loginAction = ({ user, navigate, enqueueSnackbar }) => async (dispatch) => {
+
+export const LoginAction = ({ user, navigate, enqueueSnackbar }) => async (dispatch) => {
         try {
         // Dispatch action to indicate the start of the login request
         dispatch({
@@ -934,6 +907,22 @@ export const UpdateUserAction =
   }
 };
 
+export const LogoutAction = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: LOGOUT_USER_REQUEST
+        });
+        dispatch({
+            type: LOGOUT_USER_SUCCESS,
+            payload: 'successfully logged out'
+        });
+    } catch (error) {
+        dispatch({
+            type: LOGOUT_USER_FAIL,
+            payload: error?.message || error?.messag
+        });
+    }
+};
 export const UpdateBvn = ({ navigate, bvn, enqueueSnackbar }) => async (dispatch) => {
     dispatch({
         type: UPDATE_USER_BVN_REQUEST
