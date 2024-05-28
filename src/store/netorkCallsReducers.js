@@ -477,7 +477,7 @@ export const userStatByDateReducer = (state = initialUserStatState, action) => {
         case GET_USER_STAT_BY_DATE_REQUEST:
             return { ...state, loading: true };
 
-return  case GET_USER_STAT_BY_DATE_SUCCESS: {
+          case GET_USER_STAT_BY_DATE_SUCCESS: {
             return { ...state, loading: false, stat: action.payload };
         }
         case GET_USER_STAT_BY_DATE_FAIL:
