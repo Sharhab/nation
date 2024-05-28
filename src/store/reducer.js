@@ -55,7 +55,7 @@ const reducer = combineReducers({
     myGloDataPlans: getGloDataReducer,
     myAirtelDataPlans: getAirtelDataReducer,
     getairtelCgDataPlans: getAirtelcgDataReducer,
-    getgloCgDataPlans: getGloCgDataReducer,
+    myGloCgDataPlans: getGloCgDataReducer,
     dataOrder: dataOrderReducer,
     dataGiftingOrder: dataGiftingOrderReducer,
     cgDataOrder: CgOrderReducer,
