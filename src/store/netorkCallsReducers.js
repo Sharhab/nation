@@ -477,7 +477,7 @@ export const userStatByDateReducer = (state = initialUserStatState, action) => {
         case GET_USER_STAT_BY_DATE_REQUEST:
             return { ...state, loading: true };
 
-        case GET_USER_STAT_BY_DATE_SUCCESS: {
+return  case GET_USER_STAT_BY_DATE_SUCCESS: {
             return { ...state, loading: false, stat: action.payload };
         }
         case GET_USER_STAT_BY_DATE_FAIL:
@@ -514,9 +514,9 @@ export const userStatReducer = (state = initialUserStatState, action) => {
             return { ...state, loading: true };
 
         case LOGOUT_USER_SUCCESS:   
-
-            return { ...state, loading: false, user: action.payload };
-
+      return { ...state, loading: false, user: action.payload }; 
+            
+          window.location.replace('/pages/login');
         case LOGOUT_USER_FAIL:
             return { ...state, loading: false, error: action.payload };
 
