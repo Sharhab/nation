@@ -19,11 +19,13 @@ const AccountDetails = ({ accounts }) => {
 
     return (
         <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}> 
+    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', overflowX: 'auto' }}>
       <Paper variant="outlined" sx={{ minWidth: 300, maxWidth: 300, margin: 1, padding: 2, textAlign: 'center' }}>
             <Typography variant="h5" gutterBottom>
                 Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
             </Typography>
      </Paper>
+    </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', overflowX: 'auto' }}>
                 {accounts.slice(currentPage * accountsPerPage, (currentPage + 1) * accountsPerPage).map((acc, index) => (
                     <Paper key={index} variant="outlined" sx={{ minWidth: 300, maxWidth: 300, margin: 1, padding: 2, textAlign: 'center' }}>
