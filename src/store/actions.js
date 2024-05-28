@@ -621,30 +621,34 @@ export const giftData =
             setErrorAlert((prevState) => !prevState);
         }
     };
-export const LogoutAction = ({navigate}) => async (dispatch) => {
-    try {
-        dispatch({
-            type: LOGOUT_USER_REQUEST
-        });
-        const { data } = await makeNetworkCall({
-            method: 'POST',
-            path: '/logout',
-            requestBody: {},
-            
-        });
-        dispatch({
-            type: LOGOUT_USER_SUCCESS,
-            payload: data?.message || 'logout succefully'
-        });
-      
-       navigate('/pages/login');
-    } catch (error) {
-        dispatch({
-            type: LOGOUT_USER_FAIL,
-            payload: "failed to logout"
-        });
-    }
-};
+export const LoginAction =
+    ({ user, navigate, enqueueSnackbar }) =>
+    async (dispatch) => {
+        try {
+            dispatch({
+                type: LOGIN_USER_REQUEST
+            });
+            const { data } = await makeNetworkCall({
+                method: 'POST',
+                requestBody: user,
+                path: '/logout'
+            });
+            dispatch({
+                type: LOGIN_USER_SUCCESS,
+                payload: data
+            });
+        } catch (error) {
+            dispatch({
+                type: LOGIN_USER_FAIL,
+                payload: error?.message || error?.messag
+            });
+            error &&
+                enqueueSnackbar(error?.message || error?.messag, {
+                    variant: 'error',
+                    autoHideDuration: 2000
+                });
+        }
+    };
 
 export const loginAction = ({ user, navigate, enqueueSnackbar }) => async (dispatch) => {
         try {
