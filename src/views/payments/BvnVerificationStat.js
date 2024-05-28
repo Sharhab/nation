@@ -13,9 +13,9 @@ const BvnVerificationStatus = ({ user }) => {
             {user.updateBvn ? (
                 <Typography variant="subtitle1" color="primary" display="flex" alignItems="center">
                    <Typography variant="h5"> Virtual Account Update:</Typography>
-                    Status: 
-                    <VerifiedIcon style={{ marginRight: '8px' alignItmes: "center" justifyContent: "center"}} />
-                
+         <Typography variant="h4"> 
+                   Status: <VerifiedIcon style={{ marginRight: '8px' alignItmes: "center" justifyContent: "center"}} />
+           </Typography>
                 </Typography>
             ) : (
                 <Typography variant="subtitle1">
