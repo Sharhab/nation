@@ -4,11 +4,10 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
     Box,
     Checkbox,
-    Divider,
+    
     FormControl,
     FormControlLabel,
-    FormHelperText,
-    Grid,
+    FormHelperText, 
     IconButton,
     InputAdornment,
     InputLabel,
@@ -60,59 +59,7 @@ const FirebaseLogin = ({ ...others }) => {
 
     return (
         <>
-            <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
-                <Grid item xs={12}>
-                    <Box
-                        sx={{
-                            alignItems: 'center',
-                            display: 'flex'
-                        }}
-                    >
-                        <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-
-                        {/* <Button
-                            variant="outlined"
-                            sx={{
-                                cursor: 'unset',
-                                m: 2,
-                                py: 0.5,
-                                px: 7,
-                                borderColor: `${theme.palette.grey[100]} !important`,
-                                color: `${theme.palette.grey[900]}!important`,
-                                fontWeight: 500,
-                                borderRadius: `${customization.borderRadius}px`
-                            }}
-                            disableRipple
-                            disabled
-                        >
-                            OR
-                        </Button> */}
-                        <Grid item xs={12} container alignItems="center" justifyContent="center">
-                            <Box>
-                                <Typography variant="caption" fontSize="16px">
-                                    OR
-                                </Typography>
-                            </Box>
-                        </Grid>
-
-                        <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-                    </Box>
-                </Grid>
-                <Grid item xs={12} container alignItems="center" justifyContent="center">
-                    <Box sx={{ mb: 2 }}>
-                        <Typography
-                            variant="caption"
-                            style={{
-                                textTransform: 'uppercase'
-                            }}
-                            fontSize="16px"
-                        >
-                            register with Email address
-                        </Typography>
-                    </Box>
-                </Grid>
-            </Grid>
-
+            
             <Formik
                 initialValues={{
                     email: '',
