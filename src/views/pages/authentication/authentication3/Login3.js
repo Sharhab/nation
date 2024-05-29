@@ -44,30 +44,7 @@ const Login = () => {
                                             </Typography>
                                         </Link>
                                     </Grid>
-                                    <Grid item xs={12}>
-                                        <Grid
-                                            container
-                                            direction={matchDownSM ? 'column-reverse' : 'row'}
-                                            alignItems="center"
-                                            justifyContent="center"
-                                        >
-                                            <Grid item>
-                                                <Stack alignItems="center" justifyContent="center" spacing={1}>
-                                                    
-                                                    <Typography
-                                                        style={{
-                                                            textTransform: 'uppercase'
-                                                        }}
-                                                        variant="caption"
-                                                        fontSize="16px"
-                                                        textAlign={matchDownSM ? 'center' : 'inherit'}
-                                                    >
-                                                        Enter your details to sign in
-                                                    </Typography>
-                                                </Stack>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
+                                    
                                     <Grid item xs={12}>
                                         <AuthLogin />
                                     </Grid>
@@ -95,7 +72,7 @@ const Login = () => {
                                                 size="large"
                                                 variant="contained"
                                             >
-                                                register here !!
+                                                sign up !!
                                             </Button>
                                             {/* <Typography
                                                 component={Link}
