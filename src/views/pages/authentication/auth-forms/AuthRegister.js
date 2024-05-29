@@ -97,8 +97,6 @@ const AuthRegister = ({ ...others }) => {
   
     return (
         <>
-            <Grid container direction="column" justifyContent="center" spacing={2}>
-
             <Formik
                 initialValues={{
                     first_name: '',
