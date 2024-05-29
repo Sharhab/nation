@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 // third party
 import { BrowserRouter } from 'react-router-dom';
 // project imports
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorkerRegistration';
 import { store } from './store';
 
 
