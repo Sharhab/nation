@@ -35,7 +35,7 @@ const AccountDetails = ({ accounts }) => {
                     mb: 2
                 }}
             >
-                <Typography variant="h5" xs={{color: 'white'}} gutterBottom>
+                <Typography variant="h5" sx={{color: 'white'}} gutterBottom>
                     Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
                 </Typography>
             </Paper>
@@ -56,9 +56,9 @@ const AccountDetails = ({ accounts }) => {
                             }
                         }}
                     >
-                        <Typography variant="h6" xs={{color: 'white'}}>Bank Name: {acc.bank_name}</Typography>
+                        <Typography variant="h6" sx={{color: 'white'}}>Bank Name: {acc.bank_name}</Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Typography variant="h6" xs={{color: 'white'}}>Account Number: {acc.account_number}</Typography>
+                            <Typography variant="h6" sx={{color: 'white'}}>Account Number: {acc.account_number}</Typography>
                             <Tooltip title="Copy to clipboard">
                                 <IconButton
                                     onClick={() => handleCopyAccountNumber(acc.account_number)}
@@ -68,7 +68,7 @@ const AccountDetails = ({ accounts }) => {
                                 </IconButton>
                             </Tooltip>
                         </Box>
-                        <Typography variant="h6" xs={{color: 'white'}}>Account Name: {acc.account_name}</Typography>
+                        <Typography variant="h6" sx={{color: 'white'}}>Account Name: {acc.account_name}</Typography>
                     </Paper>
                 ))}
             </Box>
