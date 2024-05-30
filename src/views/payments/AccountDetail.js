@@ -50,9 +50,9 @@ const AccountDetails = ({ accounts }) => {
                             color: 'white',
                         }}
                     >
-                        <Typography variant="h3">Bank Name: {acc.bank_name}</Typography>
-                        <Typography variant="h3">Account Number: {acc.account_number}</Typography>
-                        <Typography variant="h3">Account Name: {acc.account_name}</Typography>
+                        <Typography variant="h3" sx={{ color: 'white' }}>Bank Name: {acc.bank_name}</Typography>
+                        <Typography variant="h3" sx={{ color: 'white' }}>Account Number: {acc.account_number}</Typography>
+                        <Typography variant="h3" sx={{ color: 'white' }}>Account Name: {acc.account_name}</Typography>
                     </Paper>
                 ))}
             </Box>
