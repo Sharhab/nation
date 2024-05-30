@@ -20,29 +20,26 @@ const AccountDetails = ({ accounts }) => {
 
     const handleCopyAccountNumber = (accountNumber) => {
         navigator.clipboard.writeText(accountNumber);
-        alert('Account number copied to clipboard!');
+        alert('Account number copied!');
     };
 
     return (
         <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
-                <Paper
-                    variant="outlined"
-                    sx={{
-                        minWidth: 300,
-                        maxHeight: 300,
-                        padding: 2,
-                        textAlign: 'center',
-                        background: 'linear-gradient(to right, orange, blue, red)',
-                        color: 'white',
-                    }}
-                >
-                    <Typography variant="h3" gutterBottom>
-                        Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
-                    </Typography>
-                </Paper>
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
+            <Paper
+                variant="outlined"
+                sx={{
+                    padding: 2,
+                    textAlign: 'center',
+                    background: 'linear-gradient(to right, orange, blue, red)',
+                    color: 'white',
+                    mb: 2
+                }}
+            >
+                <Typography variant="h5" gutterBottom>
+                    Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
+                </Typography>
+            </Paper>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 0 }}>
                 {accounts.slice(currentPage * accountsPerPage, (currentPage + 1) * accountsPerPage).map((acc, index) => (
                     <Paper
                         key={index}
@@ -54,12 +51,14 @@ const AccountDetails = ({ accounts }) => {
                             textAlign: 'center',
                             background: 'linear-gradient(to right, orange, blue, red)',
                             color: 'white',
-                            position: 'relative'
+                            '&:not(:first-of-type)': {
+                                ml: 2
+                            }
                         }}
                     >
-                        <Typography variant="h3">Bank Name: {acc.bank_name}</Typography>
+                        <Typography variant="h6">Bank Name: {acc.bank_name}</Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Typography variant="h3">Account Number: {acc.account_number}</Typography>
+                            <Typography variant="h6">Account Number: {acc.account_number}</Typography>
                             <Tooltip title="Copy to clipboard">
                                 <IconButton
                                     onClick={() => handleCopyAccountNumber(acc.account_number)}
@@ -69,11 +68,11 @@ const AccountDetails = ({ accounts }) => {
                                 </IconButton>
                             </Tooltip>
                         </Box>
-                        <Typography variant="h3">Account Name: {acc.account_name}</Typography>
+                        <Typography variant="h6">Account Name: {acc.account_name}</Typography>
                     </Paper>
                 ))}
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                 <Button onClick={handlePrevPage} disabled={currentPage === 0} variant="contained" color="primary">
                     Previous
                 </Button>
