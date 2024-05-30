@@ -22,7 +22,7 @@ import PinResetEmail from '../views/pin_reset/pin_reset_email';
 import PinReset from '../views/pin_reset/pin_reset_page';
 import Profile from '../views/profile';
 import EditProfile from '../views/profile/edit_profile';
-//import SellAirtime from '../views/sell-airtime/sell-airtime';
+import SellAirtime from '../views/sell-airtime/sell-airtime';
 import { airtimeProducts, dataProducts } from '../_mocks_/products';
 import SellAirtimeOtp from '../views/sell-airtime/sell-airtime-otp';
 import FinalizeSellAirtime from '../views/sell-airtime/finalize-sell-airtime';
@@ -101,10 +101,10 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
             path: '/buy-airtime',
             element: <SelectAirtimeView airtimeProv={airtimeProducts} />
         },
-        //{
-            //path: '/sell-airtime',
-           // element: <SellAirtime title="Convert Excess Airtime To Cash" />
-       // },
+        {
+            path: '/sell-airtime',
+            element: <SellAirtime title="Convert Excess Airtime To Cash" />
+       },
         {
             path: '/sell-airtime-otp',
             element: <SellAirtimeOtp title="Enter The Otp That Was Sent To  " />
