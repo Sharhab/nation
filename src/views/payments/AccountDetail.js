@@ -18,18 +18,17 @@ const AccountDetails = ({ accounts }) => {
     };
 
     return (
-        <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2}}>
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
+        <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', mb: 2 }}>
                 <Paper
                     variant="outlined"
                     sx={{
                         minWidth: 300,
-                        maxHeight: 300,
-                        
+                        maxWidth: 600,
                         padding: 2,
                         textAlign: 'center',
                         background: 'linear-gradient(to right, orange, blue, red)',
-                        color: 'ffff',
+                        color: 'white',
                     }}
                 >
                     <Typography variant="h3" gutterBottom>
@@ -37,19 +36,18 @@ const AccountDetails = ({ accounts }) => {
                     </Typography>
                 </Paper>
             </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
                 {accounts.slice(currentPage * accountsPerPage, (currentPage + 1) * accountsPerPage).map((acc, index) => (
                     <Paper
                         key={index}
                         variant="outlined"
                         sx={{
                             minWidth: 300,
-                            maxWidth: 300,
-                    
+                            maxWidth: 600,
                             padding: 2,
                             textAlign: 'center',
                             background: 'linear-gradient(to right, orange, blue, red)',
-                            color: 'ffff',
+                            color: 'white',
                         }}
                     >
                         <Typography variant="h3">Bank Name: {acc.bank_name}</Typography>
@@ -59,10 +57,32 @@ const AccountDetails = ({ accounts }) => {
                 ))}
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                <Button onClick={handlePrevPage} disabled={currentPage === 0} variant="contained" color="primary">
+                <Button
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 0}
+                    variant="contained"
+                    sx={{
+                        background: 'linear-gradient(to right, orange, blue, red)',
+                        color: 'white',
+                        '&:hover': {
+                            background: 'linear-gradient(to right, red, blue, orange)',
+                        },
+                    }}
+                >
                     Previous
                 </Button>
-                <Button onClick={handleNextPage} disabled={currentPage >= Math.ceil(accounts.length / accountsPerPage) - 1} variant="contained" color="primary">
+                <Button
+                    onClick={handleNextPage}
+                    disabled={currentPage >= Math.ceil(accounts.length / accountsPerPage) - 1}
+                    variant="contained"
+                    sx={{
+                        background: 'linear-gradient(to right, orange, blue, red)',
+                        color: 'white',
+                        '&:hover': {
+                            background: 'linear-gradient(to right, red, blue, orange)',
+                        },
+                    }}
+                >
                     Next
                 </Button>
             </Box>
