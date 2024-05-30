@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Button, Grid, Paper, Typography } from '@mui/material';
+import { Box, Button, Paper, Typography } from '@mui/material';
 
 const AccountDetails = ({ accounts }) => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -18,20 +18,43 @@ const AccountDetails = ({ accounts }) => {
     };
 
     return (
-        <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}> 
-    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'orange', color: 'white' }}>
-      <Paper variant="outlined" sx={{ minWidth: 300, maxHieght: 300, margin: 1, padding: 2, textAlign: 'center' }}>
-            <Typography variant="h3" gutterBottom>
-                Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
-            </Typography>
-     </Paper>
-    </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'orange', color: 'white' }}>
+        <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Paper
+                    variant="outlined"
+                    sx={{
+                        minWidth: 300,
+                        maxHeight: 300,
+                        
+                        padding: 2,
+                        textAlign: 'center',
+                        background: 'linear-gradient(to right, orange, blue, red)',
+                        color: 'white',
+                    }}
+                >
+                    <Typography variant="h3" gutterBottom>
+                        Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
+                    </Typography>
+                </Paper>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 {accounts.slice(currentPage * accountsPerPage, (currentPage + 1) * accountsPerPage).map((acc, index) => (
-                    <Paper key={index} variant="outlined" sx={{ minWidth: 300, maxWidth: 300, margin: 1, padding: 2, textAlign: 'center' }}>
+                    <Paper
+                        key={index}
+                        variant="outlined"
+                        sx={{
+                            minWidth: 300,
+                            maxWidth: 300,
+                    
+                            padding: 2,
+                            textAlign: 'center',
+                            background: 'linear-gradient(to right, orange, blue, red)',
+                            color: 'white',
+                        }}
+                    >
                         <Typography variant="h3">Bank Name: {acc.bank_name}</Typography>
                         <Typography variant="h3">Account Number: {acc.account_number}</Typography>
-                        <Typography variation="h3">Account Name: {acc.account_name}</Typography>
+                        <Typography variant="h3">Account Name: {acc.account_name}</Typography>
                     </Paper>
                 ))}
             </Box>
