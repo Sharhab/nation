@@ -86,7 +86,7 @@ const MainLayout = () => {
     }, [dispatch, matchDownMd]);
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', bgColor: 'back'}}>
             <CssBaseline />
             {/* header  */}
             <AppBar
@@ -95,7 +95,7 @@ const MainLayout = () => {
                 color="inherit"
                 elevation={0}
                 sx={{
-                    bgcolor: theme.palette.background.black[500],
+                    bgcolor: theme.palette.background.default,
                     transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
                 }}
             >
