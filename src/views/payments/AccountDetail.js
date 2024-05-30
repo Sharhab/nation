@@ -18,8 +18,8 @@ const AccountDetails = ({ accounts }) => {
     };
 
     return (
-        <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Box sx={{ maxWidth: 1200, margin: 'auto', padding: 2}}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
                 <Paper
                     variant="outlined"
                     sx={{
@@ -29,7 +29,7 @@ const AccountDetails = ({ accounts }) => {
                         padding: 2,
                         textAlign: 'center',
                         background: 'linear-gradient(to right, orange, blue, red)',
-                        color: 'white',
+                        color: 'ffff',
                     }}
                 >
                     <Typography variant="h3" gutterBottom>
@@ -49,7 +49,7 @@ const AccountDetails = ({ accounts }) => {
                             padding: 2,
                             textAlign: 'center',
                             background: 'linear-gradient(to right, orange, blue, red)',
-                            color: 'white',
+                            color: 'ffff',
                         }}
                     >
                         <Typography variant="h3">Bank Name: {acc.bank_name}</Typography>
