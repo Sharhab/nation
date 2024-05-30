@@ -31,7 +31,7 @@ const AccountDetails = ({ accounts }) => {
                         color: 'white',
                     }}
                 >
-                    <Typography variant="h3" gutterBottom>
+                    <Typography variant="h3" gutterBottom sx={{ color: 'white' }}>
                         Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
                     </Typography>
                 </Paper>
@@ -63,7 +63,7 @@ const AccountDetails = ({ accounts }) => {
                     variant="contained"
                     sx={{
                         background: 'linear-gradient(to right, orange, blue, red)',
-                        color: 'white',
+                        color: 'white !important',
                         '&:hover': {
                             background: 'linear-gradient(to right, red, blue, orange)',
                         },
@@ -77,7 +77,7 @@ const AccountDetails = ({ accounts }) => {
                     variant="contained"
                     sx={{
                         background: 'linear-gradient(to right, orange, blue, red)',
-                        color: 'white',
+                        color: 'white !important',
                         '&:hover': {
                             background: 'linear-gradient(to right, red, blue, orange)',
                         },
