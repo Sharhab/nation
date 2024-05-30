@@ -35,7 +35,7 @@ const AccountDetails = ({ accounts }) => {
                     mb: 2
                 }}
             >
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5" xs={{color: 'white'}} gutterBottom>
                     Fund Wallet By Transferring To Your Unique Account Number And it will Reflect in your Wallet immediately.
                 </Typography>
             </Paper>
@@ -56,9 +56,9 @@ const AccountDetails = ({ accounts }) => {
                             }
                         }}
                     >
-                        <Typography variant="h6">Bank Name: {acc.bank_name}</Typography>
+                        <Typography variant="h6" xs={{color: 'white'}}>Bank Name: {acc.bank_name}</Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Typography variant="h6">Account Number: {acc.account_number}</Typography>
+                            <Typography variant="h6" xs={{color: 'white'}}>Account Number: {acc.account_number}</Typography>
                             <Tooltip title="Copy to clipboard">
                                 <IconButton
                                     onClick={() => handleCopyAccountNumber(acc.account_number)}
@@ -68,15 +68,36 @@ const AccountDetails = ({ accounts }) => {
                                 </IconButton>
                             </Tooltip>
                         </Box>
-                        <Typography variant="h6">Account Name: {acc.account_name}</Typography>
+                        <Typography variant="h6" xs={{color: 'white'}}>Account Name: {acc.account_name}</Typography>
                     </Paper>
                 ))}
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                <Button onClick={handlePrevPage} disabled={currentPage === 0} variant="contained" color="primary">
+                <Button onClick={handlePrevPage} 
+                 disabled={currentPage === 0}
+                variant="contained" color="primary"
+                  sx={{
+                        background: 'linear-gradient(to right, orange, blue, red)',
+                        color: 'white !important',
+                        '&:hover': {
+                            background: 'linear-gradient(to right, red, blue, orange)',
+                        },
+                    }}
+                     >
                     Previous
                 </Button>
-                <Button onClick={handleNextPage} disabled={currentPage >= Math.ceil(accounts.length / accountsPerPage) - 1} variant="contained" color="primary">
+                <Button 
+                    onClick={handleNextPage} 
+                        disabled={currentPage >= Math.ceil(accounts.length / accountsPerPage) - 1} 
+                        variant="contained" color="primary"
+                         sx={{
+                        background: 'linear-gradient(to right, orange, blue, red)',
+                        color: 'white !important',
+                        '&:hover': {
+                            background: 'linear-gradient(to right, red, blue, orange)',
+                        },
+                    }}
+                            >
                     Next
                 </Button>
             </Box>
