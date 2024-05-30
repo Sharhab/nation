@@ -1313,13 +1313,13 @@ export const getHistories =
             });
             const { data } = await makeNetworkCall({
                 method: 'GET',
-                path: `transaction-histories`,
+                path: `/transaction-histories`,
                 
             });
 
             dispatch({
                 type: GET_TRANSACTION_HISTORY_SUCCESS,
-                payload: data?.data
+                payload: data
             });
             data &&
                 enqueueSnackbar(data?.message, {
@@ -1331,10 +1331,10 @@ export const getHistories =
             console.log(error);
             dispatch({
                 type: GET_TRANSACTION_HISTORY_FAIL,
-                payload: error.response?.data?.error?.message || error?.messag
+                payload: error?.message || error?.message
             });
             error &&
-                enqueueSnackbar(error.response?.data?.error?.message || error?.messag, {
+                enqueueSnackbar(error?.message || error?.message, {
                     variant: 'error',
                     autoHideDuration: 2000
                 });
