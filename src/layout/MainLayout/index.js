@@ -86,7 +86,7 @@ const MainLayout = () => {
     }, [dispatch, matchDownMd]);
 
     return (
-        <Box sx={{ display: 'flex', bgColor: 'back'}}>
+        <Box sx={{ display: 'flex', bgcolor: 'back'}}>
             <CssBaseline />
             {/* header  */}
             <AppBar
