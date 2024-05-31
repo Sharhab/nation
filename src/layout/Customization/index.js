@@ -96,7 +96,7 @@ const Customization = () => {
                     variant="circular"
                 
                         sx={{
-                        background: 'linear-gradient(135dg, blue 10%, green 10%, red 10%, black)',
+                        background: 'linear-gradient(120deg, blue 10%, green 10%, red 10%, black)',
                         borderRadius: 0,
                         borderTopLeftRadius: '50%',
                         borderBottomLeftRadius: '50%',
