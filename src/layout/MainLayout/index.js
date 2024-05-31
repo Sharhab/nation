@@ -25,7 +25,7 @@ const Main = styled('main', {
 })(({ theme, open }) => {
   return {
     ...theme.typography.mainContent,
-    background: 'linear-gradient(45deg, blue 20%, red 40%, orange 60%, green 80%, black)';
+    background: 'linear-gradient(45deg, blue 20%, red 40%, orange 60%, green 80%, black)',
   , // Use theme's default background color
     ...(open ? {
       transition: theme.transitions.create('margin', {
