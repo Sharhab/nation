@@ -94,8 +94,9 @@ const Customization = () => {
                     onClick={handleToggle}
                     size="medium"
                     variant="circular"
-                    color="secondary"
-                    sx={{
+                
+                        sx={{
+                        background: 'linear-gradient(135dg, blue 10% green 10 10% red 10% black)',
                         borderRadius: 0,
                         borderTopLeftRadius: '50%',
                         borderBottomLeftRadius: '50%',
