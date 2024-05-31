@@ -86,7 +86,7 @@ const Contact = ({ title }) => {
                             textDecoration: 'none'
                         }}
                     >
-                        <Typography variant="h4">Join sdataplus Reseller's whatsapp Group</Typography>
+                        <Typography variant="h4">Join sharhapay Reseller's whatsapp Group</Typography>
                     </a>
                 </li>
                 <li
@@ -100,7 +100,7 @@ const Contact = ({ title }) => {
                             textDecoration: 'none'
                         }}
                     >
-                        <Typography variant="h4"> SDATAPLUS Website Update</Typography>
+                        <Typography variant="h4"> Sharhapay Website Update</Typography>
                     </a>
                 </li>
             </ul>
