@@ -25,7 +25,7 @@ const Main = styled('main', {
 })(({ theme, open }) => {
   return {
     ...theme.typography.mainContent,
-    background: 'linear-gradient(135deg, blue 15%,  green 20%, red 20%, orange 20%, black)', // Gradient background
+    background: 'linear-gradient(135deg, blue 30%,  green 60%, red 30%, orange 30%, black)', // Gradient background
     ...(open ? {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
