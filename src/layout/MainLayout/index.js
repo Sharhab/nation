@@ -25,6 +25,7 @@ const Main = styled('main', {
 })(({ theme, open }) => {
   return {
     ...theme.typography.mainContent,
+    backgroundColor: theme.palette.background.default, // Use theme's default background color
     ...(open ? {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
@@ -95,7 +96,6 @@ const MainLayout = () => {
                 color="inherit"
                 elevation={0}
                 sx={{
-                    backgroundColor: 'black',
                     transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
                 }}
             >
@@ -109,7 +109,12 @@ const MainLayout = () => {
             <Sidebar drawerOpen={leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
 
             {/* main content */}
-            <Main theme={theme} open={leftDrawerOpened}>
+            <Main 
+             theme={theme} 
+              open={leftDrawerOpened} sx={{
+                backgroundColor: 'black',     
+                }}>
+
                 {/* breadcrumb */}
                 <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
                 <Outlet />
