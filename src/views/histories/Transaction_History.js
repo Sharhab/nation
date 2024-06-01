@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrders } from '../store/actions'; // Ensure the correct import path
+import { fetchOrders } from '../../store/actions'; // Ensure the correct import path
 import { Box, CircularProgress } from '@mui/material';
 import moment from 'moment';
 import MUIDataTable from 'mui-datatables';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router';
-import MainCard from '../ui-component/cards/MainCard'; // Ensure the correct import path
+import MainCard from '../../ui-component/cards/MainCard'; // Ensure the correct import path
 
 const Histories = () => {
     const { transactionHistory } = useSelector((state) => state);
