@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrders } from '../../store/actions'; // Ensure the correct import path
+import { getHistories } from '../../store/actions'; // Ensure the correct import path
 import { Box, CircularProgress } from '@mui/material';
 import moment from 'moment';
 import MUIDataTable from 'mui-datatables';
@@ -16,7 +16,7 @@ const Histories = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchOrders());
+        dispatch(getHistories());
     }, [dispatch]);
 
     const columns = [
