@@ -1,7 +1,6 @@
 // material-ui
 // project imports
 import { Box, CircularProgress } from '@mui/material';
-'
 import moment from 'moment';
 import MUIDataTable from 'mui-datatables';
 import { useSnackbar } from 'notistack';
@@ -16,7 +15,7 @@ import MainCard from '../../ui-component/cards/MainCard';
 const Histories = () => {
     const { transactionHistory, login } = useSelector((state) => state);
     const { loading, histories } = transactionHistory;
-
+   console.log(histories);
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const dispatch = useDispatch();
