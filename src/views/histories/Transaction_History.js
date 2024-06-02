@@ -1,7 +1,7 @@
 // material-ui
 // project imports
 import { Box, CircularProgress } from '@mui/material';
-import Cookies from 'js-cookie';
+'
 import moment from 'moment';
 import MUIDataTable from 'mui-datatables';
 import { useSnackbar } from 'notistack';
@@ -14,14 +14,16 @@ import MainCard from '../../ui-component/cards/MainCard';
 // ==============================|| SAMPLE PAGE ||============================== //
 
 const Histories = () => {
-    const { transactionHistory } = useSelector((state) => state);
+    const { transactionHistory, login } = useSelector((state) => state);
     const { loading, histories } = transactionHistory;
 
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-        !Cookies.get('user') && navigate('/pages/login');
+        if (!login.isLoggedIn){ 
+      navigate('/pages/login');
+        }
         dispatch(userAction({ navigate }));
         dispatch(getHistories({ enqueueSnackbar }));
     }, [dispatch, enqueueSnackbar, navigate]);
