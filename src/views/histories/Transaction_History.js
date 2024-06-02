@@ -127,9 +127,9 @@ const Histories = () => {
             }
         }
     ];
-    histories.histories?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    histories?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-    const data = histories.histories?.map((serv, i) => {
+    const data = histories?.map((serv, i) => {
         // const strDate = new Date(serv?.createdAt);
         const formattedDate = moment(serv?.createdAt).format('LLLL');
         // function convert(strDate) {
